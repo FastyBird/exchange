@@ -15,9 +15,9 @@
 
 namespace FastyBird\ApplicationExchange\Publisher;
 
-use Contributte\EventDispatcher;
 use FastyBird\ApplicationExchange\Events;
 use SplObjectStorage;
+use Symfony\Contracts\EventDispatcher;
 
 /**
  * Application exchange publisher proxy
@@ -33,11 +33,11 @@ class PublisherProxy implements IPublisher
 	/** @var SplObjectStorage */
 	private SplObjectStorage $publishers;
 
-	/** @var EventDispatcher\EventDispatcher */
-	private EventDispatcher\EventDispatcher $dispatcher;
+	/** @var EventDispatcher\EventDispatcherInterface */
+	private EventDispatcher\EventDispatcherInterface $dispatcher;
 
 	public function __construct(
-		EventDispatcher\EventDispatcher $dispatcher
+		EventDispatcher\EventDispatcherInterface $dispatcher
 	) {
 		$this->dispatcher = $dispatcher;
 
