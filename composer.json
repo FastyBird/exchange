@@ -33,10 +33,11 @@
   "minimum-stability" : "dev",
 
   "require" : {
-    "php" : ">=7.4.0",
-    "nette/bootstrap" : "^3.0",
-    "nette/di" : "^3.0",
-    "nette/utils" : "^3.0"
+    "php": ">=7.4.0",
+    "contributte/event-dispatcher": "^0.8.0",
+    "nette/bootstrap": "^3.0",
+    "nette/di": "^3.0",
+    "nette/utils": "^3.0"
   },
 
   "require-dev" : {

@@ -15,6 +15,8 @@
 
 namespace FastyBird\ApplicationExchange\Publisher;
 
+use Contributte\EventDispatcher;
+use FastyBird\ApplicationExchange\Events;
 use SplObjectStorage;
 
 /**
@@ -31,8 +33,14 @@ class PublisherProxy implements IPublisher
 	/** @var SplObjectStorage */
 	private SplObjectStorage $publishers;
 
-	public function __construct()
-	{
+	/** @var EventDispatcher\EventDispatcher */
+	private EventDispatcher\EventDispatcher $dispatcher;
+
+	public function __construct(
+		EventDispatcher\EventDispatcher $dispatcher
+	) {
+		$this->dispatcher = $dispatcher;
+
 		$this->publishers = new SplObjectStorage();
 	}
 
@@ -47,6 +55,8 @@ class PublisherProxy implements IPublisher
 		foreach ($this->publishers as $publisher) {
 			$publisher->publish($routingKey, $data);
 		}
+
+		$this->dispatcher->dispatch(new Events\MessagePublishedEvent($routingKey, $data));
 	}
 
 	/**
