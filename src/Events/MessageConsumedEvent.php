@@ -36,16 +36,16 @@ class MessageConsumedEvent extends EventDispatcher\Event
 	private string $routingKey;
 
 	/** @var Utils\ArrayHash */
-	private Utils\ArrayHash $message;
+	private Utils\ArrayHash $data;
 
 	public function __construct(
 		string $origin,
 		string $routingKey,
-		Utils\ArrayHash $message
+		Utils\ArrayHash $data
 	) {
 		$this->origin = $origin;
 		$this->routingKey = $routingKey;
-		$this->message = $message;
+		$this->data = $data;
 	}
 
 	/**
@@ -67,9 +67,9 @@ class MessageConsumedEvent extends EventDispatcher\Event
 	/**
 	 * @return Utils\ArrayHash
 	 */
-	public function getMessage(): Utils\ArrayHash
+	public function getData(): Utils\ArrayHash
 	{
-		return $this->message;
+		return $this->data;
 	}
 
 }
