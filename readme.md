@@ -1,11 +1,11 @@
 # FastyBird application exchange library
 
-[![Build Status](https://img.shields.io/travis/com/FastyBird/application-exchange.svg?style=flat-square)](https://travis-ci.com/FastyBird/application-exchange)
-[![Code coverage](https://img.shields.io/coveralls/FastyBird/application-exchange.svg?style=flat-square)](https://coveralls.io/r/FastyBird/application-exchange)
-![PHP](https://img.shields.io/packagist/php-v/fastybird/application-exchange?style=flat-square)
-[![Licence](https://img.shields.io/packagist/l/FastyBird/application-exchange.svg?style=flat-square)](https://packagist.org/packages/FastyBird/application-exchange)
-[![Downloads total](https://img.shields.io/packagist/dt/FastyBird/application-exchange.svg?style=flat-square)](https://packagist.org/packages/FastyBird/application-exchange)
-[![Latest stable](https://img.shields.io/packagist/v/FastyBird/application-exchange.svg?style=flat-square)](https://packagist.org/packages/FastyBird/application-exchange)
+[![Build Status](https://badgen.net/github/checks/FastyBird/application-exchange/master?cache=300&style=flast-square)](https://travis-ci.com/FastyBird/application-exchange)
+[![Code coverage](https://badgen.net/coveralls/c/github/FastyBird/application-exchange?cache=300&style=flast-square)](https://coveralls.io/r/FastyBird/application-exchange)
+![PHP](https://badgen.net/packagist/php/FastyBird/application-exchange?cache=300&style=flast-square)
+[![Licence](https://badgen.net/packagist/license/FastyBird/application-exchange?cache=300&style=flast-square)](https://packagist.org/packages/FastyBird/application-exchange)
+[![Downloads total](https://badgen.net/packagist/dt/FastyBird/application-exchange?cache=300&style=flast-square)](https://packagist.org/packages/FastyBird/application-exchange)
+[![Latest stable](https://badgen.net/packagist/v/FastyBird/application-exchange/latest?cache=300&style=flast-square)](https://packagist.org/packages/FastyBird/application-exchange)
 [![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat-square)](https://github.com/phpstan/phpstan)
 
 ## What is FastyBird application exchange library?
