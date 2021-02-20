@@ -30,7 +30,7 @@ use Symfony\Contracts\EventDispatcher;
 class PublisherProxy implements IPublisher
 {
 
-	/** @var SplObjectStorage */
+	/** @var SplObjectStorage<IPublisher, null> */
 	private SplObjectStorage $publishers;
 
 	/** @var EventDispatcher\EventDispatcherInterface */
