@@ -1,6 +1,6 @@
 # FastyBird application exchange library
 
-[![Build Status](https://badgen.net/github/checks/FastyBird/application-exchange/master?cache=300&style=flast-square)](https://travis-ci.com/FastyBird/application-exchange)
+[![Build Status](https://badgen.net/github/checks/FastyBird/application-exchange/master?cache=300&style=flast-square)](https://github.com/FastyBird/application-exchange/actions)
 [![Code coverage](https://badgen.net/coveralls/c/github/FastyBird/application-exchange?cache=300&style=flast-square)](https://coveralls.io/r/FastyBird/application-exchange)
 ![PHP](https://badgen.net/packagist/php/FastyBird/application-exchange?cache=300&style=flast-square)
 [![Licence](https://badgen.net/packagist/license/FastyBird/application-exchange?cache=300&style=flast-square)](https://packagist.org/packages/FastyBird/application-exchange)
