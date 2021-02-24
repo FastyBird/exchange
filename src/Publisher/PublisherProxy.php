@@ -56,7 +56,7 @@ class PublisherProxy implements IPublisher
 			$publisher->publish($origin, $routingKey, $data);
 		}
 
-		$this->dispatcher->dispatch(new Events\MessagePublishedEvent($routingKey, $data));
+		$this->dispatcher->dispatch(new Events\MessagePublishedEvent($origin, $routingKey, $data));
 	}
 
 	/**

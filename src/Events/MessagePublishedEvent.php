@@ -29,21 +29,35 @@ class MessagePublishedEvent extends EventDispatcher\Event
 {
 
 	/** @var string */
+	private string $origin;
+
+	/** @var string */
 	private string $routingKey;
 
 	/** @var mixed[] */
 	private array $data;
 
 	/**
+	 * @param string $origin
 	 * @param string $routingKey
 	 * @param mixed[] $data
 	 */
 	public function __construct(
+		string $origin,
 		string $routingKey,
 		array $data
 	) {
+		$this->origin = $origin;
 		$this->routingKey = $routingKey;
 		$this->data = $data;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getOrigin(): string
+	{
+		return $this->origin;
 	}
 
 	/**
