@@ -47,13 +47,13 @@ class PublisherProxy implements IPublisher
 	/**
 	 * {@inheritDoc}
 	 */
-	public function publish(string $routingKey, array $data): void
+	public function publish(string $origin, string $routingKey, array $data): void
 	{
 		$this->publishers->rewind();
 
 		/** @var IPublisher $publisher */
 		foreach ($this->publishers as $publisher) {
-			$publisher->publish($routingKey, $data);
+			$publisher->publish($origin, $routingKey, $data);
 		}
 
 		$this->dispatcher->dispatch(new Events\MessagePublishedEvent($routingKey, $data));

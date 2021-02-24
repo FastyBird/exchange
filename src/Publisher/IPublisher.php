@@ -27,11 +27,12 @@ interface IPublisher
 {
 
 	/**
+	 * @param string $origin
 	 * @param string $routingKey
 	 * @param mixed[] $data
 	 *
 	 * @return void
 	 */
-	public function publish(string $routingKey, array $data): void;
+	public function publish(string $origin, string $routingKey, array $data): void;
 
 }
