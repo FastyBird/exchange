@@ -10,7 +10,7 @@ The best way to install **fastybird/application-exchange** is using [Composer](h
 composer require fastybird/application-exchange
 ```
 
-After that you have to register extension in *config.neon*.
+After that, you have to register extension in *config.neon*.
 
 ```neon
 extensions:
