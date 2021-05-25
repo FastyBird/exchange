@@ -22,7 +22,7 @@ $ composer require fastybird/application-exchange
 
 ## Documentation
 
-Learn how to use data exchange services in [documentation](https://github.com/FastyBird/application-exchange/blob/master/docs/en/index.md).
+Learn how to use data exchange services in [documentation](https://github.com/FastyBird/application-exchange/blob/master/.docs/en/index.md).
 
 ***
 Homepage [https://www.fastybird.com](https://www.fastybird.com) and repository [https://github.com/FastyBird/application-exchange](https://github.com/FastyBird/application-exchange).
