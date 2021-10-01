@@ -55,7 +55,7 @@ class ApplicationExchangeExtension extends DI\CompilerExtension
 	{
 		$builder = $this->getContainerBuilder();
 
-		$builder->addDefinition($this->prefix('publisher'))
+		$builder->addDefinition($this->prefix('publisher'), new DI\Definitions\ServiceDefinition())
 			->setType(Publisher\PublisherProxy::class);
 	}
 
