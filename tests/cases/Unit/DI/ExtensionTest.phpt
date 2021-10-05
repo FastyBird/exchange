@@ -2,7 +2,7 @@
 
 namespace Tests\Cases;
 
-use FastyBird\ApplicationExchange\Publisher;
+use FastyBird\ExchangePlugin\Publisher;
 use Tester\Assert;
 
 require_once __DIR__ . '/../../../bootstrap.php';

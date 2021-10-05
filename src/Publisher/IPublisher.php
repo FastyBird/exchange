@@ -6,19 +6,19 @@
  * @license        More in LICENSE.md
  * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
- * @package        FastyBird:ApplicationExchange!
+ * @package        FastyBird:ExchangePlugin!
  * @subpackage     Publishers
  * @since          0.1.0
  *
  * @date           19.12.20
  */
 
-namespace FastyBird\ApplicationExchange\Publisher;
+namespace FastyBird\ExchangePlugin\Publisher;
 
 /**
- * Application exchange publisher interface
+ * Exchange publisher interface
  *
- * @package        FastyBird:ApplicationExchange!
+ * @package        FastyBird:ExchangePlugin!
  * @subpackage     Publishers
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>

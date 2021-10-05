@@ -1,22 +1,22 @@
-# FastyBird application exchange library
+# FastyBird exchange plugin
 
-[![Build Status](https://badgen.net/github/checks/FastyBird/application-exchange/master?cache=300&style=flast-square)](https://github.com/FastyBird/application-exchange/actions)
-[![Licence](https://badgen.net/github/license/FastyBird/application-exchange?cache=300&style=flast-square)](https://github.com/FastyBird/application-exchange/blob/master/LICENSE.md)
-[![Code coverage](https://badgen.net/coveralls/c/github/FastyBird/application-exchange?cache=300&style=flast-square)](https://coveralls.io/r/FastyBird/application-exchange)
+[![Build Status](https://badgen.net/github/checks/FastyBird/exchange-plugin/master?cache=300&style=flast-square)](https://github.com/FastyBird/exchange-plugin/actions)
+[![Licence](https://badgen.net/github/license/FastyBird/exchange-plugin?cache=300&style=flast-square)](https://github.com/FastyBird/exchange-plugin/blob/master/LICENSE.md)
+[![Code coverage](https://badgen.net/coveralls/c/github/FastyBird/exchange-plugin?cache=300&style=flast-square)](https://coveralls.io/r/FastyBird/exchange-plugin)
 
-![PHP](https://badgen.net/packagist/php/FastyBird/application-exchange?cache=300&style=flast-square)
-[![Downloads total](https://badgen.net/packagist/dt/FastyBird/application-exchange?cache=300&style=flast-square)](https://packagist.org/packages/FastyBird/application-exchange)
-[![Latest stable](https://badgen.net/packagist/v/FastyBird/application-exchange/latest?cache=300&style=flast-square)](https://packagist.org/packages/FastyBird/application-exchange)
+![PHP](https://badgen.net/packagist/php/FastyBird/exchange-plugin?cache=300&style=flast-square)
+[![Latest stable](https://badgen.net/packagist/v/FastyBird/exchange-plugin/latest?cache=300&style=flast-square)](https://packagist.org/packages/FastyBird/exchange-plugin)
+[![Downloads total](https://badgen.net/packagist/dt/FastyBird/exchange-plugin?cache=300&style=flast-square)](https://packagist.org/packages/FastyBird/exchange-plugin)
 [![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat-square)](https://github.com/phpstan/phpstan)
 
-![Python](https://badgen.net/pypi/python/fastybird-application-exchange?cache=300&style=flat-square)
-[![Python latest stable](https://badgen.net/pypi/v/fastybird-application-exchange?cache=300&style=flat-square)](https://pypi.org/project/fastybird-application-exchange/)
-[![Python downloads month](https://img.shields.io/pypi/dm/fastybird-application-exchange?cache=300&style=flat-square)](https://pypi.org/project/fastybird-application-exchange/)
+![Python](https://badgen.net/pypi/python/fastybird-exchange-plugin?cache=300&style=flat-square)
+[![Python latest stable](https://badgen.net/pypi/v/fastybird-exchange-plugin?cache=300&style=flat-square)](https://pypi.org/project/fastybird-exchange-plugin/)
+[![Python downloads month](https://img.shields.io/pypi/dm/fastybird-exchange-plugin?cache=300&style=flat-square)](https://pypi.org/project/fastybird-exchange-plugin/)
 [![Black](https://img.shields.io/badge/black-enabled-brightgreen.svg?style=flat-square)](https://github.com/psf/black)
 
-## What is FastyBird Redis DB exchange plugin?
+## What is FastyBird exchange plugin?
 
-This is a combined plugin for [Nette framework](https://nette.org) and [Python](https://www.python.org) extension which is creating exchange data bus for [FastyBird](https://www.fastybird.com) IoT services
+This is a combined plugin for [Nette framework](https://nette.org) and [Python](https://www.python.org) which is defining exchange data bus for [FastyBird](https://www.fastybird.com) IoT services
 
 ## Installation
 
@@ -30,10 +30,10 @@ $ composer require fastybird/redisdb-exchange-plugin
 
 ### Python based project:
 
-The best way to install **fastybird-application-exchange** is using [Pip](https://pip.pypa.io/en/stable/):
+The best way to install **fastybird-exchange-plugin** is using [Pip](https://pip.pypa.io/en/stable/):
 
 ```sh
-$ pip install fastybird-application-exchange
+$ pip install fastybird-exchange-plugin
 ```
 
 ## Documentation

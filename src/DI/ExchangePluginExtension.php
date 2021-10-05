@@ -1,33 +1,33 @@
 <?php declare(strict_types = 1);
 
 /**
- * ApplicationExchangeExtension.php
+ * ExchangePluginExtension.php
  *
  * @license        More in LICENSE.md
  * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
- * @package        FastyBird:ApplicationExchange!
+ * @package        FastyBird:ExchangePlugin!
  * @subpackage     DI
  * @since          0.1.0
  *
  * @date           19.12.20
  */
 
-namespace FastyBird\ApplicationExchange\DI;
+namespace FastyBird\ExchangePlugin\DI;
 
-use FastyBird\ApplicationExchange\Publisher;
+use FastyBird\ExchangePlugin\Publisher;
 use Nette;
 use Nette\DI;
 
 /**
- * ApplicationExchange utils extension container
+ * ExchangePlugin utils extension container
  *
- * @package        FastyBird:ApplicationExchange!
+ * @package        FastyBird:ExchangePlugin!
  * @subpackage     DI
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-class ApplicationExchangeExtension extends DI\CompilerExtension
+class ExchangePluginExtension extends DI\CompilerExtension
 {
 
 	/**
@@ -38,13 +38,13 @@ class ApplicationExchangeExtension extends DI\CompilerExtension
 	 */
 	public static function register(
 		Nette\Configurator $config,
-		string $extensionName = 'fbApplicationExchange'
+		string $extensionName = 'fbExchangePlugin'
 	): void {
 		$config->onCompile[] = function (
 			Nette\Configurator $config,
 			DI\Compiler $compiler
 		) use ($extensionName): void {
-			$compiler->addExtension($extensionName, new ApplicationExchangeExtension());
+			$compiler->addExtension($extensionName, new ExchangePluginExtension());
 		};
 	}
 

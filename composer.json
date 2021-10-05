@@ -1,7 +1,7 @@
 {
-  "name" : "fastybird/application-exchange",
+  "name" : "fastybird/exchange-plugin",
   "type" : "library",
-  "description" : "FastyBird application exchange interface",
+  "description" : "FastyBird application exchange plugin",
   "keywords" : [
     "fastybird",
     "fb",
@@ -57,7 +57,7 @@
 
   "autoload" : {
     "psr-4" : {
-      "FastyBird\\ApplicationExchange\\" : "src/"
+      "FastyBird\\ExchangePlugin\\" : "src/"
     }
   },
 

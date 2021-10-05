@@ -6,23 +6,23 @@
  * @license        More in LICENSE.md
  * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
- * @package        FastyBird:ApplicationExchange!
+ * @package        FastyBird:ExchangePlugin!
  * @subpackage     Publishers
  * @since          0.1.0
  *
  * @date           19.12.20
  */
 
-namespace FastyBird\ApplicationExchange\Publisher;
+namespace FastyBird\ExchangePlugin\Publisher;
 
-use FastyBird\ApplicationExchange\Events;
+use FastyBird\ExchangePlugin\Events;
 use SplObjectStorage;
 use Symfony\Contracts\EventDispatcher;
 
 /**
- * Application exchange publisher proxy
+ * Exchange publisher proxy
  *
- * @package        FastyBird:ApplicationExchange!
+ * @package        FastyBird:ExchangePlugin!
  * @subpackage     Publishers
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
