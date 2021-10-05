@@ -15,6 +15,7 @@
 
 namespace FastyBird\ExchangePlugin\Events;
 
+use FastyBird\ModulesMetadata\Types as ModulesMetadataTypes;
 use Nette\Utils;
 use Symfony\Contracts\EventDispatcher;
 
@@ -29,18 +30,18 @@ use Symfony\Contracts\EventDispatcher;
 class MessageConsumedEvent extends EventDispatcher\Event
 {
 
-	/** @var string */
-	private string $origin;
+	/** @var ModulesMetadataTypes\ModuleOriginType */
+	private ModulesMetadataTypes\ModuleOriginType $origin;
 
-	/** @var string */
-	private string $routingKey;
+	/** @var ModulesMetadataTypes\RoutingKeyType */
+	private ModulesMetadataTypes\RoutingKeyType $routingKey;
 
 	/** @var Utils\ArrayHash */
 	private Utils\ArrayHash $data;
 
 	public function __construct(
-		string $origin,
-		string $routingKey,
+		ModulesMetadataTypes\ModuleOriginType $origin,
+		ModulesMetadataTypes\RoutingKeyType $routingKey,
 		Utils\ArrayHash $data
 	) {
 		$this->origin = $origin;
@@ -49,17 +50,17 @@ class MessageConsumedEvent extends EventDispatcher\Event
 	}
 
 	/**
-	 * @return string
+	 * @return ModulesMetadataTypes\ModuleOriginType
 	 */
-	public function getOrigin(): string
+	public function getOrigin(): ModulesMetadataTypes\ModuleOriginType
 	{
 		return $this->origin;
 	}
 
 	/**
-	 * @return string
+	 * @return ModulesMetadataTypes\RoutingKeyType
 	 */
-	public function getRoutingKey(): string
+	public function getRoutingKey(): ModulesMetadataTypes\RoutingKeyType
 	{
 		return $this->routingKey;
 	}

@@ -15,6 +15,7 @@
 
 namespace FastyBird\ExchangePlugin\Events;
 
+use FastyBird\ModulesMetadata\Types as ModulesMetadataTypes;
 use Symfony\Contracts\EventDispatcher;
 
 /**
@@ -28,23 +29,23 @@ use Symfony\Contracts\EventDispatcher;
 class MessagePublishedEvent extends EventDispatcher\Event
 {
 
-	/** @var string */
-	private string $origin;
+	/** @var ModulesMetadataTypes\ModuleOriginType */
+	private ModulesMetadataTypes\ModuleOriginType $origin;
 
-	/** @var string */
-	private string $routingKey;
+	/** @var ModulesMetadataTypes\RoutingKeyType */
+	private ModulesMetadataTypes\RoutingKeyType $routingKey;
 
 	/** @var mixed[] */
 	private array $data;
 
 	/**
-	 * @param string $origin
-	 * @param string $routingKey
+	 * @param ModulesMetadataTypes\ModuleOriginType $origin
+	 * @param ModulesMetadataTypes\RoutingKeyType $routingKey
 	 * @param mixed[] $data
 	 */
 	public function __construct(
-		string $origin,
-		string $routingKey,
+		ModulesMetadataTypes\ModuleOriginType $origin,
+		ModulesMetadataTypes\RoutingKeyType $routingKey,
 		array $data
 	) {
 		$this->origin = $origin;
@@ -53,17 +54,17 @@ class MessagePublishedEvent extends EventDispatcher\Event
 	}
 
 	/**
-	 * @return string
+	 * @return ModulesMetadataTypes\ModuleOriginType
 	 */
-	public function getOrigin(): string
+	public function getOrigin(): ModulesMetadataTypes\ModuleOriginType
 	{
 		return $this->origin;
 	}
 
 	/**
-	 * @return string
+	 * @return ModulesMetadataTypes\RoutingKeyType
 	 */
-	public function getRoutingKey(): string
+	public function getRoutingKey(): ModulesMetadataTypes\RoutingKeyType
 	{
 		return $this->routingKey;
 	}

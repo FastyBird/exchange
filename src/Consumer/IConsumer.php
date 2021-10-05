@@ -15,6 +15,7 @@
 
 namespace FastyBird\ExchangePlugin\Consumer;
 
+use FastyBird\ModulesMetadata\Types as ModulesMetadataTypes;
 use Nette\Utils;
 
 /**
@@ -29,12 +30,16 @@ interface IConsumer
 {
 
 	/**
-	 * @param string $origin
-	 * @param string $routingKey
+	 * @param ModulesMetadataTypes\ModuleOriginType $origin
+	 * @param ModulesMetadataTypes\RoutingKeyType $routingKey
 	 * @param Utils\ArrayHash $message
 	 *
 	 * @return void
 	 */
-	public function consume(string $origin, string $routingKey, Utils\ArrayHash $message): void;
+	public function consume(
+		ModulesMetadataTypes\ModuleOriginType $origin,
+		ModulesMetadataTypes\RoutingKeyType $routingKey,
+		Utils\ArrayHash $message
+	): void;
 
 }

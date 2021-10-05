@@ -29,7 +29,7 @@ extensions:
 
 ## Creating custom publisher
 
-If some service of your application have to publish messages to data exchange, you could just implement `FastyBird\ExchangePlugin\Publisher\IPublisher` interface and register your publisher as service
+If some service of your module have to publish messages to data exchange for other modules, you could just implement `FastyBird\ExchangePlugin\Publisher\IPublisher` interface and register your publisher as service
 
 ```php
 namespace Your\CoolApp\Publishers;
