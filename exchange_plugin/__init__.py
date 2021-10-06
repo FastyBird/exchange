@@ -16,9 +16,4 @@
 Application exchange definitions
 """
 
-# Library libs
-from exchange_plugin.bootstrap import create_container
-
 __version__ = "0.4"
-
-create_container()
