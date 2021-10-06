@@ -15,10 +15,29 @@
 #     limitations under the License.
 
 """
-Events dispatcher instance
+Messages publisher proxy
 """
 
 # Library dependencies
-from whistle import EventDispatcher
+from abc import ABC
+from typing import Dict
+from modules_metadata.routing import RoutingKey
+from modules_metadata.types import ModuleOrigin
 
-app_dispatcher = EventDispatcher()
+
+class IConsumer(ABC):
+    """
+    Exchange consumer interface
+
+    @package        FastyBird:ExchangePlugin!
+    @module         publisher
+
+    @author         Adam Kadlec <adam.kadlec@fastybird.com>
+    """
+    def publish(
+        self,
+        origin: ModuleOrigin,
+        routing_key: RoutingKey,
+        data: Dict,
+    ) -> None:
+        """Consume data from exchange bus"""

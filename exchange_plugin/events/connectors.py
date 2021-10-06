@@ -30,7 +30,7 @@ class ConnectorPropertyValueEvent(ABC, Event):
     """
     Event fired by connected when property value is updated
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -87,7 +87,7 @@ class ConnectorDevicePropertyValueEvent(ConnectorPropertyValueEvent):
     """
     Event fired by connected when device property value is updated
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -98,7 +98,7 @@ class ConnectorChannelPropertyValueEvent(ConnectorPropertyValueEvent):
     """
     Event fired by connected when channel property value is updated
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -109,7 +109,7 @@ class ConnectorPropertyUpdatedEvent(ABC, Event):
     """
     Event fired by connector when property new value is received
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         storages
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -158,7 +158,7 @@ class ConnectorDevicePropertyUpdatedEvent(ConnectorPropertyUpdatedEvent):
     """
     Event fired by connector when device property new value is received
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         storages
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -169,7 +169,7 @@ class ConnectorChannelPropertyUpdatedEvent(ConnectorPropertyUpdatedEvent):
     """
     Event fired by connector when channel property new value is received
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         storages
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -180,7 +180,7 @@ class ConnectorAddOrEditDevice(ABC, Event):
     """
     Event fired by connector when new device is connected or existing updated
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -292,7 +292,7 @@ class ConnectorAddOrEditChannel(ABC, Event):
     """
     Event fired by connector when new channel is created or existing updated
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -341,7 +341,7 @@ class ConnectorAddOrEditProperty(ABC, Event):
     """
     Event fired by connector when new property is created or existing updated
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -450,7 +450,7 @@ class ConnectorAddOrEditDeviceProperty(ConnectorAddOrEditProperty):
     """
     Event fired by connector when new device property is created or existing updated
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -461,7 +461,7 @@ class ConnectorAddOrEditChannelProperty(ConnectorAddOrEditProperty):
     """
     Event fired by connector when new channel property is created or existing updated
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -509,7 +509,7 @@ class ConnectorDeleteProperty(ABC, Event):
     """
     Event fired by connector when property is deleted
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -538,7 +538,7 @@ class ConnectorDeleteDeviceProperty(ConnectorDeleteProperty):
     """
     Event fired by connector when device property is deleted
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -549,7 +549,7 @@ class ConnectorDeleteChannelProperty(ConnectorDeleteProperty):
     """
     Event fired by connector when channel property is deleted
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -560,7 +560,7 @@ class ConnectorAddOrEditConfiguration(ABC, Event):
     """
     Event fired by connector when new configuration is created or existing updated
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -619,7 +619,7 @@ class ConnectorAddOrEditDeviceConfiguration(ConnectorAddOrEditConfiguration):
     """
     Event fired by connector when new device configuration is created or existing updated
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -630,7 +630,7 @@ class ConnectorAddOrEditChannelConfiguration(ConnectorAddOrEditConfiguration):
     """
     Event fired by connector when new channel configuration is created or existing updated
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -668,7 +668,7 @@ class ConnectorDeleteConfiguration(ABC, Event):
     """
     Event fired by connector when configuration is deleted
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -697,7 +697,7 @@ class ConnectorDeleteDeviceConfiguration(ConnectorDeleteConfiguration):
     """
     Event fired by connector when device configuration is deleted
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -708,7 +708,7 @@ class ConnectorDeleteChannelConfiguration(ConnectorDeleteConfiguration):
     """
     Event fired by connector when channel configuration is deleted
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         connectors
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>

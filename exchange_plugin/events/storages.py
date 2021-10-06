@@ -29,7 +29,7 @@ class StoragePropertyEvent(ABC, Event):
     """
     Base storage for device or channel property
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         storages
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -96,7 +96,7 @@ class StoragePropertyStoredEvent(StoragePropertyEvent):
     """
     Event fired by storage when property value is written to storage
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         storages
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -109,7 +109,7 @@ class StorageDevicePropertyStoredEvent(StoragePropertyStoredEvent):
     """
     Event fired by storage when device property value is written to storage
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         storages
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -120,7 +120,7 @@ class StorageChannelPropertyStoredEvent(StoragePropertyStoredEvent):
     """
     Event fired by storage when channel property value is written to storage
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         storages
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -131,7 +131,7 @@ class StoragePropertyPropagatingEvent(StoragePropertyEvent):
     """
     Event fired by storage when property value is requested to be propagated
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         storages
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -144,7 +144,7 @@ class StorageDevicePropertyPropagatingEvent(StoragePropertyPropagatingEvent):
     """
     Event fired by storage when device property is requested to be propagated
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         storages
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -155,7 +155,7 @@ class StorageChannelPropertyPropagatingEvent(StoragePropertyPropagatingEvent):
     """
     Event fired by storage when channel property is requested to be propagated
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         storages
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -166,7 +166,7 @@ class StorageConditionStoredEvent(ABC, Event):
     """
     Event fired by storage when trigger condition validation result is written to storage
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         storages
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -215,7 +215,7 @@ class StorageActionStoredEvent(ABC, Event):
     """
     Event fired by storage when trigger action validation result is written to storage
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         storages
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>

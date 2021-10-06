@@ -29,7 +29,7 @@ class CommonProvidePropertiesDataEvent(ABC, Event):
     """
     Event fired by any module requesting properties data
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         common
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>

@@ -28,7 +28,7 @@ class TriggerPropertyActionFiredEvent(ABC, Event):
     """
     Event fired by triggers handler when trigger property action is fired
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         triggers
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -67,7 +67,7 @@ class TriggerDevicePropertyActionFiredEvent(TriggerPropertyActionFiredEvent):
     """
     Event fired by triggers handler when trigger device property action is fired
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         triggers
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -78,7 +78,7 @@ class TriggerChannelPropertyActionFiredEvent(TriggerPropertyActionFiredEvent):
     """
     Event fired by triggers handler when trigger channel property action is fired
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         triggers
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>

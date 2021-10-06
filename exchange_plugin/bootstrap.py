@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 #     Copyright 2021. FastyBird s.r.o.
 #
 #     Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,12 +15,21 @@
 #     limitations under the License.
 
 """
-Application exchange definitions
+Exchange plugin DI container
 """
 
+# pylint: disable=no-value-for-parameter
+
+# Library dependencies
+from kink import di
+from whistle import EventDispatcher
+
 # Library libs
-from exchange_plugin.bootstrap import create_container
+from exchange_plugin.publisher import Publisher
 
-__version__ = "0.4"
 
-create_container()
+def create_container() -> None:
+    """Create exchange plugin services"""
+    di["exchange-plugin_event-dispatcher"] = EventDispatcher()
+
+    di["exchange-plugin_publisher"] = Publisher()

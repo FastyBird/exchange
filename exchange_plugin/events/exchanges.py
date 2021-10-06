@@ -30,7 +30,7 @@ class ExchangePropertyExpectedValueEvent(ABC, Event):
     """
     Event fired by exchange when set property message is received
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         exchanges
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -79,7 +79,7 @@ class ExchangeDevicePropertyExpectedValueEvent(ExchangePropertyExpectedValueEven
     """
     Event fired by exchange when set device property message is received
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         exchanges
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -90,7 +90,7 @@ class ExchangeChannelPropertyExpectedValueEvent(ExchangePropertyExpectedValueEve
     """
     Event fired by exchange when set channel property message is received
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         exchanges
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -101,7 +101,7 @@ class ExchangeConnectorControlEvent(ABC, Event):
     """
     Event fired by exchange when control connector message is received
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         exchanges
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -150,7 +150,7 @@ class ExchangeConnectorControlSearchDevicesEvent(ExchangeConnectorControlEvent):
     """
     Event fired by exchange when search for new devices command is received
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         exchanges
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -161,7 +161,7 @@ class ExchangeConnectorControlResetEvent(ExchangeConnectorControlEvent):
     """
     Event fired by exchange when reset connector command is received
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         exchanges
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -172,7 +172,7 @@ class ExchangeEntityEvent(ABC, Event):
     """
     Event fired by exchange when entity message received
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         exchanges
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -221,7 +221,7 @@ class ExchangeEntityCreatedEvent(ExchangeEntityEvent):
     """
     Event fired by exchange when entity created message received
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         exchanges
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -232,7 +232,7 @@ class ExchangeEntityUpdatedEvent(ExchangeEntityEvent):
     """
     Event fired by exchange when entity updated message received
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         exchanges
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -243,7 +243,7 @@ class ExchangeEntityDeletedEvent(ExchangeEntityEvent):
     """
     Event fired by exchange when entity deleted message received
 
-    @package        FastyBird:ApplicationExchange!
+    @package        FastyBird:ExchangePlugin!
     @module         exchanges
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>

@@ -13,5 +13,5 @@
 #     limitations under the License.
 
 """
-Application exchange plugin tests
+Exchange plugin tests
 """
