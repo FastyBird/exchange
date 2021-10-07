@@ -19,12 +19,14 @@ Messages publisher proxy
 """
 
 # Library dependencies
+from kink import inject
 from whistle import EventDispatcher as WhistleEventDispatcher
 
 # Library libs
 from exchange_plugin.events.event import IEvent
 
 
+@inject
 class EventDispatcher:
     """
     Application events dispatcher
