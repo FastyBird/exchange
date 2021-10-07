@@ -30,6 +30,8 @@ from exchange_plugin.publisher import Publisher
 
 def create_container() -> None:
     """Create exchange plugin services"""
-    di["exchange-plugin_event-dispatcher"] = EventDispatcher()
+    di[EventDispatcher] = EventDispatcher()
+    di["exchange-plugin_event-dispatcher"] = di[EventDispatcher]
 
-    di["exchange-plugin_publisher"] = Publisher()
+    di[Publisher] = Publisher()
+    di["exchange-plugin_publisher"] = di[Publisher]
