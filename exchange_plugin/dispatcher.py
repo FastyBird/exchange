@@ -19,6 +19,7 @@ Messages publisher proxy
 """
 
 # Library dependencies
+from typing import Callable
 from kink import inject
 from whistle import EventDispatcher as WhistleEventDispatcher
 
@@ -52,3 +53,13 @@ class EventDispatcher:
     ) -> None:
         """Dispatch custom event"""
         self.__dispatcher.dispatch(event_id=event_id, event=event)
+
+    # -----------------------------------------------------------------------------
+
+    def add_listener(
+        self,
+        event_id: str,
+        listener: Callable[[IEvent], None],
+        priority: int = 0,
+    ) -> None:
+        self.__dispatcher.add_listener(event_id=event_id, listener=listener, priority=priority)
