@@ -62,4 +62,5 @@ class EventDispatcher:
         listener: Callable[[IEvent], None],
         priority: int = 0,
     ) -> None:
+        """Register event listener to dispatcher"""
         self.__dispatcher.add_listener(event_id=event_id, listener=listener, priority=priority)
