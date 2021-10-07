@@ -22,9 +22,9 @@ Exchange plugin DI container
 
 # Library dependencies
 from kink import di
-from whistle import EventDispatcher
 
 # Library libs
+from exchange_plugin.dispatcher import EventDispatcher
 from exchange_plugin.publisher import Publisher
 
 
