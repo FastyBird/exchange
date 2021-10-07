@@ -34,7 +34,7 @@ class IConsumer(ABC):
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
-    def publish(
+    def consume(
         self,
         origin: ModuleOrigin,
         routing_key: RoutingKey,
