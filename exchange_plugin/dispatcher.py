@@ -19,25 +19,34 @@ Messages publisher proxy
 """
 
 # Library dependencies
-from abc import ABC
-from typing import Dict
-from modules_metadata.routing import RoutingKey
-from modules_metadata.types import ModuleOrigin
+from whistle import EventDispatcher as WhistleEventDispatcher
+
+# Library libs
+from exchange_plugin.events.event import IEvent
 
 
-class IConsumer(ABC):
+class EventDispatcher:
     """
-    Data exchange consumer interface
+    Application events dispatcher
 
     @package        FastyBird:ExchangePlugin!
-    @module         consumer
+    @module         dispatcher
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
-    def consume(
+    __dispatcher: WhistleEventDispatcher
+
+    # -----------------------------------------------------------------------------
+
+    def __init__(self) -> None:
+        self.__dispatcher = WhistleEventDispatcher()
+
+    # -----------------------------------------------------------------------------
+
+    def dispatch(
         self,
-        origin: ModuleOrigin,
-        routing_key: RoutingKey,
-        data: Dict,
+        event_id: str,
+        event: IEvent,
     ) -> None:
-        """Consume data from exchange bus"""
+        """Dispatch custom event"""
+        self.__dispatcher.dispatch(event_id=event_id, event=event)

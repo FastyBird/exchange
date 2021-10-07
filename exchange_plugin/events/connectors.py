@@ -23,10 +23,12 @@ import uuid
 from abc import ABC
 from typing import Dict
 from modules_metadata.types import DataType, ModuleOrigin
-from whistle import Event
+
+# Library libs
+from exchange_plugin.events.event import IEvent
 
 
-class ConnectorPropertyValueEvent(ABC, Event):
+class ConnectorPropertyValueEvent(ABC, IEvent):
     """
     Event fired by connected when property value is updated
 
@@ -105,7 +107,7 @@ class ConnectorChannelPropertyValueEvent(ConnectorPropertyValueEvent):
     """
 
 
-class ConnectorPropertyUpdatedEvent(ABC, Event):
+class ConnectorPropertyUpdatedEvent(ABC, IEvent):
     """
     Event fired by connector when property new value is received
 
@@ -176,7 +178,7 @@ class ConnectorChannelPropertyUpdatedEvent(ConnectorPropertyUpdatedEvent):
     """
 
 
-class ConnectorAddOrEditDevice(ABC, Event):
+class ConnectorAddOrEditDevice(ABC, IEvent):
     """
     Event fired by connector when new device is connected or existing updated
 
@@ -288,7 +290,7 @@ class ConnectorAddOrEditDevice(ABC, Event):
         return self.__firmware_version
 
 
-class ConnectorAddOrEditChannel(ABC, Event):
+class ConnectorAddOrEditChannel(ABC, IEvent):
     """
     Event fired by connector when new channel is created or existing updated
 
@@ -337,7 +339,7 @@ class ConnectorAddOrEditChannel(ABC, Event):
         return self.__channel_identifier
 
 
-class ConnectorAddOrEditProperty(ABC, Event):
+class ConnectorAddOrEditProperty(ABC, IEvent):
     """
     Event fired by connector when new property is created or existing updated
 
@@ -505,7 +507,7 @@ class ConnectorAddOrEditChannelProperty(ConnectorAddOrEditProperty):
         return uuid.UUID(self.__channel_id, version=4)
 
 
-class ConnectorDeleteProperty(ABC, Event):
+class ConnectorDeleteProperty(ABC, IEvent):
     """
     Event fired by connector when property is deleted
 
@@ -556,7 +558,7 @@ class ConnectorDeleteChannelProperty(ConnectorDeleteProperty):
     """
 
 
-class ConnectorAddOrEditConfiguration(ABC, Event):
+class ConnectorAddOrEditConfiguration(ABC, IEvent):
     """
     Event fired by connector when new configuration is created or existing updated
 
@@ -664,7 +666,7 @@ class ConnectorAddOrEditChannelConfiguration(ConnectorAddOrEditConfiguration):
         return uuid.UUID(self.__channel_id, version=4)
 
 
-class ConnectorDeleteConfiguration(ABC, Event):
+class ConnectorDeleteConfiguration(ABC, IEvent):
     """
     Event fired by connector when configuration is deleted
 

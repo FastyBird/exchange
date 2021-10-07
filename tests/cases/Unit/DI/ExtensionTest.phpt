@@ -18,7 +18,7 @@ final class ExtensionTest extends BaseTestCase
 	{
 		$container = $this->createContainer();
 
-		Assert::notNull($container->getByType(Publisher\PublisherProxy::class));
+		Assert::notNull($container->getByType(Publisher\Publisher::class));
 	}
 
 }

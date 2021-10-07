@@ -20,7 +20,7 @@ use Nette;
 use Nette\DI;
 
 /**
- * ExchangePlugin utils extension container
+ * Exchange plugin extension container
  *
  * @package        FastyBird:ExchangePlugin!
  * @subpackage     DI
@@ -56,7 +56,7 @@ class ExchangePluginExtension extends DI\CompilerExtension
 		$builder = $this->getContainerBuilder();
 
 		$builder->addDefinition($this->prefix('publisher'), new DI\Definitions\ServiceDefinition())
-			->setType(Publisher\PublisherProxy::class);
+			->setType(Publisher\Publisher::class);
 	}
 
 	/**
@@ -69,10 +69,10 @@ class ExchangePluginExtension extends DI\CompilerExtension
 		$builder = $this->getContainerBuilder();
 
 		/**
-		 * PUBLISHER
+		 * PUBLISHERS PROXY
 		 */
 
-		$publisherProxyServiceName = $builder->getByType(Publisher\PublisherProxy::class);
+		$publisherProxyServiceName = $builder->getByType(Publisher\Publisher::class);
 
 		if ($publisherProxyServiceName !== null) {
 			/** @var DI\Definitions\ServiceDefinition $publisherProxyService */
@@ -81,7 +81,7 @@ class ExchangePluginExtension extends DI\CompilerExtension
 			$publisherServices = $builder->findByType(Publisher\IPublisher::class);
 
 			foreach ($publisherServices as $publisherService) {
-				if ($publisherService->getType() !== Publisher\PublisherProxy::class) {
+				if ($publisherService->getType() !== Publisher\Publisher::class) {
 					// Publisher is not allowed to be autowired
 					$publisherService->setAutowired(false);
 

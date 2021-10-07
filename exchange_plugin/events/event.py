@@ -15,29 +15,21 @@
 #     limitations under the License.
 
 """
-Messages publisher proxy
+Application base event
 """
 
 # Library dependencies
 from abc import ABC
-from typing import Dict
-from modules_metadata.routing import RoutingKey
-from modules_metadata.types import ModuleOrigin
+from whistle import Event
 
 
-class IConsumer(ABC):
+class IEvent(ABC, Event):
     """
-    Data exchange consumer interface
+    Event interface
 
     @package        FastyBird:ExchangePlugin!
-    @module         consumer
+    @module         event
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
-    def consume(
-        self,
-        origin: ModuleOrigin,
-        routing_key: RoutingKey,
-        data: Dict,
-    ) -> None:
-        """Consume data from exchange bus"""
+    EVENT_NAME: str = "unknownEvent"

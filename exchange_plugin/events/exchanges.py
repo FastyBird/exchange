@@ -23,10 +23,12 @@ import uuid
 from abc import ABC
 from modules_metadata.routing import RoutingKey
 from modules_metadata.types import ModuleOrigin
-from whistle import Event
+
+# Library libs
+from exchange_plugin.events.event import IEvent
 
 
-class ExchangePropertyExpectedValueEvent(ABC, Event):
+class ExchangePropertyExpectedValueEvent(ABC, IEvent):
     """
     Event fired by exchange when set property message is received
 
@@ -97,7 +99,7 @@ class ExchangeChannelPropertyExpectedValueEvent(ExchangePropertyExpectedValueEve
     """
 
 
-class ExchangeConnectorControlEvent(ABC, Event):
+class ExchangeConnectorControlEvent(ABC, IEvent):
     """
     Event fired by exchange when control connector message is received
 
@@ -168,7 +170,7 @@ class ExchangeConnectorControlResetEvent(ExchangeConnectorControlEvent):
     """
 
 
-class ExchangeEntityEvent(ABC, Event):
+class ExchangeEntityEvent(ABC, IEvent):
     """
     Event fired by exchange when entity message received
 

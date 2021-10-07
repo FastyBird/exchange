@@ -23,8 +23,11 @@ from typing import Dict
 from modules_metadata.routing import RoutingKey
 from modules_metadata.types import ModuleOrigin
 
+# Library libs
+from exchange_plugin.events.event import IEvent
 
-class MessageConsumed:
+
+class MessageConsumed(IEvent):
     """
     Event fired by exchange when received message is consumed
 
@@ -70,7 +73,7 @@ class MessageConsumed:
         return self.__data
 
 
-class MessagePublished:
+class MessagePublished(IEvent):
     """
     Event fired by exchange when received message is published
 

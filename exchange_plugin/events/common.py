@@ -22,10 +22,12 @@ Common module events
 import uuid
 from abc import ABC
 from typing import List
-from whistle import Event
+
+# Library libs
+from exchange_plugin.events.event import IEvent
 
 
-class CommonProvidePropertiesDataEvent(ABC, Event):
+class CommonProvidePropertiesDataEvent(ABC, IEvent):
     """
     Event fired by any module requesting properties data
 

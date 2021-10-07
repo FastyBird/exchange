@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 /**
- * IPublisher.php
+ * Publisher.php
  *
  * @license        More in LICENSE.md
  * @copyright      https://www.fastybird.com
@@ -21,14 +21,14 @@ use SplObjectStorage;
 use Symfony\Contracts\EventDispatcher;
 
 /**
- * Exchange publisher proxy
+ * Exchange publishers proxy
  *
  * @package        FastyBird:ExchangePlugin!
  * @subpackage     Publishers
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-class PublisherProxy implements IPublisher
+class Publisher implements IPublisher
 {
 
 	/** @var SplObjectStorage<IPublisher, null> */

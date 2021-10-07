@@ -24,14 +24,15 @@ from typing import List, Dict, Set
 from kink import inject
 from modules_metadata.routing import RoutingKey
 from modules_metadata.types import ModuleOrigin
-from whistle import EventDispatcher
 
+# Library libs
+from exchange_plugin.dispatcher import EventDispatcher
 from exchange_plugin.events.messages import MessagePublished
 
 
 class IPublisher(ABC):
     """
-    Exchange publisher interface
+    Data exchange publisher interface
 
     @package        FastyBird:ExchangePlugin!
     @module         publisher
@@ -50,7 +51,7 @@ class IPublisher(ABC):
 @inject
 class Publisher:
     """
-    Event fired by triggers handler when trigger property action is fired
+    Data exchange publisher proxy
 
     @package        FastyBird:ExchangePlugin!
     @module         publisher
@@ -64,10 +65,15 @@ class Publisher:
 
     def __init__(
         self,
-        publishers: List[IPublisher],
         event_dispatcher: EventDispatcher,
+        publishers: List[IPublisher] or None = None,
     ) -> None:
-        self.__publishers = set(publishers)
+        if publishers is None:
+            self.__publishers = set()
+
+        else:
+            self.__publishers = set(publishers)
+
         self.__event_dispatcher = event_dispatcher
 
     # -----------------------------------------------------------------------------

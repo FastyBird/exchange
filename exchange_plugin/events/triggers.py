@@ -21,10 +21,12 @@ Triggers module events
 # Library dependencies
 import uuid
 from abc import ABC
-from whistle import Event
+
+# Library libs
+from exchange_plugin.events.event import IEvent
 
 
-class TriggerPropertyActionFiredEvent(ABC, Event):
+class TriggerPropertyActionFiredEvent(ABC, IEvent):
     """
     Event fired by triggers handler when trigger property action is fired
 

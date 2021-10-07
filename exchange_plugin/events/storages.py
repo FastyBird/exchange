@@ -21,11 +21,13 @@ Storage events
 # Library dependencies
 import uuid
 from abc import ABC
-from whistle import Event
 from modules_metadata.types import ModuleOrigin
 
+# Library libs
+from exchange_plugin.events.event import IEvent
 
-class StoragePropertyEvent(ABC, Event):
+
+class StoragePropertyEvent(ABC, IEvent):
     """
     Base storage for device or channel property
 
@@ -162,7 +164,7 @@ class StorageChannelPropertyPropagatingEvent(StoragePropertyPropagatingEvent):
     """
 
 
-class StorageConditionStoredEvent(ABC, Event):
+class StorageConditionStoredEvent(ABC, IEvent):
     """
     Event fired by storage when trigger condition validation result is written to storage
 
@@ -211,7 +213,7 @@ class StorageConditionStoredEvent(ABC, Event):
         return self.__validation_result
 
 
-class StorageActionStoredEvent(ABC, Event):
+class StorageActionStoredEvent(ABC, IEvent):
     """
     Event fired by storage when trigger action validation result is written to storage
 
