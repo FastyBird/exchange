@@ -170,6 +170,13 @@ jobs:
       - name: "Checkout"
         uses: "actions/checkout@v2"
 
+      - name: "Setup MySQL"
+        uses: "mirromutth/mysql-action@v1.1"
+        with:
+          mysql version: "5.7"
+          mysql database: "testdb"
+          mysql root password: "root"
+
       - name: "Setup PHP cache environment"
         id: "extcache"
         uses: "shivammathur/cache-extensions@v1"
@@ -237,6 +244,13 @@ jobs:
       - name: "Checkout"
         uses: "actions/checkout@v2"
 
+      - name: "Setup MySQL"
+        uses: "mirromutth/mysql-action@v1.1"
+        with:
+          mysql version: "5.7"
+          mysql database: "testdb"
+          mysql root password: "root"
+
       - name: "Setup PHP cache environment"
         id: "extcache"
         uses: "shivammathur/cache-extensions@v1"
@@ -289,6 +303,50 @@ jobs:
           wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
           php php-coveralls.phar --verbose --config tests/.coveralls.yml
 
+  publish-github:
+    name: "Publish JS distribution to Github packages"
+    runs-on: "${{ matrix.operating-system }}"
+    needs: "publish-npmjs"
+
+    strategy:
+      matrix:
+        operating-system: ["ubuntu-latest"]
+
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: "Install node"
+        uses: "actions/setup-node@v1"
+        with:
+          node-version: "12"
+          registry-url: "https://npm.pkg.github.com"
+
+      - name: "Extract version"
+        uses: "battila7/get-version-action@v2"
+        id: "get_version"
+
+      - name: "Set up git since we will later push to the repo"
+        run: |
+          git config --global user.name "GitHub CD bot"
+          git config --global user.email "code@fastybird.com"
+
+      - name: "Upgrade npm version in package.json to the tag used in the release"
+        run: npm version ${{ steps.get_version.outputs.version-without-v }} --allow-same-version
+
+      - name: "Download build result"
+        uses: "actions/download-artifact@v1"
+        with:
+          name: js-dist
+          path: dist
+
+      - name: "Publish to GitHub"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: "npm publish --access public"
+
   build-python:
     name: "Build Python distribution"
     runs-on: "${{ matrix.operating-system }}"
@@ -314,20 +372,131 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
       - name: "Install build dependencies"
         run: "python -m pip install wheel --user"
 
       - name: "Build a binary wheel and a source tarball"
         run: "python setup.py sdist bdist_wheel"
 
-      - name: "Run code lint"
-        run: "make python_qa"
-
       - name: "Upload build result"
         uses: "actions/upload-artifact@v1"
         with:
           name: python-dist
           path: dist
+
+  python-qa:
+    name: "Quality assurance for Python code"
+    runs-on: "${{ matrix.operating-system }}"
+    needs: "build-python"
+
+    strategy:
+      matrix:
+        python: ["3.9"]
+        operating-system: ["ubuntu-latest"]
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: "Set up Python ${{ matrix.python }}"
+        uses: "actions/setup-python@v1"
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: "Install dependencies"
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: "Run code lint"
+        run: "make python_qa"
+
+  python-tests:
+    name: "Tests for Python code"
+    runs-on: "${{ matrix.operating-system }}"
+    needs: ["python-qa"]
+
+    strategy:
+      matrix:
+        python: ["3.9"]
+        operating-system: ["ubuntu-latest"]
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: "Setup MySQL"
+        uses: "mirromutth/mysql-action@v1.1"
+        with:
+          mysql version: "5.7"
+          mysql database: "testdb"
+          mysql root password: "root"
+
+      - name: "Wait for MySQL"
+        run: |
+          while ! mysqladmin ping --host=127.0.0.1 --password=root --silent; do
+            sleep 1
+          done
+
+      - name: "Set up Python ${{ matrix.python }}"
+        uses: "actions/setup-python@v1"
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: "Install dependencies"
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: "Run tests"
+        run: "make python_tests"
+
+  python-tests-code-coverage:
+    name: "Tests for Python code with code coverage"
+    runs-on: "${{ matrix.operating-system }}"
+    needs: ["python-tests"]
+
+    strategy:
+      matrix:
+        python: ["3.9"]
+        operating-system: ["ubuntu-latest"]
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: "Setup MySQL"
+        uses: "mirromutth/mysql-action@v1.1"
+        with:
+          mysql version: "5.7"
+          mysql database: "testdb"
+          mysql root password: "root"
+
+      - name: "Wait for MySQL"
+        run: |
+          while ! mysqladmin ping --host=127.0.0.1 --password=root --silent; do
+            sleep 1
+          done
+
+      - name: "Set up Python ${{ matrix.python }}"
+        uses: "actions/setup-python@v1"
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: "Install dependencies"
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: "Install code coverage"
+        run: "pip install coverage"
+
+      - name: "Run code coverage"
+        run: "make python_coverage"
+
+      - name: "Report code coverage"
+        run: "coverage report"
 
   test-install-python:
     name: "Test installation of Python distribution"
@@ -363,7 +532,7 @@ jobs:
   publish-on-testpypi:
     name: "Publish Python distribution on Test PyPI"
     runs-on: "${{ matrix.operating-system }}"
-    needs: "test-install-python"
+    needs: ["test-install-python", "python-tests"]
 
     strategy:
       matrix:

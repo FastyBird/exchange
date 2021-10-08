@@ -27,7 +27,7 @@ from modules_metadata.types import ModuleOrigin
 
 # Library libs
 from exchange_plugin.dispatcher import EventDispatcher
-from exchange_plugin.events.messages import MessagePublished
+from exchange_plugin.events.messages import MessagePublishedEvent
 
 
 class IPublisher(ABC):
@@ -89,8 +89,8 @@ class Publisher:
             publisher.publish(origin=origin, routing_key=routing_key, data=data)
 
         self.__event_dispatcher.dispatch(
-            MessagePublished.EVENT_NAME,
-            MessagePublished(
+            MessagePublishedEvent.EVENT_NAME,
+            MessagePublishedEvent(
                 origin=origin,
                 routing_key=routing_key,
                 data=data,

@@ -27,7 +27,7 @@ from modules_metadata.types import ModuleOrigin
 from exchange_plugin.events.event import IEvent
 
 
-class MessageConsumed(IEvent):
+class MessageConsumedEvent(IEvent):
     """
     Event fired by exchange when received message is consumed
 
@@ -73,7 +73,7 @@ class MessageConsumed(IEvent):
         return self.__data
 
 
-class MessagePublished(IEvent):
+class MessagePublishedEvent(IEvent):
     """
     Event fired by exchange when received message is published
 
