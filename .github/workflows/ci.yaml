@@ -170,13 +170,6 @@ jobs:
       - name: "Checkout"
         uses: "actions/checkout@v2"
 
-      - name: "Setup MySQL"
-        uses: "mirromutth/mysql-action@v1.1"
-        with:
-          mysql version: "5.7"
-          mysql database: "testdb"
-          mysql root password: "root"
-
       - name: "Setup PHP cache environment"
         id: "extcache"
         uses: "shivammathur/cache-extensions@v1"
@@ -243,13 +236,6 @@ jobs:
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v2"
-
-      - name: "Setup MySQL"
-        uses: "mirromutth/mysql-action@v1.1"
-        with:
-          mysql version: "5.7"
-          mysql database: "testdb"
-          mysql root password: "root"
 
       - name: "Setup PHP cache environment"
         id: "extcache"
@@ -382,19 +368,6 @@ jobs:
       - name: "Checkout"
         uses: "actions/checkout@v2"
 
-      - name: "Setup MySQL"
-        uses: "mirromutth/mysql-action@v1.1"
-        with:
-          mysql version: "5.7"
-          mysql database: "testdb"
-          mysql root password: "root"
-
-      - name: "Wait for MySQL"
-        run: |
-          while ! mysqladmin ping --host=127.0.0.1 --password=root --silent; do
-            sleep 1
-          done
-
       - name: "Set up Python ${{ matrix.python }}"
         uses: "actions/setup-python@v1"
         with:
@@ -421,19 +394,6 @@ jobs:
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v2"
-
-      - name: "Setup MySQL"
-        uses: "mirromutth/mysql-action@v1.1"
-        with:
-          mysql version: "5.7"
-          mysql database: "testdb"
-          mysql root password: "root"
-
-      - name: "Wait for MySQL"
-        run: |
-          while ! mysqladmin ping --host=127.0.0.1 --password=root --silent; do
-            sleep 1
-          done
 
       - name: "Set up Python ${{ matrix.python }}"
         uses: "actions/setup-python@v1"
