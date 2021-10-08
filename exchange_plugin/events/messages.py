@@ -27,7 +27,51 @@ from modules_metadata.types import ModuleOrigin
 from exchange_plugin.events.event import IEvent
 
 
-class MessageConsumedEvent(IEvent):
+class MessageEvent(IEvent):
+    """
+    Base message event
+
+    @package        FastyBird:ExchangePlugin!
+    @module         messages
+
+    @author         Adam Kadlec <adam.kadlec@fastybird.com>
+    """
+    __origin: ModuleOrigin
+    __routing_key: RoutingKey
+    __data: Dict or None
+
+    # -----------------------------------------------------------------------------
+
+    def __init__(
+        self,
+        origin: ModuleOrigin,
+        routing_key: RoutingKey,
+        data: Dict or None,
+    ) -> None:
+        self.__origin = origin
+        self.__routing_key = routing_key
+        self.__data = data
+
+    # -----------------------------------------------------------------------------
+
+    @property
+    def origin(self) -> ModuleOrigin:
+        return self.__origin
+
+    # -----------------------------------------------------------------------------
+
+    @property
+    def routing_key(self) -> RoutingKey:
+        return self.__routing_key
+
+    # -----------------------------------------------------------------------------
+
+    @property
+    def data(self) -> Dict or None:
+        return self.__data
+
+
+class MessageConsumedEvent(MessageEvent):
     """
     Event fired by exchange when received message is consumed
 
@@ -36,44 +80,10 @@ class MessageConsumedEvent(IEvent):
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
-    __origin: ModuleOrigin
-    __routing_key: RoutingKey
-    __data: Dict
-
-    EVENT_NAME: str = "messages.messageConsumed"
-
-    # -----------------------------------------------------------------------------
-
-    def __init__(
-        self,
-        origin: ModuleOrigin,
-        routing_key: RoutingKey,
-        data: Dict,
-    ) -> None:
-        self.__origin = origin
-        self.__routing_key = routing_key
-        self.__data = data
-
-    # -----------------------------------------------------------------------------
-
-    @property
-    def origin(self) -> ModuleOrigin:
-        return self.__origin
-
-    # -----------------------------------------------------------------------------
-
-    @property
-    def routing_key(self) -> RoutingKey:
-        return self.__routing_key
-
-    # -----------------------------------------------------------------------------
-
-    @property
-    def data(self) -> Dict:
-        return self.__data
+    EVENT_NAME: str = "exchange-plugin.messages.messageConsumed"
 
 
-class MessagePublishedEvent(IEvent):
+class MessagePublishedEvent(MessageEvent):
     """
     Event fired by exchange when received message is published
 
@@ -82,38 +92,16 @@ class MessagePublishedEvent(IEvent):
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
-    __origin: ModuleOrigin
-    __routing_key: RoutingKey
-    __data: Dict
+    EVENT_NAME: str = "exchange-plugin.messages.messagePublished"
 
-    EVENT_NAME: str = "messages.messagePublished"
 
-    # -----------------------------------------------------------------------------
+class MessageReceivedEvent(MessageEvent):
+    """
+    Event fired by exchange client when message is received
 
-    def __init__(
-        self,
-        origin: ModuleOrigin,
-        routing_key: RoutingKey,
-        data: Dict,
-    ) -> None:
-        self.__origin = origin
-        self.__routing_key = routing_key
-        self.__data = data
+    @package        FastyBird:ExchangePlugin!
+    @module         messages
 
-    # -----------------------------------------------------------------------------
-
-    @property
-    def origin(self) -> ModuleOrigin:
-        return self.__origin
-
-    # -----------------------------------------------------------------------------
-
-    @property
-    def routing_key(self) -> RoutingKey:
-        return self.__routing_key
-
-    # -----------------------------------------------------------------------------
-
-    @property
-    def data(self) -> Dict:
-        return self.__data
+    @author         Adam Kadlec <adam.kadlec@fastybird.com>
+    """
+    EVENT_NAME: str = "exchange-plugin.messages.messageReceived"
