@@ -36,13 +36,13 @@ class MessageConsumedEvent extends EventDispatcher\Event
 	/** @var ModulesMetadataTypes\RoutingKeyType */
 	private ModulesMetadataTypes\RoutingKeyType $routingKey;
 
-	/** @var Utils\ArrayHash */
-	private Utils\ArrayHash $data;
+	/** @var Utils\ArrayHash|null */
+	private ?Utils\ArrayHash $data;
 
 	public function __construct(
 		ModulesMetadataTypes\ModuleOriginType $origin,
 		ModulesMetadataTypes\RoutingKeyType $routingKey,
-		Utils\ArrayHash $data
+		?Utils\ArrayHash $data = null
 	) {
 		$this->origin = $origin;
 		$this->routingKey = $routingKey;
@@ -66,9 +66,9 @@ class MessageConsumedEvent extends EventDispatcher\Event
 	}
 
 	/**
-	 * @return Utils\ArrayHash
+	 * @return Utils\ArrayHash|null
 	 */
-	public function getData(): Utils\ArrayHash
+	public function getData(): ?Utils\ArrayHash
 	{
 		return $this->data;
 	}

@@ -43,7 +43,7 @@ class IPublisher(ABC):
         self,
         origin: ModuleOrigin,
         routing_key: RoutingKey,
-        data: Dict,
+        data: Dict or None,
     ) -> None:
         """Publish data to exchange bus"""
 
@@ -82,7 +82,7 @@ class Publisher:
         self,
         origin: ModuleOrigin,
         routing_key: RoutingKey,
-        data: Dict,
+        data: Dict or None,
     ) -> None:
         """Call all registered publishers and publish data"""
         for publisher in self.__publishers:

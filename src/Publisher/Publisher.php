@@ -17,6 +17,7 @@ namespace FastyBird\ExchangePlugin\Publisher;
 
 use FastyBird\ExchangePlugin\Events;
 use FastyBird\ModulesMetadata\Types as ModulesMetadataTypes;
+use Nette\Utils;
 use SplObjectStorage;
 use Symfony\Contracts\EventDispatcher;
 
@@ -51,7 +52,7 @@ class Publisher implements IPublisher
 	public function publish(
 		ModulesMetadataTypes\ModuleOriginType $origin,
 		ModulesMetadataTypes\RoutingKeyType $routingKey,
-		array $data
+		?Utils\ArrayHash $data
 	): void {
 		$this->publishers->rewind();
 

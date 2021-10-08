@@ -1,16 +1,16 @@
 <?php declare(strict_types = 1);
 
 /**
- * MessagePublishedEvent.php
+ * MessageReceivedEvent.php
  *
  * @license        More in LICENSE.md
  * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  * @package        FastyBird:ExchangePlugin!
  * @subpackage     Events
- * @since          0.1.0
+ * @since          0.4.6
  *
- * @date           19.12.20
+ * @date           08.10.21
  */
 
 namespace FastyBird\ExchangePlugin\Events;
@@ -20,14 +20,14 @@ use Nette\Utils;
 use Symfony\Contracts\EventDispatcher;
 
 /**
- * After message published event
+ * After message received by exchange event
  *
  * @package        FastyBird:ExchangePlugin!
  * @subpackage     Events
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-class MessagePublishedEvent extends EventDispatcher\Event
+class MessageReceivedEvent extends EventDispatcher\Event
 {
 
 	/** @var ModulesMetadataTypes\ModuleOriginType */
@@ -42,7 +42,7 @@ class MessagePublishedEvent extends EventDispatcher\Event
 	public function __construct(
 		ModulesMetadataTypes\ModuleOriginType $origin,
 		ModulesMetadataTypes\RoutingKeyType $routingKey,
-		?Utils\ArrayHash $data
+		?Utils\ArrayHash $data = null
 	) {
 		$this->origin = $origin;
 		$this->routingKey = $routingKey;

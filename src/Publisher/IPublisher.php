@@ -16,6 +16,7 @@
 namespace FastyBird\ExchangePlugin\Publisher;
 
 use FastyBird\ModulesMetadata\Types as ModulesMetadataTypes;
+use Nette\Utils;
 
 /**
  * Exchange publisher interface
@@ -31,14 +32,14 @@ interface IPublisher
 	/**
 	 * @param ModulesMetadataTypes\ModuleOriginType $origin
 	 * @param ModulesMetadataTypes\RoutingKeyType $routingKey
-	 * @param mixed[] $data
+	 * @param Utils\ArrayHash|null $data
 	 *
 	 * @return void
 	 */
 	public function publish(
 		ModulesMetadataTypes\ModuleOriginType $origin,
 		ModulesMetadataTypes\RoutingKeyType $routingKey,
-		array $data
+		?Utils\ArrayHash $data
 	): void;
 
 }

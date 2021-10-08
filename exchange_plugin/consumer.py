@@ -38,6 +38,6 @@ class IConsumer(ABC):
         self,
         origin: ModuleOrigin,
         routing_key: RoutingKey,
-        data: Dict,
+        data: Dict or None,
     ) -> None:
         """Consume data from exchange bus"""
