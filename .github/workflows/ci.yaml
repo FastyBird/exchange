@@ -409,7 +409,7 @@ jobs:
         run: "pip install coverage"
 
       - name: "Run code coverage"
-        run: "make python_coverage --source=exchange_plugin"
+        run: "make python_coverage"
 
       - name: "Report code coverage"
         run: "coverage report"
