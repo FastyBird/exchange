@@ -15,7 +15,7 @@
 #     limitations under the License.
 
 """
-Messages publisher proxy
+Exchange plugin events dispatcher
 """
 
 # Library dependencies
@@ -30,7 +30,7 @@ from exchange_plugin.events.event import IEvent
 @inject
 class EventDispatcher:
     """
-    Application events dispatcher
+    Custom events dispatcher
 
     @package        FastyBird:ExchangePlugin!
     @module         dispatcher

@@ -15,7 +15,7 @@
 #     limitations under the License.
 
 """
-Messages events
+Exchange plugin exchange messages events
 """
 
 # Library dependencies

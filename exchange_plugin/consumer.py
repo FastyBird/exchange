@@ -15,7 +15,7 @@
 #     limitations under the License.
 
 """
-Messages publisher proxy
+Exchange plugin messages consumer
 """
 
 # Library dependencies
@@ -40,4 +40,4 @@ class IConsumer(ABC):
         routing_key: RoutingKey,
         data: Dict or None,
     ) -> None:
-        """Consume data from exchange bus"""
+        """Consume data received from exchange bus"""

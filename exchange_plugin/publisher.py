@@ -15,7 +15,7 @@
 #     limitations under the License.
 
 """
-Messages publisher proxy
+Exchange plugin publisher
 """
 
 # Library dependencies
