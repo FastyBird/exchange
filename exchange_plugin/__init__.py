@@ -13,7 +13,7 @@
 #     limitations under the License.
 
 """
-Application exchange definitions
+Exchange plugin
 """
 
-__version__ = "0.4.6"
+__version__ = "0.4.7"

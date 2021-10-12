@@ -89,8 +89,8 @@ class Publisher:
             publisher.publish(origin=origin, routing_key=routing_key, data=data)
 
         self.__event_dispatcher.dispatch(
-            MessagePublishedEvent.EVENT_NAME,
-            MessagePublishedEvent(
+            event_id=MessagePublishedEvent.EVENT_NAME,
+            event=MessagePublishedEvent(
                 origin=origin,
                 routing_key=routing_key,
                 data=data,
