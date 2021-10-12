@@ -30,7 +30,7 @@ from exchange_plugin.dispatcher import EventDispatcher
 from exchange_plugin.events.messages import MessagePublishedEvent
 
 
-class IPublisher(ABC):
+class IPublisher(ABC):  # pylint: disable=too-few-public-methods
     """
     Data exchange publisher interface
 

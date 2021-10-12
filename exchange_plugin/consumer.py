@@ -25,7 +25,7 @@ from modules_metadata.routing import RoutingKey
 from modules_metadata.types import ModuleOrigin
 
 
-class IConsumer(ABC):
+class IConsumer(ABC):  # pylint: disable=too-few-public-methods
     """
     Data exchange consumer interface
 

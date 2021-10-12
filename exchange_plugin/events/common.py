@@ -20,14 +20,13 @@ Common module events
 
 # Library dependencies
 import uuid
-from abc import ABC
 from typing import List
 
 # Library libs
 from exchange_plugin.events.event import IEvent
 
 
-class CommonProvidePropertiesDataEvent(ABC, IEvent):
+class CommonProvidePropertiesDataEvent(IEvent):  # pylint: disable=too-few-public-methods
     """
     Event fired by any module requesting properties data
 

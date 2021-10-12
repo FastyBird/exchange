@@ -23,7 +23,7 @@ from abc import ABC
 from whistle import Event
 
 
-class IEvent(ABC, Event):
+class IEvent(ABC, Event):  # pylint: disable=too-few-public-methods
     """
     Event interface
 

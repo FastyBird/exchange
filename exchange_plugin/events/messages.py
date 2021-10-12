@@ -56,18 +56,21 @@ class MessageEvent(IEvent):
 
     @property
     def origin(self) -> ModuleOrigin:
+        """Message origin"""
         return self.__origin
 
     # -----------------------------------------------------------------------------
 
     @property
     def routing_key(self) -> RoutingKey:
+        """Message routing key"""
         return self.__routing_key
 
     # -----------------------------------------------------------------------------
 
     @property
     def data(self) -> Dict or None:
+        """Message data"""
         return self.__data
 
 
