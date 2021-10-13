@@ -64,3 +64,20 @@ class EventDispatcher:
     ) -> None:
         """Register event listener to dispatcher"""
         self.__dispatcher.add_listener(event_id=event_id, listener=listener, priority=priority)
+
+    # -----------------------------------------------------------------------------
+
+    def remove_listener(
+        self,
+        event_id: str,
+        listener: Callable[[IEvent], None],
+    ) -> None:
+        """Unregister event listener from dispatcher"""
+        self.__dispatcher.remove_listener(event_id=event_id, listener=listener)
+
+    def has_listeners(
+        self,
+        event_id: str,
+    ) -> bool:
+        """Check if for given event id is registered any listener"""
+        return self.__dispatcher.has_listeners(event_id=event_id)
