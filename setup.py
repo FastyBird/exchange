@@ -62,7 +62,6 @@ setup(
     install_requires=[
         "fastybird-modules-metadata",
         "kink",
-        "pony",
         "setuptools",
         "whistle",
     ],

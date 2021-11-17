@@ -35,7 +35,7 @@
   "require" : {
     "php": ">=7.4.0|>=8.0.0",
     "contributte/event-dispatcher": "^0.8",
-    "fastybird/modules-metadata": "^0.7",
+    "fastybird/modules-metadata": "^0.8",
     "nette/bootstrap": "^3.1",
     "nette/di": "^3.0",
     "nette/utils": "^3.2",

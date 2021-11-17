@@ -19,7 +19,7 @@ Exchange plugin publisher
 """
 
 # Library dependencies
-from abc import ABC
+from abc import ABC, abstractmethod
 from typing import List, Dict, Set
 from kink import inject
 from modules_metadata.routing import RoutingKey
@@ -39,6 +39,7 @@ class IPublisher(ABC):  # pylint: disable=too-few-public-methods
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
+    @abstractmethod
     def publish(
         self,
         origin: ModuleOrigin,

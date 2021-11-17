@@ -22,10 +22,10 @@ This is a combined plugin for [Nette framework](https://nette.org) and [Python](
 
 ### PHP based project:
 
-The best way to install **fastybird/redisdb-exchange-plugin** is using [Composer](http://getcomposer.org/):
+The best way to install **fastybird/exchange-plugin** is using [Composer](http://getcomposer.org/):
 
 ```sh
-$ composer require fastybird/redisdb-exchange-plugin
+$ composer require fastybird/exchange-plugin
 ```
 
 ### Python based project:
@@ -38,7 +38,7 @@ $ pip install fastybird-exchange-plugin
 
 ## Documentation
 
-Learn how to consume & publish messages in [documentation](https://github.com/FastyBird/redisdb-exchange-plugin/blob/master/.docs/en/index.md).
+Learn how to consume & publish messages in [documentation](https://github.com/FastyBird/exchange-plugin/blob/master/.docs/en/index.md).
 
 ***
-Homepage [https://www.fastybird.com](https://www.fastybird.com) and repository [https://github.com/FastyBird/redisdb-exchange-plugin](https://github.com/FastyBird/redisdb-exchange-plugin).
+Homepage [https://www.fastybird.com](https://www.fastybird.com) and repository [https://github.com/FastyBird/exchange-plugin](https://github.com/FastyBird/exchange-plugin).
