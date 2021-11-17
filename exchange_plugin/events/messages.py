@@ -19,7 +19,7 @@ Exchange plugin exchange messages events
 """
 
 # Library dependencies
-from typing import Dict
+from typing import Dict, Optional
 from modules_metadata.routing import RoutingKey
 from modules_metadata.types import ModuleOrigin
 
@@ -38,7 +38,7 @@ class MessageEvent(IEvent):
     """
     __origin: ModuleOrigin
     __routing_key: RoutingKey
-    __data: Dict or None
+    __data: Optional[Dict]
 
     # -----------------------------------------------------------------------------
 
@@ -46,7 +46,7 @@ class MessageEvent(IEvent):
         self,
         origin: ModuleOrigin,
         routing_key: RoutingKey,
-        data: Dict or None,
+        data: Optional[Dict],
     ) -> None:
         self.__origin = origin
         self.__routing_key = routing_key
@@ -69,7 +69,7 @@ class MessageEvent(IEvent):
     # -----------------------------------------------------------------------------
 
     @property
-    def data(self) -> Dict or None:
+    def data(self) -> Optional[Dict]:
         """Message data"""
         return self.__data
 

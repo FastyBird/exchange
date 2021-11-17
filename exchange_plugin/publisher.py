@@ -20,7 +20,7 @@ Exchange plugin publisher
 
 # Library dependencies
 from abc import ABC, abstractmethod
-from typing import List, Dict, Set
+from typing import List, Dict, Set, Optional
 from kink import inject
 from modules_metadata.routing import RoutingKey
 from modules_metadata.types import ModuleOrigin
@@ -44,7 +44,7 @@ class IPublisher(ABC):  # pylint: disable=too-few-public-methods
         self,
         origin: ModuleOrigin,
         routing_key: RoutingKey,
-        data: Dict or None,
+        data: Optional[Dict],
     ) -> None:
         """Publish data to exchange bus"""
 
@@ -67,7 +67,7 @@ class Publisher:
     def __init__(
         self,
         event_dispatcher: EventDispatcher,
-        publishers: List[IPublisher] or None = None,
+        publishers: Optional[List[IPublisher]] = None,
     ) -> None:
         if publishers is None:
             self.__publishers = set()
@@ -83,7 +83,7 @@ class Publisher:
         self,
         origin: ModuleOrigin,
         routing_key: RoutingKey,
-        data: Dict or None,
+        data: Optional[Dict],
     ) -> None:
         """Call all registered publishers and publish data"""
         for publisher in self.__publishers:

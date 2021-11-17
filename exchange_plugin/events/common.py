@@ -20,7 +20,7 @@ Common module events
 
 # Library dependencies
 import uuid
-from typing import List
+from typing import List, Optional
 
 # Library libs
 from exchange_plugin.events.event import IEvent
@@ -35,7 +35,7 @@ class CommonProvidePropertiesDataEvent(IEvent):  # pylint: disable=too-few-publi
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
-    __property_ids: List[str] or None = None
+    __property_ids: Optional[List[str]] = None
 
     EVENT_NAME: str = "common.providePropertiesData"
 
@@ -52,9 +52,9 @@ class CommonProvidePropertiesDataEvent(IEvent):  # pylint: disable=too-few-publi
     # -----------------------------------------------------------------------------
 
     @property
-    def property_ids(self) -> List[uuid.UUID] or None:
+    def property_ids(self) -> Optional[List[uuid.UUID]]:
         """Properties entities identifiers"""
         if self.__property_ids is None:
             return None
 
-        return map(lambda property_id: uuid.UUID(property_id, version=4), self.__property_ids)
+        return list(map(lambda property_id: uuid.UUID(property_id, version=4), self.__property_ids))
