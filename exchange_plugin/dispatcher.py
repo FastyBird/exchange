@@ -75,6 +75,8 @@ class EventDispatcher:
         """Unregister event listener from dispatcher"""
         self.__dispatcher.remove_listener(event_id=event_id, listener=listener)
 
+    # -----------------------------------------------------------------------------
+
     def has_listeners(
         self,
         event_id: str,

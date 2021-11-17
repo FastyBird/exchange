@@ -20,7 +20,7 @@ Exchange plugin messages consumer
 
 # Library dependencies
 from abc import ABC
-from typing import Dict, Optional
+from typing import Dict, Optional, Union
 from modules_metadata.routing import RoutingKey
 from modules_metadata.types import ModuleOrigin
 
@@ -38,6 +38,6 @@ class IConsumer(ABC):  # pylint: disable=too-few-public-methods
         self,
         origin: ModuleOrigin,
         routing_key: RoutingKey,
-        data: Optional[Dict],
+        data: Optional[Dict[str, Union[str, int, float, bool, None]]],
     ) -> None:
         """Consume data received from exchange bus"""
