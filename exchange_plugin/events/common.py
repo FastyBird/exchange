@@ -18,7 +18,7 @@
 Common module events
 """
 
-# Library dependencies
+# Python base dependencies
 import uuid
 from typing import List, Optional
 
@@ -35,6 +35,7 @@ class CommonProvidePropertiesDataEvent(IEvent):  # pylint: disable=too-few-publi
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
+
     __property_ids: Optional[List[str]] = None
 
     EVENT_NAME: str = "common.providePropertiesData"
@@ -46,6 +47,8 @@ class CommonProvidePropertiesDataEvent(IEvent):  # pylint: disable=too-few-publi
         property_ids: List[uuid.UUID],
     ) -> None:
         if len(property_ids):
+            self.__property_ids = []
+
             for property_id in property_ids:
                 self.__property_ids.append(property_id.__str__())
 

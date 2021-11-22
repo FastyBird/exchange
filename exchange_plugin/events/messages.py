@@ -18,8 +18,10 @@
 Exchange plugin exchange messages events
 """
 
-# Library dependencies
+# Python base dependencies
 from typing import Dict, Optional
+
+# Library dependencies
 from modules_metadata.routing import RoutingKey
 from modules_metadata.types import ModuleOrigin
 
@@ -36,6 +38,7 @@ class MessageEvent(IEvent):
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
+
     __origin: ModuleOrigin
     __routing_key: RoutingKey
     __data: Optional[Dict]
@@ -83,6 +86,7 @@ class MessageConsumedEvent(MessageEvent):
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
+
     EVENT_NAME: str = "exchange-plugin.messages.messageConsumed"
 
 
@@ -95,6 +99,7 @@ class MessagePublishedEvent(MessageEvent):
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
+
     EVENT_NAME: str = "exchange-plugin.messages.messagePublished"
 
 
@@ -107,4 +112,5 @@ class MessageReceivedEvent(MessageEvent):
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
+
     EVENT_NAME: str = "exchange-plugin.messages.messageReceived"

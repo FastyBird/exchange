@@ -18,9 +18,11 @@
 Exchange plugin messages consumer
 """
 
-# Library dependencies
+# Python base dependencies
 from abc import ABC
 from typing import Dict, Optional, Union
+
+# Library dependencies
 from modules_metadata.routing import RoutingKey
 from modules_metadata.types import ModuleOrigin
 
@@ -34,6 +36,7 @@ class IConsumer(ABC):  # pylint: disable=too-few-public-methods
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
+
     def consume(
         self,
         origin: ModuleOrigin,

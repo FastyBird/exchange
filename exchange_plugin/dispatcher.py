@@ -18,9 +18,12 @@
 Exchange plugin events dispatcher
 """
 
-# Library dependencies
+# Python base dependencies
 from typing import Callable
+
+# Library dependencies
 from kink import inject
+from whistle import Event
 from whistle import EventDispatcher as WhistleEventDispatcher
 
 # Library libs
@@ -37,6 +40,7 @@ class EventDispatcher:
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
+
     __dispatcher: WhistleEventDispatcher
 
     # -----------------------------------------------------------------------------
@@ -59,7 +63,7 @@ class EventDispatcher:
     def add_listener(
         self,
         event_id: str,
-        listener: Callable[[IEvent], None],
+        listener: Callable[[Event], None],
         priority: int = 0,
     ) -> None:
         """Register event listener to dispatcher"""
@@ -70,7 +74,7 @@ class EventDispatcher:
     def remove_listener(
         self,
         event_id: str,
-        listener: Callable[[IEvent], None],
+        listener: Callable[[Event], None],
     ) -> None:
         """Unregister event listener from dispatcher"""
         self.__dispatcher.remove_listener(event_id=event_id, listener=listener)

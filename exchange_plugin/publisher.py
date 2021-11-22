@@ -18,9 +18,11 @@
 Exchange plugin publisher
 """
 
-# Library dependencies
+# Python base dependencies
 from abc import ABC, abstractmethod
-from typing import List, Dict, Set, Optional
+from typing import Dict, List, Optional, Set
+
+# Library dependencies
 from kink import inject
 from modules_metadata.routing import RoutingKey
 from modules_metadata.types import ModuleOrigin
@@ -39,6 +41,7 @@ class IPublisher(ABC):  # pylint: disable=too-few-public-methods
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
+
     @abstractmethod
     def publish(
         self,
@@ -59,6 +62,7 @@ class Publisher:
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
+
     __publishers: Set[IPublisher]
     __event_dispatcher: EventDispatcher
 
@@ -95,7 +99,7 @@ class Publisher:
                 origin=origin,
                 routing_key=routing_key,
                 data=data,
-            )
+            ),
         )
 
     # -----------------------------------------------------------------------------

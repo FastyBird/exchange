@@ -18,8 +18,10 @@
 Application base event
 """
 
-# Library dependencies
+# Python base dependencies
 from abc import ABC
+
+# Library dependencies
 from whistle import Event
 
 
@@ -32,4 +34,5 @@ class IEvent(ABC, Event):  # pylint: disable=too-few-public-methods
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
+
     EVENT_NAME: str = "unknownEvent"
