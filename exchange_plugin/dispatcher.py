@@ -26,9 +26,6 @@ from kink import inject
 from whistle import Event
 from whistle import EventDispatcher as WhistleEventDispatcher
 
-# Library libs
-from exchange_plugin.events.event import IEvent
-
 
 @inject
 class EventDispatcher:
@@ -53,7 +50,7 @@ class EventDispatcher:
     def dispatch(
         self,
         event_id: str,
-        event: IEvent,
+        event: Event,
     ) -> None:
         """Dispatch custom event"""
         self.__dispatcher.dispatch(event_id=event_id, event=event)

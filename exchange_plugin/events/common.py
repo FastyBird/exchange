@@ -22,11 +22,11 @@ Common module events
 import uuid
 from typing import List, Optional
 
-# Library libs
-from exchange_plugin.events.event import IEvent
+# Library dependencies
+from whistle import Event
 
 
-class CommonProvidePropertiesDataEvent(IEvent):  # pylint: disable=too-few-public-methods
+class CommonProvidePropertiesDataEvent(Event):  # pylint: disable=too-few-public-methods
     """
     Event fired by any module requesting properties data
 

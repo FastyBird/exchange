@@ -24,12 +24,10 @@ from typing import Dict, Optional
 # Library dependencies
 from modules_metadata.routing import RoutingKey
 from modules_metadata.types import ModuleOrigin
-
-# Library libs
-from exchange_plugin.events.event import IEvent
+from whistle import Event
 
 
-class MessageEvent(IEvent):
+class MessageEvent(Event):
     """
     Base message event
 
