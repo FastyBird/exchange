@@ -35,6 +35,7 @@
   "require" : {
     "php": ">=7.4.0|>=8.0.0",
     "contributte/event-dispatcher": "^0.8",
+    "cweagans/composer-patches": "^1.7",
     "fastybird/modules-metadata": "^0.13",
     "nette/bootstrap": "^3.1",
     "nette/di": "^3.0",
@@ -71,5 +72,16 @@
 
   "config" : {
     "sort-packages" : true
+  },
+
+  "extra": {
+    "patches": {
+      "nette/utils": {
+        "Bug: Offset check with null support": "patches/nette.array.offsetCheck.diff"
+      },
+      "ninjify/qa": {
+        "Bug: PHPCS path error": "patches/ninjify-qa-bin-codesniffer.diff"
+      }
+    }
   }
 }
