@@ -33,5 +33,5 @@ def create_container() -> None:
     di[EventDispatcher] = EventDispatcher()
     di["fb-exchange-plugin_event-dispatcher"] = di[EventDispatcher]
 
-    di[Publisher] = Publisher(event_dispatcher=di[EventDispatcher])
+    di[Publisher] = Publisher()
     di["fb-exchange-plugin_publisher"] = di[Publisher]

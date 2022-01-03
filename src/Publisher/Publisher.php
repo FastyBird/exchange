@@ -15,11 +15,9 @@
 
 namespace FastyBird\ExchangePlugin\Publisher;
 
-use FastyBird\ExchangePlugin\Events;
 use FastyBird\ModulesMetadata\Types as ModulesMetadataTypes;
 use Nette\Utils;
 use SplObjectStorage;
-use Symfony\Contracts\EventDispatcher;
 
 /**
  * Exchange publishers proxy
@@ -35,14 +33,7 @@ class Publisher implements IPublisher
 	/** @var SplObjectStorage<IPublisher, null> */
 	private SplObjectStorage $publishers;
 
-	/** @var EventDispatcher\EventDispatcherInterface */
-	private EventDispatcher\EventDispatcherInterface $dispatcher;
-
-	public function __construct(
-		EventDispatcher\EventDispatcherInterface $dispatcher
-	) {
-		$this->dispatcher = $dispatcher;
-
+	public function __construct() {
 		$this->publishers = new SplObjectStorage();
 	}
 
@@ -60,8 +51,6 @@ class Publisher implements IPublisher
 		foreach ($this->publishers as $publisher) {
 			$publisher->publish($origin, $routingKey, $data);
 		}
-
-		$this->dispatcher->dispatch(new Events\MessagePublishedEvent($origin, $routingKey, $data));
 	}
 
 	/**

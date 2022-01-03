@@ -27,10 +27,6 @@ from kink import inject
 from modules_metadata.routing import RoutingKey
 from modules_metadata.types import ModuleOrigin
 
-# Library libs
-from exchange_plugin.dispatcher import EventDispatcher
-from exchange_plugin.events.messages import MessagePublishedEvent
-
 
 class IPublisher(ABC):  # pylint: disable=too-few-public-methods
     """
@@ -64,13 +60,11 @@ class Publisher:
     """
 
     __publishers: Set[IPublisher]
-    __event_dispatcher: EventDispatcher
 
     # -----------------------------------------------------------------------------
 
     def __init__(
         self,
-        event_dispatcher: EventDispatcher,
         publishers: Optional[List[IPublisher]] = None,
     ) -> None:
         if publishers is None:
@@ -78,8 +72,6 @@ class Publisher:
 
         else:
             self.__publishers = set(publishers)
-
-        self.__event_dispatcher = event_dispatcher
 
     # -----------------------------------------------------------------------------
 
@@ -92,15 +84,6 @@ class Publisher:
         """Call all registered publishers and publish data"""
         for publisher in self.__publishers:
             publisher.publish(origin=origin, routing_key=routing_key, data=data)
-
-        self.__event_dispatcher.dispatch(
-            event_id=MessagePublishedEvent.EVENT_NAME,
-            event=MessagePublishedEvent(
-                origin=origin,
-                routing_key=routing_key,
-                data=data,
-            ),
-        )
 
     # -----------------------------------------------------------------------------
 
