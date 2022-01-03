@@ -33,7 +33,8 @@ class Publisher implements IPublisher
 	/** @var SplObjectStorage<IPublisher, null> */
 	private SplObjectStorage $publishers;
 
-	public function __construct() {
+	public function __construct()
+	{
 		$this->publishers = new SplObjectStorage();
 	}
 
