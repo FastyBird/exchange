@@ -1,4 +1,4 @@
-fastybird-modules-metadata>=0.21
+fastybird-modules-metadata>=0.22
 kink>=0.6
 setuptools>=57.4
 whistle>=1.0
