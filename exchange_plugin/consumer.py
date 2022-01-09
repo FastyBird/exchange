@@ -20,9 +20,10 @@ Exchange plugin messages consumer
 
 # Python base dependencies
 from abc import ABC
-from typing import Dict, Optional, Union
+from typing import Dict, Optional, Union, Set, List
 
 # Library dependencies
+from kink import inject
 from modules_metadata.routing import RoutingKey
 from modules_metadata.types import ModuleOrigin
 
@@ -44,3 +45,50 @@ class IConsumer(ABC):  # pylint: disable=too-few-public-methods
         data: Optional[Dict[str, Union[str, int, float, bool, None]]],
     ) -> None:
         """Consume data received from exchange bus"""
+
+
+@inject
+class Consumer:
+    """
+    Data exchange consumer proxy
+
+    @package        FastyBird:ExchangePlugin!
+    @module         consumer
+
+    @author         Adam Kadlec <adam.kadlec@fastybird.com>
+    """
+
+    __consumers: Set[IConsumer]
+
+    # -----------------------------------------------------------------------------
+
+    def __init__(
+        self,
+        consumers: Optional[List[IConsumer]] = None,
+    ) -> None:
+        if consumers is None:
+            self.__consumers = set()
+
+        else:
+            self.__consumers = set(consumers)
+
+    # -----------------------------------------------------------------------------
+
+    def consume(
+        self,
+        origin: ModuleOrigin,
+        routing_key: RoutingKey,
+        data: Optional[Dict],
+    ) -> None:
+        """Call all registered consumers and consume data"""
+        for consumer in self.__consumers:
+            consumer.consume(origin=origin, routing_key=routing_key, data=data)
+
+    # -----------------------------------------------------------------------------
+
+    def register_consumer(
+        self,
+        consumer: IConsumer,
+    ) -> None:
+        """Register new consumer to proxy"""
+        self.__consumers.add(consumer)

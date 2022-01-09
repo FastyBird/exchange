@@ -32,14 +32,14 @@ interface IConsumer
 	/**
 	 * @param ModulesMetadataTypes\ModuleOriginType $origin
 	 * @param ModulesMetadataTypes\RoutingKeyType $routingKey
-	 * @param Utils\ArrayHash|null $message
+	 * @param Utils\ArrayHash|null $data
 	 *
 	 * @return void
 	 */
 	public function consume(
 		ModulesMetadataTypes\ModuleOriginType $origin,
 		ModulesMetadataTypes\RoutingKeyType $routingKey,
-		?Utils\ArrayHash $message
+		?Utils\ArrayHash $data
 	): void;
 
 }

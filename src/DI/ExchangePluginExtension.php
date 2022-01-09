@@ -15,6 +15,7 @@
 
 namespace FastyBird\ExchangePlugin\DI;
 
+use FastyBird\ExchangePlugin\Consumer;
 use FastyBird\ExchangePlugin\Publisher;
 use Nette;
 use Nette\DI;
@@ -55,6 +56,9 @@ class ExchangePluginExtension extends DI\CompilerExtension
 	{
 		$builder = $this->getContainerBuilder();
 
+		$builder->addDefinition($this->prefix('consumer'), new DI\Definitions\ServiceDefinition())
+			->setType(Consumer\Consumer::class);
+
 		$builder->addDefinition($this->prefix('publisher'), new DI\Definitions\ServiceDefinition())
 			->setType(Publisher\Publisher::class);
 	}
@@ -67,6 +71,31 @@ class ExchangePluginExtension extends DI\CompilerExtension
 		parent::beforeCompile();
 
 		$builder = $this->getContainerBuilder();
+
+		/**
+		 * CONSUMERS PROXY
+		 */
+
+		$consumerProxyServiceName = $builder->getByType(Consumer\Consumer::class);
+
+		if ($consumerProxyServiceName !== null) {
+			/** @var DI\Definitions\ServiceDefinition $consumerProxyService */
+			$consumerProxyService = $builder->getDefinition($consumerProxyServiceName);
+
+			$consumerServices = $builder->findByType(Consumer\IConsumer::class);
+
+			foreach ($consumerServices as $consumerService) {
+				if ($consumerService->getType() !== Consumer\Consumer::class) {
+					// Consumer is not allowed to be autowired
+					$consumerService->setAutowired(false);
+
+					$consumerProxyService->addSetup('?->registerConsumer(?)', [
+						'@self',
+						$consumerService,
+					]);
+				}
+			}
+		}
 
 		/**
 		 * PUBLISHERS PROXY
