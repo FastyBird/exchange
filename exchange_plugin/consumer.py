@@ -20,7 +20,7 @@ Exchange plugin messages consumer
 
 # Python base dependencies
 from abc import ABC
-from typing import Dict, Optional, Union, Set, List
+from typing import Dict, List, Optional, Set, Union
 
 # Library dependencies
 from kink import inject
