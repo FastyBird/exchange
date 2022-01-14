@@ -1,6 +1,7 @@
 # Quick start
 
-The purpose of this plugin is to provide unified interface for data exchange consumers and create data exchange publishers proxy.
+The purpose of this plugin is to provide unified interface for data exchange consumers and create data exchange
+publishers proxy.
 
 ## Installation
 
@@ -29,7 +30,8 @@ extensions:
 
 ## Creating custom publisher
 
-If some service of your module have to publish messages to data exchange for other modules, you could just implement `FastyBird\Exchange\Publisher\IPublisher` interface and register your publisher as service
+If some service of your module have to publish messages to data exchange for other modules, you could just
+implement `FastyBird\Exchange\Publisher\IPublisher` interface and register your publisher as service
 
 ```php
 namespace Your\CoolApp\Publishers;
@@ -50,7 +52,7 @@ class ArticlesPublisher implements IPublisher
 }
 ```
 
-You could create as many publishers as you need. Publisher proxy then will collect all of them. 
+You could create as many publishers as you need. Publisher proxy then will collect all of them.
 
 ## Publishing message
 
@@ -92,7 +94,8 @@ And that is it, global publisher will call all your publishers and publish messa
 
 ## Custom message consumer
 
-One part is done, message is published. Now have to be consumed. Message consuming process is in your hand, but this extension have prepared an interface for your consumers.
+One part is done, message is published. Now have to be consumed. Message consuming process is in your hand, but this
+extension have prepared an interface for your consumers.
 
 Your consumer could look like this:
 
@@ -118,9 +121,11 @@ class DataConsumer implements IConsumer
 
 ## Events
 
-Publisher proxy will fire `FastyBird\Exchange\Events\MessagePublishedEvent` after all publishers are called. Content of this event contain message *origin*, *routing key* and published *data*.
+Publisher proxy will fire `FastyBird\Exchange\Events\MessagePublishedEvent` after all publishers are called. Content of
+this event contain message *origin*, *routing key* and published *data*.
 
-There is also prepared event for consuming message. In your consumer you could fire `FastyBird\Exchange\Events\MessageConsumedEvent`
+There is also prepared event for consuming message. In your consumer you could
+fire `FastyBird\Exchange\Events\MessageConsumedEvent`
 
 ```php
 namespace Your\CoolApp\Publishers;
@@ -151,4 +156,5 @@ class DataConsumer implements IConsumer
 ```
 
 ***
-Homepage [https://www.fastybird.com](https://www.fastybird.com) and repository [https://github.com/FastyBird/exchange](https://github.com/FastyBird/exchange).
+Homepage [https://www.fastybird.com](https://www.fastybird.com) and
+repository [https://github.com/FastyBird/exchange](https://github.com/FastyBird/exchange).

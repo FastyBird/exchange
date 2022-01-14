@@ -17,7 +17,8 @@
 
 ## What is FastyBird exchange plugin?
 
-This is a combined plugin for [Nette framework](https://nette.org) and [Python](https://www.python.org) which is defining exchange data bus for [FastyBird](https://www.fastybird.com) IoT services
+This is a combined plugin for [Nette framework](https://nette.org) and [Python](https://www.python.org) which is
+defining exchange data bus for [FastyBird](https://www.fastybird.com) IoT services
 
 ## Installation
 
@@ -39,7 +40,9 @@ $ pip install fastybird-exchange
 
 ## Documentation
 
-Learn how to consume & publish messages in [documentation](https://github.com/FastyBird/exchange/blob/master/.docs/en/index.md).
+Learn how to consume & publish messages
+in [documentation](https://github.com/FastyBird/exchange/blob/master/.docs/en/index.md).
 
 ***
-Homepage [https://www.fastybird.com](https://www.fastybird.com) and repository [https://github.com/FastyBird/exchange](https://github.com/FastyBird/exchange).
+Homepage [https://www.fastybird.com](https://www.fastybird.com) and
+repository [https://github.com/FastyBird/exchange](https://github.com/FastyBird/exchange).
