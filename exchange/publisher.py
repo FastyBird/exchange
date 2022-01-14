@@ -23,7 +23,6 @@ from abc import ABC, abstractmethod
 from typing import Dict, List, Optional, Set, Union
 
 # Library dependencies
-from kink import inject
 from metadata.routing import RoutingKey
 from metadata.types import ModuleOrigin, PluginOrigin
 
@@ -48,7 +47,6 @@ class IPublisher(ABC):  # pylint: disable=too-few-public-methods
         """Publish data to exchange bus"""
 
 
-@inject
 class Publisher:
     """
     Data exchange publisher proxy
@@ -65,9 +63,13 @@ class Publisher:
 
     def __init__(
         self,
-        publishers: List[IPublisher],
+        publishers: Optional[List[IPublisher]] = None,
     ) -> None:
-        self.__publishers = set(publishers)
+        if publishers is None:
+            self.__publishers = set()
+
+        else:
+            self.__publishers = set(publishers)
 
     # -----------------------------------------------------------------------------
 

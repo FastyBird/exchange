@@ -21,17 +21,33 @@ Exchange plugin DI container
 # pylint: disable=no-value-for-parameter
 
 # Library dependencies
-from kink import di
+from typing import List
+
+# Library dependencies
+from kink import di, inject
 
 # Library libs
-from exchange.consumer import Consumer
-from exchange.publisher import Publisher
+from exchange.consumer import Consumer, IConsumer
+from exchange.publisher import IPublisher, Publisher
 
 
 def create_container() -> None:
     """Create exchange plugin services"""
-    di[Publisher] = Publisher()  # type: ignore[call-arg]
+    di[Publisher] = Publisher()
     di["fb-exchange_publisher"] = di[Publisher]
 
-    di[Consumer] = Consumer()  # type: ignore[call-arg]
+    di[Consumer] = Consumer()
     di["fb-exchange_consumer"] = di[Consumer]
+
+    @inject
+    def register_publishers(publishers: List[IPublisher]) -> None:
+        for publisher in publishers:
+            di[Publisher].register_publisher(publisher=publisher)
+
+    @inject
+    def register_consumers(consumers: List[IConsumer]) -> None:
+        for consumer in consumers:
+            di[Consumer].register_consumer(consumer=consumer)
+
+    register_publishers()
+    register_consumers()

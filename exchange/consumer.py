@@ -23,7 +23,6 @@ from abc import ABC, abstractmethod
 from typing import Dict, List, Optional, Set, Union
 
 # Library dependencies
-from kink import inject
 from metadata.routing import RoutingKey
 from metadata.types import ModuleOrigin, PluginOrigin
 
@@ -48,7 +47,6 @@ class IConsumer(ABC):  # pylint: disable=too-few-public-methods
         """Consume data received from exchange bus"""
 
 
-@inject
 class Consumer:
     """
     Data exchange consumer proxy
@@ -65,9 +63,13 @@ class Consumer:
 
     def __init__(
         self,
-        consumers: List[IConsumer],
+        consumers: Optional[List[IConsumer]] = None,
     ) -> None:
-        self.__consumers = set(consumers)
+        if consumers is None:
+            self.__consumers = set()
+
+        else:
+            self.__consumers = set(consumers)
 
     # -----------------------------------------------------------------------------
 
