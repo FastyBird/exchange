@@ -40,12 +40,18 @@ def create_container() -> None:
     di["fb-exchange_consumer"] = di[Consumer]
 
     @inject
-    def register_publishers(publishers: List[IPublisher]) -> None:
+    def register_publishers(publishers: List[IPublisher] = None) -> None:  # type: ignore[assignment]
+        if publishers is None:
+            return
+
         for publisher in publishers:
             di[Publisher].register_publisher(publisher=publisher)
 
     @inject
-    def register_consumers(consumers: List[IConsumer]) -> None:
+    def register_consumers(consumers: List[IConsumer] = None) -> None:  # type: ignore[assignment]
+        if consumers is None:
+            return
+
         for consumer in consumers:
             di[Consumer].register_consumer(consumer=consumer)
 
