@@ -42,7 +42,7 @@ class Publisher implements IPublisher
 	 * {@inheritDoc}
 	 */
 	public function publish(
-		MetadataTypes\ModuleOriginType $origin,
+		$origin,
 		MetadataTypes\RoutingKeyType $routingKey,
 		?Utils\ArrayHash $data
 	): void {

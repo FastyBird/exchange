@@ -42,7 +42,7 @@ class Consumer implements IConsumer
 	 * {@inheritDoc}
 	 */
 	public function consume(
-		MetadataTypes\ModuleOriginType $origin,
+		$origin,
 		MetadataTypes\RoutingKeyType $routingKey,
 		?Utils\ArrayHash $data
 	): void {
