@@ -56,4 +56,4 @@ python_tests:
 	python -m unittest
 
 python_coverage:
-	coverage run --source=exchange_plugin -m unittest
+	coverage run --source=exchange -m unittest

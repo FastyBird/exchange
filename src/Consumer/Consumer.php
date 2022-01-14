@@ -6,23 +6,23 @@
  * @license        More in LICENSE.md
  * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
- * @package        FastyBird:ExchangePlugin!
+ * @package        FastyBird:Exchange!
  * @subpackage     Consumers
  * @since          0.5.0
  *
  * @date           09.01.22
  */
 
-namespace FastyBird\ExchangePlugin\Consumer;
+namespace FastyBird\Exchange\Consumer;
 
-use FastyBird\ModulesMetadata\Types as ModulesMetadataTypes;
+use FastyBird\Metadata\Types as MetadataTypes;
 use Nette\Utils;
 use SplObjectStorage;
 
 /**
  * Exchange consumer proxy
  *
- * @package        FastyBird:ExchangePlugin!
+ * @package        FastyBird:Exchange!
  * @subpackage     Consumers
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -42,8 +42,8 @@ class Consumer implements IConsumer
 	 * {@inheritDoc}
 	 */
 	public function consume(
-		ModulesMetadataTypes\ModuleOriginType $origin,
-		ModulesMetadataTypes\RoutingKeyType $routingKey,
+		MetadataTypes\ModuleOriginType $origin,
+		MetadataTypes\RoutingKeyType $routingKey,
 		?Utils\ArrayHash $data
 	): void {
 		$this->consumers->rewind();

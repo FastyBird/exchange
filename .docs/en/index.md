@@ -4,17 +4,17 @@ The purpose of this plugin is to provide unified interface for data exchange con
 
 ## Installation
 
-The best way to install **fastybird/exchange-plugin** is using [Composer](http://getcomposer.org/):
+The best way to install **fastybird/exchange** is using [Composer](http://getcomposer.org/):
 
 ```sh
-composer require fastybird/exchange-plugin
+composer require fastybird/exchange
 ```
 
 After that, you have to register extension in *config.neon*.
 
 ```neon
 extensions:
-    fbExchangePlugin: FastyBird\ExchangePlugin\DI\ExchangePluginExtension
+    fbExchange: FastyBird\Exchange\DI\ExchangeExtension
 ```
 
 This extension is dependent on other extensions, and they have to be registered too
@@ -29,12 +29,12 @@ extensions:
 
 ## Creating custom publisher
 
-If some service of your module have to publish messages to data exchange for other modules, you could just implement `FastyBird\ExchangePlugin\Publisher\IPublisher` interface and register your publisher as service
+If some service of your module have to publish messages to data exchange for other modules, you could just implement `FastyBird\Exchange\Publisher\IPublisher` interface and register your publisher as service
 
 ```php
 namespace Your\CoolApp\Publishers;
 
-use FastyBird\ExchangePlugin\Publisher\IPublisher;
+use FastyBird\Exchange\Publisher\IPublisher;
 
 class ArticlesPublisher implements IPublisher
 {
@@ -59,7 +59,7 @@ In your code you could just import one publisher - proxy publisher.
 ```php
 namespace Your\CoolApp\Actions;
 
-use FastyBird\ExchangePlugin\Publisher\IPublisher;
+use FastyBird\Exchange\Publisher\IPublisher;
 
 class SomeHandler
 {
@@ -99,7 +99,7 @@ Your consumer could look like this:
 ```php
 namespace Your\CoolApp\Publishers;
 
-use FastyBird\ExchangePlugin\Consumer\IConsumer;
+use FastyBird\Exchange\Consumer\IConsumer;
 use Nette\Utils\ArrayHash;
 
 class DataConsumer implements IConsumer
@@ -118,15 +118,15 @@ class DataConsumer implements IConsumer
 
 ## Events
 
-Publisher proxy will fire `FastyBird\ExchangePlugin\Events\MessagePublishedEvent` after all publishers are called. Content of this event contain message *origin*, *routing key* and published *data*.
+Publisher proxy will fire `FastyBird\Exchange\Events\MessagePublishedEvent` after all publishers are called. Content of this event contain message *origin*, *routing key* and published *data*.
 
-There is also prepared event for consuming message. In your consumer you could fire `FastyBird\ExchangePlugin\Events\MessageConsumedEvent`
+There is also prepared event for consuming message. In your consumer you could fire `FastyBird\Exchange\Events\MessageConsumedEvent`
 
 ```php
 namespace Your\CoolApp\Publishers;
 
-use FastyBird\ExchangePlugin\Events;
-use FastyBird\ExchangePlugin\Consumer\IConsumer;
+use FastyBird\Exchange\Events;
+use FastyBird\Exchange\Consumer\IConsumer;
 use Nette\Utils\ArrayHash;
 use Symfony\Contracts\EventDispatcher;
 
@@ -151,4 +151,4 @@ class DataConsumer implements IConsumer
 ```
 
 ***
-Homepage [https://www.fastybird.com](https://www.fastybird.com) and repository [https://github.com/FastyBird/exchange-plugin](https://github.com/FastyBird/exchange-plugin).
+Homepage [https://www.fastybird.com](https://www.fastybird.com) and repository [https://github.com/FastyBird/exchange](https://github.com/FastyBird/exchange).

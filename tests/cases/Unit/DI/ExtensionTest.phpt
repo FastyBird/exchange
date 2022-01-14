@@ -2,8 +2,8 @@
 
 namespace Tests\Cases;
 
-use FastyBird\ExchangePlugin\Consumer;
-use FastyBird\ExchangePlugin\Publisher;
+use FastyBird\Exchange\Consumer;
+use FastyBird\Exchange\Publisher;
 use Tester\Assert;
 
 require_once __DIR__ . '/../../../bootstrap.php';

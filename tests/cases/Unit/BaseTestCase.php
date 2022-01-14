@@ -2,7 +2,7 @@
 
 namespace Tests\Cases;
 
-use FastyBird\ExchangePlugin;
+use FastyBird\Exchange;
 use Nette;
 use Nette\DI;
 use Ninjify\Nunjuck\TestCase\BaseMockeryTestCase;
@@ -34,7 +34,7 @@ abstract class BaseTestCase extends BaseMockeryTestCase
 			$config->addConfig($additionalConfig);
 		}
 
-		ExchangePlugin\DI\ExchangePluginExtension::register($config);
+		Exchange\DI\ExchangeExtension::register($config);
 
 		return $config->createContainer();
 	}

@@ -44,29 +44,28 @@ def find_version(*file_paths):
     raise RuntimeError("Unable to find version string.")
 
 
-VERSION: str = find_version("exchange_plugin", "__init__.py")
+VERSION: str = find_version("exchange", "__init__.py")
 
 
 setup(
     version=VERSION,
-    name="fastybird-exchange-plugin",
+    name="fastybird-exchange",
     author="FastyBird",
     author_email="code@fastybird.com",
     license="Apache Software License (Apache Software License 2.0)",
-    description="FastyBird application exchange plugin",
-    url="https://github.com/FastyBird/exchange-plugin",
+    description="FastyBird application exchange",
+    url="https://github.com/FastyBird/exchange",
     long_description=long_description,
     long_description_content_type="text/markdown",
     python_requires=">=3.7",
     packages=find_packages(),
-    package_data={"exchange_plugin": ["py.typed"]},
+    package_data={"exchange": ["py.typed"]},
     install_requires=[
-        "fastybird-modules-metadata",
+        "fastybird-metadata",
         "kink",
-        "setuptools",
-        "whistle",
+        "setuptools"
     ],
-    download_url="https://github.com/FastyBird/exchange-plugin/archive/%s.tar.gz" % VERSION,
+    download_url="https://github.com/FastyBird/exchange/archive/%s.tar.gz" % VERSION,
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Console",

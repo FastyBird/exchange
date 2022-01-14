@@ -20,19 +20,19 @@ Exchange plugin publisher
 
 # Python base dependencies
 from abc import ABC, abstractmethod
-from typing import Dict, List, Optional, Set
+from typing import Dict, List, Optional, Set, Union
 
 # Library dependencies
 from kink import inject
-from modules_metadata.routing import RoutingKey
-from modules_metadata.types import ModuleOrigin
+from metadata.routing import RoutingKey
+from metadata.types import ModuleOrigin, PluginOrigin
 
 
 class IPublisher(ABC):  # pylint: disable=too-few-public-methods
     """
     Data exchange publisher interface
 
-    @package        FastyBird:ExchangePlugin!
+    @package        FastyBird:Exchange!
     @module         publisher
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -41,7 +41,7 @@ class IPublisher(ABC):  # pylint: disable=too-few-public-methods
     @abstractmethod
     def publish(
         self,
-        origin: ModuleOrigin,
+        origin: Union[ModuleOrigin, PluginOrigin],
         routing_key: RoutingKey,
         data: Optional[Dict],
     ) -> None:
@@ -53,7 +53,7 @@ class Publisher:
     """
     Data exchange publisher proxy
 
-    @package        FastyBird:ExchangePlugin!
+    @package        FastyBird:Exchange!
     @module         publisher
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -65,19 +65,15 @@ class Publisher:
 
     def __init__(
         self,
-        publishers: Optional[List[IPublisher]] = None,
+        publishers: List[IPublisher],
     ) -> None:
-        if publishers is None:
-            self.__publishers = set()
-
-        else:
-            self.__publishers = set(publishers)
+        self.__publishers = set(publishers)
 
     # -----------------------------------------------------------------------------
 
     def publish(
         self,
-        origin: ModuleOrigin,
+        origin: Union[ModuleOrigin, PluginOrigin],
         routing_key: RoutingKey,
         data: Optional[Dict],
     ) -> None:

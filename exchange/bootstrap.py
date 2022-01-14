@@ -24,18 +24,14 @@ Exchange plugin DI container
 from kink import di
 
 # Library libs
-from exchange_plugin.consumer import Consumer
-from exchange_plugin.dispatcher import EventDispatcher
-from exchange_plugin.publisher import Publisher
+from exchange.consumer import Consumer
+from exchange.publisher import Publisher
 
 
 def create_container() -> None:
     """Create exchange plugin services"""
-    di[EventDispatcher] = EventDispatcher()
-    di["fb-exchange-plugin_event-dispatcher"] = di[EventDispatcher]
+    di[Publisher] = Publisher()  # type: ignore[call-arg]
+    di["fb-exchange_publisher"] = di[Publisher]
 
-    di[Publisher] = Publisher()
-    di["fb-exchange-plugin_publisher"] = di[Publisher]
-
-    di[Consumer] = Consumer()
-    di["fb-exchange-plugin_consumer"] = di[Consumer]
+    di[Consumer] = Consumer()  # type: ignore[call-arg]
+    di["fb-exchange_consumer"] = di[Consumer]

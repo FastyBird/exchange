@@ -19,28 +19,29 @@ Exchange plugin messages consumer
 """
 
 # Python base dependencies
-from abc import ABC
+from abc import ABC, abstractmethod
 from typing import Dict, List, Optional, Set, Union
 
 # Library dependencies
 from kink import inject
-from modules_metadata.routing import RoutingKey
-from modules_metadata.types import ModuleOrigin
+from metadata.routing import RoutingKey
+from metadata.types import ModuleOrigin, PluginOrigin
 
 
 class IConsumer(ABC):  # pylint: disable=too-few-public-methods
     """
     Data exchange consumer interface
 
-    @package        FastyBird:ExchangePlugin!
+    @package        FastyBird:Exchange!
     @module         consumer
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
 
+    @abstractmethod
     def consume(
         self,
-        origin: ModuleOrigin,
+        origin: Union[ModuleOrigin, PluginOrigin],
         routing_key: RoutingKey,
         data: Optional[Dict[str, Union[str, int, float, bool, None]]],
     ) -> None:
@@ -52,7 +53,7 @@ class Consumer:
     """
     Data exchange consumer proxy
 
-    @package        FastyBird:ExchangePlugin!
+    @package        FastyBird:Exchange!
     @module         consumer
 
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -64,19 +65,15 @@ class Consumer:
 
     def __init__(
         self,
-        consumers: Optional[List[IConsumer]] = None,
+        consumers: List[IConsumer],
     ) -> None:
-        if consumers is None:
-            self.__consumers = set()
-
-        else:
-            self.__consumers = set(consumers)
+        self.__consumers = set(consumers)
 
     # -----------------------------------------------------------------------------
 
     def consume(
         self,
-        origin: ModuleOrigin,
+        origin: Union[ModuleOrigin, PluginOrigin],
         routing_key: RoutingKey,
         data: Optional[Dict],
     ) -> None:

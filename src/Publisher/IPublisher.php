@@ -6,22 +6,22 @@
  * @license        More in LICENSE.md
  * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
- * @package        FastyBird:ExchangePlugin!
+ * @package        FastyBird:Exchange!
  * @subpackage     Publishers
  * @since          0.1.0
  *
  * @date           19.12.20
  */
 
-namespace FastyBird\ExchangePlugin\Publisher;
+namespace FastyBird\Exchange\Publisher;
 
-use FastyBird\ModulesMetadata\Types as ModulesMetadataTypes;
+use FastyBird\Metadata\Types as MetadataTypes;
 use Nette\Utils;
 
 /**
  * Exchange publisher interface
  *
- * @package        FastyBird:ExchangePlugin!
+ * @package        FastyBird:Exchange!
  * @subpackage     Publishers
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -30,15 +30,15 @@ interface IPublisher
 {
 
 	/**
-	 * @param ModulesMetadataTypes\ModuleOriginType $origin
-	 * @param ModulesMetadataTypes\RoutingKeyType $routingKey
+	 * @param MetadataTypes\ModuleOriginType $origin
+	 * @param MetadataTypes\RoutingKeyType $routingKey
 	 * @param Utils\ArrayHash|null $data
 	 *
 	 * @return void
 	 */
 	public function publish(
-		ModulesMetadataTypes\ModuleOriginType $origin,
-		ModulesMetadataTypes\RoutingKeyType $routingKey,
+		MetadataTypes\ModuleOriginType $origin,
+		MetadataTypes\RoutingKeyType $routingKey,
 		?Utils\ArrayHash $data
 	): void;
 
