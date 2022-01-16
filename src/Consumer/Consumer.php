@@ -59,7 +59,7 @@ class Consumer implements IConsumer
 	 *
 	 * @return void
 	 */
-	public function registerPublisher(IConsumer $consumer): void
+	public function registerConsumer(IConsumer $consumer): void
 	{
 		if (!$this->consumers->contains($consumer)) {
 			$this->consumers->attach($consumer);
