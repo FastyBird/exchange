@@ -15,7 +15,7 @@
 #     limitations under the License.
 
 """
-Exchange plugin messages consumer
+Exchange library messages consumer
 """
 
 # Python base dependencies

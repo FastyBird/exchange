@@ -15,7 +15,7 @@
 #     limitations under the License.
 
 """
-Exchange plugin DI container
+Exchange library DI container
 """
 
 # pylint: disable=no-value-for-parameter
@@ -32,7 +32,7 @@ from exchange.publisher import IPublisher, Publisher
 
 
 def register_services() -> None:
-    """Create exchange plugin services"""
+    """Create exchange services"""
     di[Publisher] = Publisher()
     di["fb-exchange_publisher"] = di[Publisher]
 

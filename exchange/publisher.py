@@ -15,7 +15,7 @@
 #     limitations under the License.
 
 """
-Exchange plugin publisher
+Exchange library publisher
 """
 
 # Python base dependencies

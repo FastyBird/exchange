@@ -15,7 +15,7 @@
 #     limitations under the License.
 
 """
-Exchange plugin messages client
+Exchange library messages client
 """
 
 # Python base dependencies
