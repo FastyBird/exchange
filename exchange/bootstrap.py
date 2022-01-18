@@ -31,7 +31,7 @@ from exchange.consumer import Consumer, IConsumer
 from exchange.publisher import IPublisher, Publisher
 
 
-def create_container() -> None:
+def register_services() -> None:
     """Create exchange plugin services"""
     di[Publisher] = Publisher()
     di["fb-exchange_publisher"] = di[Publisher]
