@@ -27,8 +27,8 @@ from typing import List
 from kink import di, inject
 
 # Library libs
-from fastybird.exchange.consumer import Consumer, IConsumer
-from fastybird.exchange.publisher import IPublisher, IQueue, Publisher
+from fb_exchange.consumer import Consumer, IConsumer
+from fb_exchange.publisher import IPublisher, IQueue, Publisher
 
 
 def register_services() -> None:

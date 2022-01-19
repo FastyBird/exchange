@@ -23,8 +23,8 @@ from abc import ABC, abstractmethod
 from typing import Dict, List, Optional, Set, Union
 
 # Library dependencies
-from metadata.routing import RoutingKey
-from metadata.types import ModuleOrigin, PluginOrigin
+from fb_metadata.routing import RoutingKey
+from fb_metadata.types import ModuleOrigin, PluginOrigin
 
 
 class IConsumer(ABC):  # pylint: disable=too-few-public-methods

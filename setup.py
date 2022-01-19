@@ -44,7 +44,7 @@ def find_version(*file_paths):
     raise RuntimeError("Unable to find version string.")
 
 
-VERSION: str = find_version("fastybird/exchange", "__init__.py")
+VERSION: str = find_version("fb_exchange", "__init__.py")
 
 
 setup(
@@ -59,7 +59,7 @@ setup(
     long_description_content_type="text/markdown",
     python_requires=">=3.7",
     packages=find_packages(),
-    package_data={"fastybird.exchange": ["py.typed"]},
+    package_data={"exchange": ["py.typed"]},
     install_requires=[
         "fastybird-metadata",
         "kink",
