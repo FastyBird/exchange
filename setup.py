@@ -59,7 +59,7 @@ setup(
     long_description_content_type="text/markdown",
     python_requires=">=3.7",
     packages=find_packages(),
-    package_data={"exchange": ["py.typed"]},
+    package_data={"fb_exchange": ["py.typed"]},
     install_requires=[
         "fastybird-metadata",
         "kink",
