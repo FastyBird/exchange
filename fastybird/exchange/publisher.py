@@ -47,6 +47,44 @@ class IPublisher(ABC):  # pylint: disable=too-few-public-methods
         """Publish data to exchange bus"""
 
 
+class IQueue(ABC):  # pylint: disable=too-few-public-methods
+    """
+    Data exchange publisher queue interface
+
+    @package        FastyBird:Exchange!
+    @module         publisher
+
+    @author         Adam Kadlec <adam.kadlec@fastybird.com>
+    """
+
+    @abstractmethod
+    def set_publishers(self, publishers: List[IPublisher]) -> None:
+        """Set publishers to queue"""
+
+    # -----------------------------------------------------------------------------
+
+    @abstractmethod
+    def append(
+        self,
+        origin: Union[ModuleOrigin, PluginOrigin],
+        routing_key: RoutingKey,
+        data: Optional[Dict],
+    ) -> None:
+        """Append new item to que"""
+
+    # -----------------------------------------------------------------------------
+
+    @abstractmethod
+    def handle(self) -> None:
+        """Proces one item from queue"""
+
+    # -----------------------------------------------------------------------------
+
+    @abstractmethod
+    def has_unfinished_items(self) -> bool:
+        """Check if queue has some unfinished items"""
+
+
 class Publisher:
     """
     Data exchange publisher proxy
@@ -57,19 +95,23 @@ class Publisher:
     @author         Adam Kadlec <adam.kadlec@fastybird.com>
     """
 
-    __publishers: Set[IPublisher]
+    __publishers: Set[IPublisher] = set()
+    __queue: Optional[IQueue] = None
 
     # -----------------------------------------------------------------------------
 
     def __init__(
         self,
         publishers: Optional[List[IPublisher]] = None,
+        queue: Optional[IQueue] = None,
     ) -> None:
         if publishers is None:
             self.__publishers = set()
 
         else:
             self.__publishers = set(publishers)
+
+        self.__queue = queue
 
     # -----------------------------------------------------------------------------
 
@@ -80,8 +122,12 @@ class Publisher:
         data: Optional[Dict],
     ) -> None:
         """Call all registered publishers and publish data"""
-        for publisher in self.__publishers:
-            publisher.publish(origin=origin, routing_key=routing_key, data=data)
+        if self.__queue is not None:
+            self.__queue.append(origin=origin, routing_key=routing_key, data=data)
+
+        else:
+            for publisher in self.__publishers:
+                publisher.publish(origin=origin, routing_key=routing_key, data=data)
 
     # -----------------------------------------------------------------------------
 
@@ -91,3 +137,15 @@ class Publisher:
     ) -> None:
         """Register new publisher to proxy"""
         self.__publishers.add(publisher)
+
+    # -----------------------------------------------------------------------------
+
+    def register_queue(
+        self,
+        queue: IQueue,
+    ) -> None:
+        """Register publisher queue"""
+        if self.__queue is not None:
+            raise AttributeError("Queue is already configured in publisher service")
+
+        self.__queue = queue
