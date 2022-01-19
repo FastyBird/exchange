@@ -56,4 +56,4 @@ python_tests:
 	python -m unittest
 
 python_coverage:
-	coverage run --source=fastybird -m unittest
+	coverage run --source=fb_exchange -m unittest
