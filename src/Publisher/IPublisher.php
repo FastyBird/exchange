@@ -30,7 +30,7 @@ interface IPublisher
 {
 
 	/**
-	 * @param MetadataTypes\ModuleOriginType|MetadataTypes\PluginOriginType $origin
+	 * @param MetadataTypes\ModuleOriginType|MetadataTypes\PluginOriginType|MetadataTypes\ConnectorOriginType $origin
 	 * @param MetadataTypes\RoutingKeyType $routingKey
 	 * @param Utils\ArrayHash|null $data
 	 *

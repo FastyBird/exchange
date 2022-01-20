@@ -24,7 +24,7 @@ from typing import Dict, List, Optional, Set, Union
 
 # Library dependencies
 from fb_metadata.routing import RoutingKey
-from fb_metadata.types import ModuleOrigin, PluginOrigin
+from fb_metadata.types import ConnectorOrigin, ModuleOrigin, PluginOrigin
 
 
 class IConsumer(ABC):  # pylint: disable=too-few-public-methods
@@ -40,7 +40,7 @@ class IConsumer(ABC):  # pylint: disable=too-few-public-methods
     @abstractmethod
     def consume(
         self,
-        origin: Union[ModuleOrigin, PluginOrigin],
+        origin: Union[ModuleOrigin, PluginOrigin, ConnectorOrigin],
         routing_key: RoutingKey,
         data: Optional[Dict[str, Union[str, int, float, bool, None]]],
     ) -> None:
@@ -75,7 +75,7 @@ class Consumer:
 
     def consume(
         self,
-        origin: Union[ModuleOrigin, PluginOrigin],
+        origin: Union[ModuleOrigin, PluginOrigin, ConnectorOrigin],
         routing_key: RoutingKey,
         data: Optional[Dict],
     ) -> None:

@@ -24,7 +24,7 @@ from typing import Dict, List, Optional, Set, Union
 
 # Library dependencies
 from fb_metadata.routing import RoutingKey
-from fb_metadata.types import ModuleOrigin, PluginOrigin
+from fb_metadata.types import ConnectorOrigin, ModuleOrigin, PluginOrigin
 
 
 class IPublisher(ABC):  # pylint: disable=too-few-public-methods
@@ -40,7 +40,7 @@ class IPublisher(ABC):  # pylint: disable=too-few-public-methods
     @abstractmethod
     def publish(
         self,
-        origin: Union[ModuleOrigin, PluginOrigin],
+        origin: Union[ModuleOrigin, PluginOrigin, ConnectorOrigin],
         routing_key: RoutingKey,
         data: Optional[Dict],
     ) -> None:
@@ -66,7 +66,7 @@ class IQueue(ABC):  # pylint: disable=too-few-public-methods
     @abstractmethod
     def append(
         self,
-        origin: Union[ModuleOrigin, PluginOrigin],
+        origin: Union[ModuleOrigin, PluginOrigin, ConnectorOrigin],
         routing_key: RoutingKey,
         data: Optional[Dict],
     ) -> None:
@@ -117,7 +117,7 @@ class Publisher:
 
     def publish(
         self,
-        origin: Union[ModuleOrigin, PluginOrigin],
+        origin: Union[ModuleOrigin, PluginOrigin, ConnectorOrigin],
         routing_key: RoutingKey,
         data: Optional[Dict],
     ) -> None:
