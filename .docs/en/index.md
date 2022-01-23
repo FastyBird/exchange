@@ -18,16 +18,6 @@ extensions:
     fbExchange: FastyBird\Exchange\DI\ExchangeExtension
 ```
 
-This extension is dependent on other extensions, and they have to be registered too
-
-```neon
-extensions:
-    ....
-    contributeEvents: Contributte\EventDispatcher\DI\EventDispatcherExtension
-```
-
-> For information how to configure these extensions please visit their doc pages
-
 ## Creating custom publisher
 
 If some service of your module have to publish messages to data exchange for other modules, you could just
@@ -37,14 +27,16 @@ implement `FastyBird\Exchange\Publisher\IPublisher` interface and register your 
 namespace Your\CoolApp\Publishers;
 
 use FastyBird\Exchange\Publisher\IPublisher;
+use FastyBird\Metadata\Types;
+use Nette\Utils;
 
-class ArticlesPublisher implements IPublisher
+class ModuleDataPublisher implements IPublisher
 {
 
     public function publish(
-        string $origin,
-        string $routingKey,
-        array $data
+        $origin,
+        Types\RoutingKeyType $routingKey,
+        ?Utils\ArrayHash $data
     ) : void {
         // Publisher logic here, eg. publish message to RabbitMQ or Redis etc. 
     }
@@ -62,6 +54,7 @@ In your code you could just import one publisher - proxy publisher.
 namespace Your\CoolApp\Actions;
 
 use FastyBird\Exchange\Publisher\IPublisher;
+use Nette\Utils;
 
 class SomeHandler
 {
@@ -78,13 +71,13 @@ class SomeHandler
     public function updateSomething()
     {
         // Your interesting logic here...
-        
+
         $this->publisher->publish(
-            'application-domain-as-origin',
-            'routing-key',
-            [
+            $origin,
+            $routingKey,
+            Utils\ArrayHash::from([
                 'key' => 'value',
-            ]
+            ])
         );
     }
 }
@@ -103,53 +96,18 @@ Your consumer could look like this:
 namespace Your\CoolApp\Publishers;
 
 use FastyBird\Exchange\Consumer\IConsumer;
-use Nette\Utils\ArrayHash;
+use FastyBird\Metadata\Types;
+use Nette\Utils;
 
 class DataConsumer implements IConsumer
 {
 
     public function consume(
-        string $origin,
-        string $routingKey,
-        ArrayHash $data
+		$origin,
+		Types\RoutingKeyType $routingKey,
+		?Utils\ArrayHash $data
     ) : void {
         // Do you data processing logic here 
-    }
-
-}
-```
-
-## Events
-
-Publisher proxy will fire `FastyBird\Exchange\Events\MessagePublishedEvent` after all publishers are called. Content of
-this event contain message *origin*, *routing key* and published *data*.
-
-There is also prepared event for consuming message. In your consumer you could
-fire `FastyBird\Exchange\Events\MessageConsumedEvent`
-
-```php
-namespace Your\CoolApp\Publishers;
-
-use FastyBird\Exchange\Events;
-use FastyBird\Exchange\Consumer\IConsumer;
-use Nette\Utils\ArrayHash;
-use Symfony\Contracts\EventDispatcher;
-
-class DataConsumer implements IConsumer
-{
-
-    /** @var EventDispatcher\EventDispatcherInterface */
-    private EventDispatcher\EventDispatcherInterface $dispatcher;
-
-    public function consume(
-        string $origin,
-        string $routingKey,
-        ArrayHash $data
-    ) : void {
-        // Do you data processing logic here
-
-        // Fire event to let other services know, that something was received
-        $this->dispatcher->dispatch(new Events\MessageConsumedEvent($origin, $routingKey, $data)); 
     }
 
 }

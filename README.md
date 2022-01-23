@@ -1,4 +1,4 @@
-# FastyBird exchange plugin
+# FastyBird exchange library
 
 [![Build Status](https://badgen.net/github/checks/FastyBird/exchange/master?cache=300&style=flast-square)](https://github.com/FastyBird/exchange/actions)
 [![Licence](https://badgen.net/github/license/FastyBird/exchange?cache=300&style=flast-square)](https://github.com/FastyBird/exchange/blob/master/LICENSE.md)
@@ -15,10 +15,10 @@
 [![Black](https://img.shields.io/badge/black-enabled-brightgreen.svg?style=flat-square)](https://github.com/psf/black)
 [![MyPy](https://img.shields.io/badge/mypy-enabled-brightgreen.svg?style=flat-square)](http://mypy-lang.org)
 
-## What is FastyBird exchange plugin?
+## What is FastyBird exchange library?
 
-This is a combined plugin for [Nette framework](https://nette.org) and [Python](https://www.python.org) which is
-defining exchange data bus for [FastyBird](https://www.fastybird.com) IoT services
+This is library for [FastyBird](https://www.fastybird.com) ecosystem which is
+implementing data exchange bus services.
 
 ## Installation
 
