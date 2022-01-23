@@ -1,7 +1,7 @@
 {
   "name" : "fastybird/exchange",
   "type" : "library",
-  "description" : "FastyBird application exchange interface",
+  "description" : "FastyBird application exchange services",
   "keywords" : [
     "fastybird",
     "fb",
