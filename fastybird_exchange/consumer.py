@@ -23,8 +23,8 @@ from abc import ABC, abstractmethod
 from typing import Dict, List, Optional, Set, Union
 
 # Library dependencies
-from fb_metadata.routing import RoutingKey
-from fb_metadata.types import ConnectorOrigin, ModuleOrigin, PluginOrigin
+from fastybird_metadata.routing import RoutingKey
+from fastybird_metadata.types import ConnectorOrigin, ModuleOrigin, PluginOrigin
 
 
 class IConsumer(ABC):  # pylint: disable=too-few-public-methods
