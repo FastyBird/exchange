@@ -1,7 +1,6 @@
 # Quick start
 
-The purpose of this plugin is to provide unified interface for data exchange consumers and create data exchange
-publishers proxy.
+The purpose of this plugin is to provide unified interface for data exchange. Create consumers and publishers proxies, collect registered application consumers and publishers and control them.
 
 ## Installation
 
@@ -85,10 +84,10 @@ class SomeHandler
 
 And that is it, global publisher will call all your publishers and publish message to all your systems.
 
-## Custom message consumer
+## Creating custom consumer
 
 One part is done, message is published. Now have to be consumed. Message consuming process is in your hand, but this
-extension have prepared an interface for your consumers.
+extension has prepared an interface for your consumers.
 
 Your consumer could look like this:
 
@@ -103,9 +102,9 @@ class DataConsumer implements IConsumer
 {
 
     public function consume(
-		$origin,
-		Types\RoutingKeyType $routingKey,
-		?Utils\ArrayHash $data
+        $origin,
+        Types\RoutingKeyType $routingKey,
+        ?Utils\ArrayHash $data
     ) : void {
         // Do you data processing logic here 
     }

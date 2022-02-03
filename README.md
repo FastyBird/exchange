@@ -17,8 +17,8 @@
 
 ## What is FastyBird exchange library?
 
-This is library for [FastyBird](https://www.fastybird.com) ecosystem which is
-implementing data exchange bus services.
+This is library for [FastyBird IoT](https://www.fastybird.com) ecosystem which is
+implementing data exchange services.
 
 ## Installation
 
