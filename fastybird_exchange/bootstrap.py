@@ -21,7 +21,7 @@ Exchange library DI container
 # pylint: disable=no-value-for-parameter
 
 # Library dependencies
-from typing import List
+from typing import List, Optional
 
 # Library dependencies
 from kink import di, inject
@@ -39,16 +39,25 @@ def register_services() -> None:
     di[Consumer] = Consumer()
     di["fb-exchange_consumer"] = di[Consumer]
 
-    @inject
-    def register_publishers(publishers: List[IPublisher] = None) -> None:  # type: ignore[assignment]
+    @inject(
+        bind={
+            "publishers": List[IPublisher],
+        }
+    )
+    def register_publishers(publishers: Optional[List[IPublisher]] = None) -> None:
         if publishers is None:
             return
 
         for publisher in publishers:
             di[Publisher].register_publisher(publisher=publisher)
 
-    @inject
-    def register_queue(queue: IQueue = None, publishers: List[IPublisher] = None) -> None:  # type: ignore[assignment]
+    @inject(
+        bind={
+            "queue": IQueue,
+            "publishers": List[IPublisher],
+        }
+    )
+    def register_queue(queue: Optional[IQueue] = None, publishers: Optional[List[IPublisher]] = None) -> None:
         if queue is None:
             return
 
@@ -57,8 +66,12 @@ def register_services() -> None:
         if publishers is not None:
             queue.set_publishers(publishers=publishers)
 
-    @inject
-    def register_consumers(consumers: List[IConsumer] = None) -> None:  # type: ignore[assignment]
+    @inject(
+        bind={
+            "consumers": List[IConsumer],
+        }
+    )
+    def register_consumers(consumers: Optional[List[IConsumer]] = None) -> None:
         if consumers is None:
             return
 
