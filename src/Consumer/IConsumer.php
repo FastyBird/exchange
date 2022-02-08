@@ -30,14 +30,14 @@ interface IConsumer
 {
 
 	/**
-	 * @param MetadataTypes\ModuleOriginType|MetadataTypes\PluginOriginType|MetadataTypes\ConnectorOriginType $origin
+	 * @param MetadataTypes\ModuleSourceType|MetadataTypes\PluginSourceType|MetadataTypes\ConnectorSourceType $source
 	 * @param MetadataTypes\RoutingKeyType $routingKey
 	 * @param Utils\ArrayHash|null $data
 	 *
 	 * @return void
 	 */
 	public function consume(
-		$origin,
+		$source,
 		MetadataTypes\RoutingKeyType $routingKey,
 		?Utils\ArrayHash $data
 	): void;

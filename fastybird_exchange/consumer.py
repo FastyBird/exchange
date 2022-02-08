@@ -24,7 +24,7 @@ from typing import Dict, List, Optional, Set, Union
 
 # Library dependencies
 from fastybird_metadata.routing import RoutingKey
-from fastybird_metadata.types import ConnectorOrigin, ModuleOrigin, PluginOrigin
+from fastybird_metadata.types import ConnectorSource, ModuleSource, PluginSource
 from kink import inject
 
 
@@ -41,7 +41,7 @@ class IConsumer(ABC):  # pylint: disable=too-few-public-methods
     @abstractmethod
     def consume(
         self,
-        origin: Union[ModuleOrigin, PluginOrigin, ConnectorOrigin],
+        source: Union[ModuleSource, PluginSource, ConnectorSource],
         routing_key: RoutingKey,
         data: Optional[Dict[str, Union[str, int, float, bool, None]]],
     ) -> None:
@@ -81,13 +81,13 @@ class Consumer:
 
     def consume(
         self,
-        origin: Union[ModuleOrigin, PluginOrigin, ConnectorOrigin],
+        source: Union[ModuleSource, PluginSource, ConnectorSource],
         routing_key: RoutingKey,
         data: Optional[Dict],
     ) -> None:
         """Call all registered consumers and consume data"""
         for consumer in self.__consumers:
-            consumer.consume(origin=origin, routing_key=routing_key, data=data)
+            consumer.consume(source=source, routing_key=routing_key, data=data)
 
     # -----------------------------------------------------------------------------
 

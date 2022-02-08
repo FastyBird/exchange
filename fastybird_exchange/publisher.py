@@ -24,7 +24,7 @@ from typing import Dict, List, Optional, Set, Union
 
 # Library dependencies
 from fastybird_metadata.routing import RoutingKey
-from fastybird_metadata.types import ConnectorOrigin, ModuleOrigin, PluginOrigin
+from fastybird_metadata.types import ConnectorSource, ModuleSource, PluginSource
 from kink import inject
 
 
@@ -41,7 +41,7 @@ class IPublisher(ABC):  # pylint: disable=too-few-public-methods
     @abstractmethod
     def publish(
         self,
-        origin: Union[ModuleOrigin, PluginOrigin, ConnectorOrigin],
+        source: Union[ModuleSource, PluginSource, ConnectorSource],
         routing_key: RoutingKey,
         data: Optional[Dict],
     ) -> None:
@@ -67,7 +67,7 @@ class IQueue(ABC):  # pylint: disable=too-few-public-methods
     @abstractmethod
     def append(
         self,
-        origin: Union[ModuleOrigin, PluginOrigin, ConnectorOrigin],
+        source: Union[ModuleSource, PluginSource, ConnectorSource],
         routing_key: RoutingKey,
         data: Optional[Dict],
     ) -> None:
@@ -124,17 +124,17 @@ class Publisher:
 
     def publish(
         self,
-        origin: Union[ModuleOrigin, PluginOrigin, ConnectorOrigin],
+        source: Union[ModuleSource, PluginSource, ConnectorSource],
         routing_key: RoutingKey,
         data: Optional[Dict],
     ) -> None:
         """Call all registered publishers and publish data"""
         if self.__queue is not None:
-            self.__queue.append(origin=origin, routing_key=routing_key, data=data)
+            self.__queue.append(source=source, routing_key=routing_key, data=data)
 
         else:
             for publisher in self.__publishers:
-                publisher.publish(origin=origin, routing_key=routing_key, data=data)
+                publisher.publish(source=source, routing_key=routing_key, data=data)
 
     # -----------------------------------------------------------------------------
 

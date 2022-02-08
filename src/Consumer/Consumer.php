@@ -42,7 +42,7 @@ class Consumer implements IConsumer
 	 * {@inheritDoc}
 	 */
 	public function consume(
-		$origin,
+		$source,
 		MetadataTypes\RoutingKeyType $routingKey,
 		?Utils\ArrayHash $data
 	): void {
@@ -50,7 +50,7 @@ class Consumer implements IConsumer
 
 		/** @var IConsumer $consumer */
 		foreach ($this->consumers as $consumer) {
-			$consumer->consume($origin, $routingKey, $data);
+			$consumer->consume($source, $routingKey, $data);
 		}
 	}
 

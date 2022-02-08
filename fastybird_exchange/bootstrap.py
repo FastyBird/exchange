@@ -27,7 +27,7 @@ from typing import List, Optional
 from kink import di, inject
 
 # Library libs
-from fastybird_exchange.consumer import Consumer, IConsumer
+from fastybird_exchange.consumer import Consumer
 from fastybird_exchange.publisher import IPublisher, IQueue, Publisher
 
 

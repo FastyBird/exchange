@@ -42,7 +42,7 @@ class Publisher implements IPublisher
 	 * {@inheritDoc}
 	 */
 	public function publish(
-		$origin,
+		$source,
 		MetadataTypes\RoutingKeyType $routingKey,
 		?Utils\ArrayHash $data
 	): void {
@@ -50,7 +50,7 @@ class Publisher implements IPublisher
 
 		/** @var IPublisher $publisher */
 		foreach ($this->publishers as $publisher) {
-			$publisher->publish($origin, $routingKey, $data);
+			$publisher->publish($source, $routingKey, $data);
 		}
 	}
 
