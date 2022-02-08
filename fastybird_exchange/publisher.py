@@ -25,6 +25,7 @@ from typing import Dict, List, Optional, Set, Union
 # Library dependencies
 from fastybird_metadata.routing import RoutingKey
 from fastybird_metadata.types import ConnectorOrigin, ModuleOrigin, PluginOrigin
+from kink import inject
 
 
 class IPublisher(ABC):  # pylint: disable=too-few-public-methods
@@ -85,6 +86,12 @@ class IQueue(ABC):  # pylint: disable=too-few-public-methods
         """Check if queue has some unfinished items"""
 
 
+@inject(
+    bind={
+        "publishers": List[IPublisher],
+        "queue": List[IQueue],
+    }
+)
 class Publisher:
     """
     Data exchange publisher proxy

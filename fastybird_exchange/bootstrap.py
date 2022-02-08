@@ -41,18 +41,6 @@ def register_services() -> None:
 
     @inject(
         bind={
-            "publishers": List[IPublisher],
-        }
-    )
-    def register_publishers(publishers: Optional[List[IPublisher]] = None) -> None:
-        if publishers is None:
-            return
-
-        for publisher in publishers:
-            di[Publisher].register_publisher(publisher=publisher)
-
-    @inject(
-        bind={
             "queue": IQueue,
             "publishers": List[IPublisher],
         }
@@ -66,18 +54,4 @@ def register_services() -> None:
         if publishers is not None:
             queue.set_publishers(publishers=publishers)
 
-    @inject(
-        bind={
-            "consumers": List[IConsumer],
-        }
-    )
-    def register_consumers(consumers: Optional[List[IConsumer]] = None) -> None:
-        if consumers is None:
-            return
-
-        for consumer in consumers:
-            di[Consumer].register_consumer(consumer=consumer)
-
-    register_publishers()
     register_queue()
-    register_consumers()

@@ -25,6 +25,7 @@ from typing import Dict, List, Optional, Set, Union
 # Library dependencies
 from fastybird_metadata.routing import RoutingKey
 from fastybird_metadata.types import ConnectorOrigin, ModuleOrigin, PluginOrigin
+from kink import inject
 
 
 class IConsumer(ABC):  # pylint: disable=too-few-public-methods
@@ -47,6 +48,11 @@ class IConsumer(ABC):  # pylint: disable=too-few-public-methods
         """Consume data received from exchange bus"""
 
 
+@inject(
+    bind={
+        "consumers": List[IConsumer],
+    }
+)
 class Consumer:
     """
     Data exchange consumer proxy
