@@ -1,3 +1,3 @@
-fastybird-metadata>=0.48
+fastybird-metadata>=0.49
 kink>=0.6
 setuptools>=57.4
