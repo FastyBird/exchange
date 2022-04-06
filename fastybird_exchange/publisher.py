@@ -71,7 +71,7 @@ class IQueue(ABC):  # pylint: disable=too-few-public-methods
         routing_key: RoutingKey,
         data: Optional[Dict],
     ) -> None:
-        """Append new item to que"""
+        """Append new item to queue"""
 
     # -----------------------------------------------------------------------------
 
@@ -89,7 +89,7 @@ class IQueue(ABC):  # pylint: disable=too-few-public-methods
 @inject(
     bind={
         "publishers": List[IPublisher],
-        "queue": List[IQueue],
+        "queue": IQueue,
     }
 )
 class Publisher:

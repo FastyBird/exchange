@@ -48,9 +48,48 @@ class IConsumer(ABC):  # pylint: disable=too-few-public-methods
         """Consume data received from exchange bus"""
 
 
+class IQueue(ABC):  # pylint: disable=too-few-public-methods
+    """
+    Data exchange consumer queue interface
+
+    @package        FastyBird:Exchange!
+    @module         consumer
+
+    @author         Adam Kadlec <adam.kadlec@fastybird.com>
+    """
+
+    @abstractmethod
+    def set_consumers(self, consumers: List[IConsumer]) -> None:
+        """Set consumers to queue"""
+
+    # -----------------------------------------------------------------------------
+
+    @abstractmethod
+    def append(
+        self,
+        source: Union[ModuleSource, PluginSource, ConnectorSource],
+        routing_key: RoutingKey,
+        data: Optional[Dict],
+    ) -> None:
+        """Append new item to queue"""
+
+    # -----------------------------------------------------------------------------
+
+    @abstractmethod
+    def handle(self) -> None:
+        """Proces one item from queue"""
+
+    # -----------------------------------------------------------------------------
+
+    @abstractmethod
+    def has_unfinished_items(self) -> bool:
+        """Check if queue has some unfinished items"""
+
+
 @inject(
     bind={
         "consumers": List[IConsumer],
+        "queue": IQueue,
     }
 )
 class Consumer:
@@ -64,18 +103,22 @@ class Consumer:
     """
 
     __consumers: Set[IConsumer]
+    __queue: Optional[IQueue] = None
 
     # -----------------------------------------------------------------------------
 
     def __init__(
         self,
         consumers: Optional[List[IConsumer]] = None,
+        queue: Optional[IQueue] = None,
     ) -> None:
         if consumers is None:
             self.__consumers = set()
 
         else:
             self.__consumers = set(consumers)
+
+        self.__queue = queue
 
     # -----------------------------------------------------------------------------
 
@@ -86,8 +129,12 @@ class Consumer:
         data: Optional[Dict],
     ) -> None:
         """Call all registered consumers and consume data"""
-        for consumer in self.__consumers:
-            consumer.consume(source=source, routing_key=routing_key, data=data)
+        if self.__queue is not None:
+            self.__queue.append(source=source, routing_key=routing_key, data=data)
+
+        else:
+            for consumer in self.__consumers:
+                consumer.consume(source=source, routing_key=routing_key, data=data)
 
     # -----------------------------------------------------------------------------
 
@@ -97,3 +144,15 @@ class Consumer:
     ) -> None:
         """Register new consumer to proxy"""
         self.__consumers.add(consumer)
+
+    # -----------------------------------------------------------------------------
+
+    def register_queue(
+        self,
+        queue: IQueue,
+    ) -> None:
+        """Register consumer queue"""
+        if self.__queue is not None:
+            raise AttributeError("Queue is already configured in consumer service")
+
+        self.__queue = queue

@@ -47,3 +47,9 @@ class IClient(ABC):
     @abstractmethod
     def handle(self) -> None:
         """Handle client actions"""
+
+    # -----------------------------------------------------------------------------
+
+    @abstractmethod
+    def is_thread(self) -> bool:
+        """Is client single thread?"""

@@ -27,8 +27,8 @@ from typing import List, Optional
 from kink import di, inject
 
 # Library libs
-from fastybird_exchange.consumer import Consumer
-from fastybird_exchange.publisher import IPublisher, IQueue, Publisher
+from fastybird_exchange.consumer import IConsumer, IQueue as IConsumerQueue, Consumer
+from fastybird_exchange.publisher import IPublisher, IQueue as IPublisherQueue, Publisher
 
 
 def register_services() -> None:
@@ -41,11 +41,14 @@ def register_services() -> None:
 
     @inject(
         bind={
-            "queue": IQueue,
+            "queue": IPublisherQueue,
             "publishers": List[IPublisher],
         }
     )
-    def register_queue(queue: Optional[IQueue] = None, publishers: Optional[List[IPublisher]] = None) -> None:
+    def register_publisher_queue(
+        queue: Optional[IPublisherQueue] = None,
+        publishers: Optional[List[IPublisher]] = None,
+    ) -> None:
         if queue is None:
             return
 
@@ -54,4 +57,24 @@ def register_services() -> None:
         if publishers is not None:
             queue.set_publishers(publishers=publishers)
 
-    register_queue()
+    register_publisher_queue()
+
+    @inject(
+        bind={
+            "queue": IConsumerQueue,
+            "consumers": List[IConsumer],
+        }
+    )
+    def register_consumer_queue(
+        queue: Optional[IConsumerQueue] = None,
+        consumers: Optional[List[IConsumer]] = None,
+    ) -> None:
+        if queue is None:
+            return
+
+        di[Publisher].register_queue(queue=queue)
+
+        if consumers is not None:
+            queue.set_consumers(consumers=consumers)
+
+    register_consumer_queue()
