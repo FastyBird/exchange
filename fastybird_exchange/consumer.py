@@ -145,6 +145,9 @@ class Consumer:
         """Register new consumer to proxy"""
         self.__consumers.add(consumer)
 
+        if self.__queue is not None:
+            self.__queue.set_consumers(consumers=list(self.__consumers))
+
     # -----------------------------------------------------------------------------
 
     def register_queue(

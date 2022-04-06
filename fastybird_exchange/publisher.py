@@ -145,6 +145,9 @@ class Publisher:
         """Register new publisher to proxy"""
         self.__publishers.add(publisher)
 
+        if self.__queue is not None:
+            self.__queue.set_publishers(publishers=list(self.__consumers))
+
     # -----------------------------------------------------------------------------
 
     def register_queue(
