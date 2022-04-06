@@ -75,7 +75,7 @@ def register_services() -> None:
         if queue is None:
             return
 
-        di[Publisher].register_queue(queue=queue)
+        di[Consumer].register_queue(queue=queue)
 
         if consumers is not None:
             queue.set_consumers(consumers=consumers)
