@@ -52,12 +52,7 @@ def register_services() -> None:
         queue: Optional[IPublisherQueue] = None,
         publishers: Optional[List[IPublisher]] = None,
     ) -> None:
-        if queue is None:
-            return
-
-        di[Publisher].register_queue(queue=queue)
-
-        if publishers is not None:
+        if queue is not None and publishers is not None:
             queue.set_publishers(publishers=publishers)
 
     register_publisher_queue()
@@ -72,12 +67,7 @@ def register_services() -> None:
         queue: Optional[IConsumerQueue] = None,
         consumers: Optional[List[IConsumer]] = None,
     ) -> None:
-        if queue is None:
-            return
-
-        di[Consumer].register_queue(queue=queue)
-
-        if consumers is not None:
+        if queue is not None and consumers is not None:
             queue.set_consumers(consumers=consumers)
 
     register_consumer_queue()
