@@ -146,7 +146,7 @@ class Publisher:
         self.__publishers.add(publisher)
 
         if self.__queue is not None:
-            self.__queue.set_publishers(publishers=list(self.__consumers))
+            self.__queue.set_publishers(publishers=list(self.__publishers))
 
     # -----------------------------------------------------------------------------
 
