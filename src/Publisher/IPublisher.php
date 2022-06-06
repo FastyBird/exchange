@@ -33,7 +33,7 @@ interface IPublisher
 	/**
 	 * @param MetadataTypes\ModuleSourceType|MetadataTypes\PluginSourceType|MetadataTypes\ConnectorSourceType $source
 	 * @param MetadataTypes\RoutingKeyType $routingKey
-	 * @param Utils\ArrayHash|null $data
+	 * @param MetadataEntities\IEntity|null $data
 	 *
 	 * @return void
 	 */
