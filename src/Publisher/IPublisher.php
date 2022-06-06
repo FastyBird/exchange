@@ -17,7 +17,6 @@ namespace FastyBird\Exchange\Publisher;
 
 use FastyBird\Metadata\Entities as MetadataEntities;
 use FastyBird\Metadata\Types as MetadataTypes;
-use Nette\Utils;
 
 /**
  * Exchange publisher interface
