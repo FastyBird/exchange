@@ -15,6 +15,7 @@
 
 namespace FastyBird\Exchange\Publisher;
 
+use FastyBird\Metadata\Entities as MetadataEntities;
 use FastyBird\Metadata\Types as MetadataTypes;
 use Nette\Utils;
 
@@ -39,7 +40,7 @@ interface IPublisher
 	public function publish(
 		$source,
 		MetadataTypes\RoutingKeyType $routingKey,
-		?Utils\ArrayHash $data
+		?MetadataEntities\IEntity $data
 	): void;
 
 }

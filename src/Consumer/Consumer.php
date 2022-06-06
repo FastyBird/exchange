@@ -15,8 +15,8 @@
 
 namespace FastyBird\Exchange\Consumer;
 
+use FastyBird\Metadata\Entities as MetadataEntities;
 use FastyBird\Metadata\Types as MetadataTypes;
-use Nette\Utils;
 use SplObjectStorage;
 
 /**
@@ -44,7 +44,7 @@ class Consumer implements IConsumer
 	public function consume(
 		$source,
 		MetadataTypes\RoutingKeyType $routingKey,
-		?Utils\ArrayHash $data
+		?MetadataEntities\IEntity $data
 	): void {
 		$this->consumers->rewind();
 

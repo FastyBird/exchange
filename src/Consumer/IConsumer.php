@@ -15,8 +15,8 @@
 
 namespace FastyBird\Exchange\Consumer;
 
+use FastyBird\Metadata\Entities as MetadataEntities;
 use FastyBird\Metadata\Types as MetadataTypes;
-use Nette\Utils;
 
 /**
  * Exchange consumer interface
@@ -32,14 +32,14 @@ interface IConsumer
 	/**
 	 * @param MetadataTypes\ModuleSourceType|MetadataTypes\PluginSourceType|MetadataTypes\ConnectorSourceType $source
 	 * @param MetadataTypes\RoutingKeyType $routingKey
-	 * @param Utils\ArrayHash|null $data
+	 * @param MetadataEntities\IEntity|null $data
 	 *
 	 * @return void
 	 */
 	public function consume(
 		$source,
 		MetadataTypes\RoutingKeyType $routingKey,
-		?Utils\ArrayHash $data
+		?MetadataEntities\IEntity $data
 	): void;
 
 }
