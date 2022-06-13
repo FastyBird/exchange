@@ -44,13 +44,13 @@ class Consumer implements IConsumer
 	public function consume(
 		$source,
 		MetadataTypes\RoutingKeyType $routingKey,
-		?MetadataEntities\IEntity $data
+		?MetadataEntities\IEntity $entity
 	): void {
 		$this->consumers->rewind();
 
 		/** @var IConsumer $consumer */
 		foreach ($this->consumers as $consumer) {
-			$consumer->consume($source, $routingKey, $data);
+			$consumer->consume($source, $routingKey, $entity);
 		}
 	}
 

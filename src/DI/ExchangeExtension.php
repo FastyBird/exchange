@@ -16,6 +16,7 @@
 namespace FastyBird\Exchange\DI;
 
 use FastyBird\Exchange\Consumer;
+use FastyBird\Exchange\Entities;
 use FastyBird\Exchange\Publisher;
 use Nette;
 use Nette\DI;
@@ -61,6 +62,9 @@ class ExchangeExtension extends DI\CompilerExtension
 
 		$builder->addDefinition($this->prefix('publisher'), new DI\Definitions\ServiceDefinition())
 			->setType(Publisher\Publisher::class);
+
+		$builder->addDefinition($this->prefix('entityFactory'), new DI\Definitions\ServiceDefinition())
+			->setType(Entities\EntityFactory::class);
 	}
 
 	/**

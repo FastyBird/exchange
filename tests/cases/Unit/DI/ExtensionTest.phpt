@@ -3,6 +3,7 @@
 namespace Tests\Cases;
 
 use FastyBird\Exchange\Consumer;
+use FastyBird\Exchange\Entities;
 use FastyBird\Exchange\Publisher;
 use Tester\Assert;
 
@@ -19,6 +20,7 @@ final class ExtensionTest extends BaseTestCase
 	{
 		$container = $this->createContainer();
 
+		Assert::notNull($container->getByType(Entities\EntityFactory::class));
 		Assert::notNull($container->getByType(Publisher\Publisher::class));
 		Assert::notNull($container->getByType(Consumer\Consumer::class));
 	}

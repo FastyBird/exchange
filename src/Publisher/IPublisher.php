@@ -32,14 +32,14 @@ interface IPublisher
 	/**
 	 * @param MetadataTypes\ModuleSourceType|MetadataTypes\PluginSourceType|MetadataTypes\ConnectorSourceType $source
 	 * @param MetadataTypes\RoutingKeyType $routingKey
-	 * @param MetadataEntities\IEntity|null $data
+	 * @param MetadataEntities\IEntity|null $entity
 	 *
 	 * @return void
 	 */
 	public function publish(
 		$source,
 		MetadataTypes\RoutingKeyType $routingKey,
-		?MetadataEntities\IEntity $data
+		?MetadataEntities\IEntity $entity
 	): void;
 
 }

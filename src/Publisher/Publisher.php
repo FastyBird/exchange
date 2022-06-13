@@ -44,13 +44,13 @@ class Publisher implements IPublisher
 	public function publish(
 		$source,
 		MetadataTypes\RoutingKeyType $routingKey,
-		?MetadataEntities\IEntity $data
+		?MetadataEntities\IEntity $entity
 	): void {
 		$this->publishers->rewind();
 
 		/** @var IPublisher $publisher */
 		foreach ($this->publishers as $publisher) {
-			$publisher->publish($source, $routingKey, $data);
+			$publisher->publish($source, $routingKey, $entity);
 		}
 	}
 
