@@ -15,8 +15,10 @@
 
 namespace FastyBird\Exchange\Consumer;
 
+use FastyBird\Exchange\Events;
 use FastyBird\Metadata\Entities as MetadataEntities;
 use FastyBird\Metadata\Types as MetadataTypes;
+use Psr\EventDispatcher as PsrEventDispatcher;
 use SplObjectStorage;
 
 /**
@@ -33,8 +35,14 @@ class Consumer implements IConsumer
 	/** @var SplObjectStorage<IConsumer, null> */
 	private SplObjectStorage $consumers;
 
-	public function __construct()
-	{
+	/** @var PsrEventDispatcher\EventDispatcherInterface|null */
+	private ?PsrEventDispatcher\EventDispatcherInterface $dispatcher;
+
+	public function __construct(
+		?PsrEventDispatcher\EventDispatcherInterface $dispatcher = null
+	) {
+		$this->dispatcher = $dispatcher;
+
 		$this->consumers = new SplObjectStorage();
 	}
 
@@ -46,11 +54,19 @@ class Consumer implements IConsumer
 		MetadataTypes\RoutingKeyType $routingKey,
 		?MetadataEntities\IEntity $entity
 	): void {
+		if ($this->dispatcher !== null) {
+			$this->dispatcher->dispatch(new Events\BeforeMessageConsumedEvent($routingKey, $entity));
+		}
+
 		$this->consumers->rewind();
 
 		/** @var IConsumer $consumer */
 		foreach ($this->consumers as $consumer) {
 			$consumer->consume($source, $routingKey, $entity);
+		}
+
+		if ($this->dispatcher !== null) {
+			$this->dispatcher->dispatch(new Events\AfterMessageConsumedEvent($routingKey, $entity));
 		}
 	}
 

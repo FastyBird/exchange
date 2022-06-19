@@ -15,8 +15,10 @@
 
 namespace FastyBird\Exchange\Publisher;
 
+use FastyBird\Exchange\Events;
 use FastyBird\Metadata\Entities as MetadataEntities;
 use FastyBird\Metadata\Types as MetadataTypes;
+use Psr\EventDispatcher as PsrEventDispatcher;
 use SplObjectStorage;
 
 /**
@@ -33,8 +35,14 @@ class Publisher implements IPublisher
 	/** @var SplObjectStorage<IPublisher, null> */
 	private SplObjectStorage $publishers;
 
-	public function __construct()
-	{
+	/** @var PsrEventDispatcher\EventDispatcherInterface|null */
+	private ?PsrEventDispatcher\EventDispatcherInterface $dispatcher;
+
+	public function __construct(
+		?PsrEventDispatcher\EventDispatcherInterface $dispatcher = null
+	) {
+		$this->dispatcher = $dispatcher;
+
 		$this->publishers = new SplObjectStorage();
 	}
 
@@ -46,11 +54,19 @@ class Publisher implements IPublisher
 		MetadataTypes\RoutingKeyType $routingKey,
 		?MetadataEntities\IEntity $entity
 	): void {
+		if ($this->dispatcher !== null) {
+			$this->dispatcher->dispatch(new Events\BeforeMessagePublishedEvent($routingKey, $entity));
+		}
+
 		$this->publishers->rewind();
 
 		/** @var IPublisher $publisher */
 		foreach ($this->publishers as $publisher) {
 			$publisher->publish($source, $routingKey, $entity);
+		}
+
+		if ($this->dispatcher !== null) {
+			$this->dispatcher->dispatch(new Events\AfterMessagePublishedEvent($routingKey, $entity));
 		}
 	}
 
