@@ -18,4 +18,4 @@
 Exchange library
 """
 
-__version__ = "0.45.0"
+__version__ = "0.46.0"
