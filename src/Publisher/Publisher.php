@@ -50,13 +50,11 @@ class Publisher implements IPublisher
 	 * {@inheritDoc}
 	 */
 	public function publish(
-		$source,
-		MetadataTypes\RoutingKeyType $routingKey,
-		?MetadataEntities\IEntity $entity
+        MetadataTypes\ModuleSourceType|MetadataTypes\PluginSourceType|MetadataTypes\ConnectorSourceType $source,
+        MetadataTypes\RoutingKeyType                                                                    $routingKey,
+        ?MetadataEntities\IEntity                                                                       $entity
 	): void {
-		if ($this->dispatcher !== null) {
-			$this->dispatcher->dispatch(new Events\BeforeMessagePublishedEvent($routingKey, $entity));
-		}
+		$this->dispatcher?->dispatch(new Events\BeforeMessagePublishedEvent($routingKey, $entity));
 
 		$this->publishers->rewind();
 
@@ -65,9 +63,7 @@ class Publisher implements IPublisher
 			$publisher->publish($source, $routingKey, $entity);
 		}
 
-		if ($this->dispatcher !== null) {
-			$this->dispatcher->dispatch(new Events\AfterMessagePublishedEvent($routingKey, $entity));
-		}
+		$this->dispatcher?->dispatch(new Events\AfterMessagePublishedEvent($routingKey, $entity));
 	}
 
 	/**

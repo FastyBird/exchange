@@ -50,13 +50,11 @@ class Consumer implements IConsumer
 	 * {@inheritDoc}
 	 */
 	public function consume(
-		$source,
+		MetadataTypes\ModuleSourceType|MetadataTypes\PluginSourceType|MetadataTypes\ConnectorSourceType $source,
 		MetadataTypes\RoutingKeyType $routingKey,
 		?MetadataEntities\IEntity $entity
 	): void {
-		if ($this->dispatcher !== null) {
-			$this->dispatcher->dispatch(new Events\BeforeMessageConsumedEvent($routingKey, $entity));
-		}
+		$this->dispatcher?->dispatch(new Events\BeforeMessageConsumedEvent($routingKey, $entity));
 
 		$this->consumers->rewind();
 
@@ -65,9 +63,7 @@ class Consumer implements IConsumer
 			$consumer->consume($source, $routingKey, $entity);
 		}
 
-		if ($this->dispatcher !== null) {
-			$this->dispatcher->dispatch(new Events\AfterMessageConsumedEvent($routingKey, $entity));
-		}
+		$this->dispatcher?->dispatch(new Events\AfterMessageConsumedEvent($routingKey, $entity));
 	}
 
 	/**
