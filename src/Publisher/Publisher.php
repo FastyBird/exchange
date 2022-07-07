@@ -50,9 +50,9 @@ class Publisher implements IPublisher
 	 * {@inheritDoc}
 	 */
 	public function publish(
-        MetadataTypes\ModuleSourceType|MetadataTypes\PluginSourceType|MetadataTypes\ConnectorSourceType $source,
-        MetadataTypes\RoutingKeyType                                                                    $routingKey,
-        ?MetadataEntities\IEntity                                                                       $entity
+		MetadataTypes\ModuleSourceType|MetadataTypes\PluginSourceType|MetadataTypes\ConnectorSourceType $source,
+		MetadataTypes\RoutingKeyType $routingKey,
+		?MetadataEntities\IEntity $entity
 	): void {
 		$this->dispatcher?->dispatch(new Events\BeforeMessagePublishedEvent($routingKey, $entity));
 
