@@ -31,26 +31,26 @@ use FastyBird\Metadata\Types as MetadataTypes;
 final class EntityFactory
 {
 
-	/** @var MetadataEntities\Actions\ActionConnectorEntityFactory */
-	private MetadataEntities\Actions\ActionConnectorEntityFactory $actionConnectorEntityFactory;
+	/** @var MetadataEntities\Actions\ActionConnectorControlEntityFactory */
+	private MetadataEntities\Actions\ActionConnectorControlEntityFactory $actionConnectorControlEntityFactory;
 
 	/** @var MetadataEntities\Actions\ActionConnectorPropertyEntityFactory */
 	private MetadataEntities\Actions\ActionConnectorPropertyEntityFactory $actionConnectorPropertyEntityFactory;
 
-	/** @var MetadataEntities\Actions\ActionDeviceEntityFactory */
-	private MetadataEntities\Actions\ActionDeviceEntityFactory $actionDeviceEntityFactory;
+	/** @var MetadataEntities\Actions\ActionDeviceControlEntityFactory */
+	private MetadataEntities\Actions\ActionDeviceControlEntityFactory $actionDeviceControlEntityFactory;
 
 	/** @var MetadataEntities\Actions\ActionDevicePropertyEntityFactory */
 	private MetadataEntities\Actions\ActionDevicePropertyEntityFactory $actionDevicePropertyEntityFactory;
 
-	/** @var MetadataEntities\Actions\ActionChannelEntityFactory */
-	private MetadataEntities\Actions\ActionChannelEntityFactory $actionChannelEntityFactory;
+	/** @var MetadataEntities\Actions\ActionChannelControlEntityFactory */
+	private MetadataEntities\Actions\ActionChannelControlEntityFactory $actionChannelControlEntityFactory;
 
 	/** @var MetadataEntities\Actions\ActionChannelPropertyEntityFactory */
 	private MetadataEntities\Actions\ActionChannelPropertyEntityFactory $actionChannelPropertyEntityFactory;
 
-	/** @var MetadataEntities\Actions\ActionTriggerEntityFactory */
-	private MetadataEntities\Actions\ActionTriggerEntityFactory $actionTriggerEntityFactory;
+	/** @var MetadataEntities\Actions\ActionTriggerControlEntityFactory */
+	private MetadataEntities\Actions\ActionTriggerControlEntityFactory $actionTriggerControlEntityFactory;
 
 	/** @var MetadataEntities\Modules\AccountsModule\AccountEntityFactory */
 	private MetadataEntities\Modules\AccountsModule\AccountEntityFactory $accountEntityFactory;
@@ -110,13 +110,13 @@ final class EntityFactory
 	private MetadataEntities\Modules\DevicesModule\ChannelPropertyEntityFactory $channelPropertyEntityFactory;
 
 	public function __construct(
-		MetadataEntities\Actions\ActionConnectorEntityFactory $actionConnectorEntityFactory,
+		MetadataEntities\Actions\ActionConnectorControlEntityFactory $actionConnectorControlEntityFactory,
 		MetadataEntities\Actions\ActionConnectorPropertyEntityFactory $actionConnectorPropertyEntityFactory,
-		MetadataEntities\Actions\ActionDeviceEntityFactory $actionDeviceEntityFactory,
+		MetadataEntities\Actions\ActionDeviceControlEntityFactory $actionDeviceControlEntityFactory,
 		MetadataEntities\Actions\ActionDevicePropertyEntityFactory $actionDevicePropertyEntityFactory,
-		MetadataEntities\Actions\ActionChannelEntityFactory $actionChannelEntityFactory,
+		MetadataEntities\Actions\ActionChannelControlEntityFactory $actionChannelControlEntityFactory,
 		MetadataEntities\Actions\ActionChannelPropertyEntityFactory $actionChannelPropertyEntityFactory,
-		MetadataEntities\Actions\ActionTriggerEntityFactory $actionTriggerEntityFactory,
+		MetadataEntities\Actions\ActionTriggerControlEntityFactory $actionTriggerControlEntityFactory,
 		MetadataEntities\Modules\AccountsModule\AccountEntityFactory $accountEntityFactory,
 		MetadataEntities\Modules\AccountsModule\EmailEntityFactory $emailEntityFactory,
 		MetadataEntities\Modules\AccountsModule\IdentityEntityFactory $identityEntityFactory,
@@ -137,13 +137,13 @@ final class EntityFactory
 		MetadataEntities\Modules\DevicesModule\ChannelControlEntityFactory $channelControlEntityFactory,
 		MetadataEntities\Modules\DevicesModule\ChannelPropertyEntityFactory $channelPropertyEntityFactory
 	) {
-		$this->actionConnectorEntityFactory = $actionConnectorEntityFactory;
+		$this->actionConnectorControlEntityFactory = $actionConnectorControlEntityFactory;
 		$this->actionConnectorPropertyEntityFactory = $actionConnectorPropertyEntityFactory;
-		$this->actionDeviceEntityFactory = $actionDeviceEntityFactory;
+		$this->actionDeviceControlEntityFactory = $actionDeviceControlEntityFactory;
 		$this->actionDevicePropertyEntityFactory = $actionDevicePropertyEntityFactory;
-		$this->actionChannelEntityFactory = $actionChannelEntityFactory;
+		$this->actionChannelControlEntityFactory = $actionChannelControlEntityFactory;
 		$this->actionChannelPropertyEntityFactory = $actionChannelPropertyEntityFactory;
-		$this->actionTriggerEntityFactory = $actionTriggerEntityFactory;
+		$this->actionTriggerControlEntityFactory = $actionTriggerControlEntityFactory;
 
 		$this->accountEntityFactory = $accountEntityFactory;
 		$this->emailEntityFactory = $emailEntityFactory;
@@ -179,26 +179,26 @@ final class EntityFactory
 	public function create(string $data, MetadataTypes\RoutingKeyType $routingKey): MetadataEntities\IEntity
 	{
 		// ACTIONS
-		if ($routingKey->equalsValue(MetadataTypes\RoutingKeyType::ROUTE_CONNECTOR_ACTION)) {
-			return $this->actionConnectorEntityFactory->create($data);
+		if ($routingKey->equalsValue(MetadataTypes\RoutingKeyType::ROUTE_CONNECTOR_CONTROL_ACTION)) {
+			return $this->actionConnectorControlEntityFactory->create($data);
 
 		} elseif ($routingKey->equalsValue(MetadataTypes\RoutingKeyType::ROUTE_CONNECTOR_PROPERTY_ACTION)) {
 			return $this->actionConnectorPropertyEntityFactory->create($data);
 
-		} elseif ($routingKey->equalsValue(MetadataTypes\RoutingKeyType::ROUTE_DEVICE_ACTION)) {
-			return $this->actionDeviceEntityFactory->create($data);
+		} elseif ($routingKey->equalsValue(MetadataTypes\RoutingKeyType::ROUTE_DEVICE_CONTROL_ACTION)) {
+			return $this->actionDeviceControlEntityFactory->create($data);
 
 		} elseif ($routingKey->equalsValue(MetadataTypes\RoutingKeyType::ROUTE_DEVICE_PROPERTY_ACTION)) {
 			return $this->actionDevicePropertyEntityFactory->create($data);
 
-		} elseif ($routingKey->equalsValue(MetadataTypes\RoutingKeyType::ROUTE_CHANNEL_ACTION)) {
-			return $this->actionChannelEntityFactory->create($data);
+		} elseif ($routingKey->equalsValue(MetadataTypes\RoutingKeyType::ROUTE_CHANNEL_CONTROL_ACTION)) {
+			return $this->actionChannelControlEntityFactory->create($data);
 
 		} elseif ($routingKey->equalsValue(MetadataTypes\RoutingKeyType::ROUTE_CHANNEL_PROPERTY_ACTION)) {
 			return $this->actionChannelPropertyEntityFactory->create($data);
 
-		} elseif ($routingKey->equalsValue(MetadataTypes\RoutingKeyType::ROUTE_TRIGGER_ACTION)) {
-			return $this->actionTriggerEntityFactory->create($data);
+		} elseif ($routingKey->equalsValue(MetadataTypes\RoutingKeyType::ROUTE_TRIGGER_CONTROL_ACTION)) {
+			return $this->actionTriggerControlEntityFactory->create($data);
 
 		// ACCOUNTS MODULE
 		} elseif (

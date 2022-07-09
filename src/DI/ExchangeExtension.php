@@ -93,7 +93,7 @@ class ExchangeExtension extends DI\CompilerExtension
 					// Consumer is not allowed to be autowired
 					$consumerService->setAutowired(false);
 
-					$consumerProxyService->addSetup('?->registerConsumer(?)', [
+					$consumerProxyService->addSetup('?->register(?)', [
 						'@self',
 						$consumerService,
 					]);
@@ -118,7 +118,7 @@ class ExchangeExtension extends DI\CompilerExtension
 					// Publisher is not allowed to be autowired
 					$publisherService->setAutowired(false);
 
-					$publisherProxyService->addSetup('?->registerPublisher(?)', [
+					$publisherProxyService->addSetup('?->register(?)', [
 						'@self',
 						$publisherService,
 					]);

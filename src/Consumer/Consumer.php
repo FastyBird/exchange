@@ -71,11 +71,19 @@ class Consumer implements IConsumer
 	 *
 	 * @return void
 	 */
-	public function registerConsumer(IConsumer $consumer): void
+	public function register(IConsumer $consumer): void
 	{
 		if (!$this->consumers->contains($consumer)) {
 			$this->consumers->attach($consumer);
 		}
+	}
+
+	/**
+	 * @return void
+	 */
+	public function reset(): void
+	{
+		$this->consumers = new SplObjectStorage();
 	}
 
 }

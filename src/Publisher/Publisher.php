@@ -71,11 +71,19 @@ class Publisher implements IPublisher
 	 *
 	 * @return void
 	 */
-	public function registerPublisher(IPublisher $publisher): void
+	public function register(IPublisher $publisher): void
 	{
 		if (!$this->publishers->contains($publisher)) {
 			$this->publishers->attach($publisher);
 		}
+	}
+
+	/**
+	 * @return void
+	 */
+	public function reset(): void
+	{
+		$this->publishers = new SplObjectStorage();
 	}
 
 }
