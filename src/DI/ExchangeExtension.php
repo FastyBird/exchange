@@ -80,24 +80,12 @@ class ExchangeExtension extends DI\CompilerExtension
 		 * CONSUMERS PROXY
 		 */
 
-		$consumerProxyServiceName = $builder->getByType(Consumer\Consumer::class);
+		$consumerServices = $builder->findByType(Consumer\IConsumer::class);
 
-		if ($consumerProxyServiceName !== null) {
-			/** @var DI\Definitions\ServiceDefinition $consumerProxyService */
-			$consumerProxyService = $builder->getDefinition($consumerProxyServiceName);
-
-			$consumerServices = $builder->findByType(Consumer\IConsumer::class);
-
-			foreach ($consumerServices as $consumerService) {
-				if ($consumerService->getType() !== Consumer\Consumer::class) {
-					// Consumer is not allowed to be autowired
-					$consumerService->setAutowired(false);
-
-					$consumerProxyService->addSetup('?->register(?)', [
-						'@self',
-						$consumerService,
-					]);
-				}
+		foreach ($consumerServices as $consumerService) {
+			if ($consumerService->getType() !== Consumer\Consumer::class) {
+				// Consumer is not allowed to be autowired
+				$consumerService->setAutowired(false);
 			}
 		}
 
@@ -105,24 +93,12 @@ class ExchangeExtension extends DI\CompilerExtension
 		 * PUBLISHERS PROXY
 		 */
 
-		$publisherProxyServiceName = $builder->getByType(Publisher\Publisher::class);
+		$publisherServices = $builder->findByType(Publisher\IPublisher::class);
 
-		if ($publisherProxyServiceName !== null) {
-			/** @var DI\Definitions\ServiceDefinition $publisherProxyService */
-			$publisherProxyService = $builder->getDefinition($publisherProxyServiceName);
-
-			$publisherServices = $builder->findByType(Publisher\IPublisher::class);
-
-			foreach ($publisherServices as $publisherService) {
-				if ($publisherService->getType() !== Publisher\Publisher::class) {
-					// Publisher is not allowed to be autowired
-					$publisherService->setAutowired(false);
-
-					$publisherProxyService->addSetup('?->register(?)', [
-						'@self',
-						$publisherService,
-					]);
-				}
+		foreach ($publisherServices as $publisherService) {
+			if ($publisherService->getType() !== Publisher\Publisher::class) {
+				// Publisher is not allowed to be autowired
+				$publisherService->setAutowired(false);
 			}
 		}
 	}

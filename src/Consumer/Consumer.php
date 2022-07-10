@@ -38,12 +38,21 @@ class Consumer implements IConsumer
 	/** @var PsrEventDispatcher\EventDispatcherInterface|null */
 	private ?PsrEventDispatcher\EventDispatcherInterface $dispatcher;
 
+	/**
+	 * @param IConsumer[] $consumers
+	 * @param PsrEventDispatcher\EventDispatcherInterface|null $dispatcher
+	 */
 	public function __construct(
+		array $consumers,
 		?PsrEventDispatcher\EventDispatcherInterface $dispatcher = null
 	) {
 		$this->dispatcher = $dispatcher;
 
 		$this->consumers = new SplObjectStorage();
+
+		foreach ($consumers as $consumer) {
+			$this->consumers->attach($consumer);
+		}
 	}
 
 	/**

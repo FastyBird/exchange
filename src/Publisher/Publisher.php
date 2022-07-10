@@ -38,12 +38,21 @@ class Publisher implements IPublisher
 	/** @var PsrEventDispatcher\EventDispatcherInterface|null */
 	private ?PsrEventDispatcher\EventDispatcherInterface $dispatcher;
 
+	/**
+	 * @param IPublisher[] $publishers
+	 * @param PsrEventDispatcher\EventDispatcherInterface|null $dispatcher
+	 */
 	public function __construct(
+		array $publishers,
 		?PsrEventDispatcher\EventDispatcherInterface $dispatcher = null
 	) {
 		$this->dispatcher = $dispatcher;
 
 		$this->publishers = new SplObjectStorage();
+
+		foreach ($publishers as $publisher) {
+			$this->publishers->attach($publisher);
+		}
 	}
 
 	/**
