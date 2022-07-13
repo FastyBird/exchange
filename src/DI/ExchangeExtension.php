@@ -92,7 +92,7 @@ class ExchangeExtension extends DI\CompilerExtension
 				if (
 					$consumerService->getType() !== Consumer\Consumer::class
 					&& (
-						$consumerService->getAutowired() === true
+						$consumerService->getAutowired() !== false
 						|| !is_bool($consumerService->getAutowired())
 					)
 				) {
@@ -123,7 +123,7 @@ class ExchangeExtension extends DI\CompilerExtension
 				if (
 					$publisherService->getType() !== Publisher\Publisher::class
 					&& (
-						$publisherService->getAutowired() === true
+						$publisherService->getAutowired() !== false
 						|| !is_bool($publisherService->getAutowired())
 					)
 				) {
