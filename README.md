@@ -1,7 +1,7 @@
 # FastyBird exchange library
 
-[![Build Status](https://badgen.net/github/checks/FastyBird/exchange/master?cache=300&style=flast-square)](https://github.com/FastyBird/exchange/actions)
-[![Licence](https://badgen.net/github/license/FastyBird/exchange?cache=300&style=flast-square)](https://github.com/FastyBird/exchange/blob/master/LICENSE.md)
+[![Build Status](https://badgen.net/github/checks/FastyBird/exchange/main?cache=300&style=flast-square)](https://github.com/FastyBird/exchange/actions)
+[![Licence](https://badgen.net/github/license/FastyBird/exchange?cache=300&style=flast-square)](https://github.com/FastyBird/exchange/blob/main/LICENSE.md)
 [![Code coverage](https://badgen.net/coveralls/c/github/FastyBird/exchange?cache=300&style=flast-square)](https://coveralls.io/r/FastyBird/exchange)
 
 ![PHP](https://badgen.net/packagist/php/FastyBird/exchange?cache=300&style=flast-square)
@@ -41,7 +41,7 @@ $ pip install fastybird-exchange
 ## Documentation
 
 Learn how to consume & publish messages
-in [documentation](https://github.com/FastyBird/exchange/blob/master/.docs/en/index.md).
+in [documentation](https://github.com/FastyBird/exchange/blob/main/.docs/en/index.md).
 
 ***
 Homepage [https://www.fastybird.com](https://www.fastybird.com) and
