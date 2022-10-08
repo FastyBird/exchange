@@ -8,91 +8,31 @@
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  * @package        FastyBird:Exchange!
  * @subpackage     Consumers
- * @since          0.5.0
+ * @since          0.1.0
  *
- * @date           09.01.22
+ * @date           19.12.20
  */
 
 namespace FastyBird\Exchange\Consumer;
 
-use FastyBird\Exchange\Events;
 use FastyBird\Metadata\Entities as MetadataEntities;
 use FastyBird\Metadata\Types as MetadataTypes;
-use Psr\EventDispatcher as PsrEventDispatcher;
-use SplObjectStorage;
 
 /**
- * Exchange consumer proxy
+ * Exchange consumer interface
  *
  * @package        FastyBird:Exchange!
  * @subpackage     Consumers
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-class Consumer implements IConsumer
+interface Consumer
 {
 
-	/** @var SplObjectStorage<IConsumer, null> */
-	private SplObjectStorage $consumers;
-
-	/** @var PsrEventDispatcher\EventDispatcherInterface|null */
-	private ?PsrEventDispatcher\EventDispatcherInterface $dispatcher;
-
-	/**
-	 * @param IConsumer[] $consumers
-	 * @param PsrEventDispatcher\EventDispatcherInterface|null $dispatcher
-	 */
-	public function __construct(
-		array $consumers,
-		?PsrEventDispatcher\EventDispatcherInterface $dispatcher = null
-	) {
-		$this->dispatcher = $dispatcher;
-
-		$this->consumers = new SplObjectStorage();
-
-		foreach ($consumers as $consumer) {
-			$this->consumers->attach($consumer);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	public function consume(
-		MetadataTypes\ModuleSourceType|MetadataTypes\PluginSourceType|MetadataTypes\ConnectorSourceType $source,
-		MetadataTypes\RoutingKeyType $routingKey,
-		?MetadataEntities\IEntity $entity
-	): void {
-		$this->dispatcher?->dispatch(new Events\BeforeMessageConsumedEvent($routingKey, $entity));
-
-		$this->consumers->rewind();
-
-		/** @var IConsumer $consumer */
-		foreach ($this->consumers as $consumer) {
-			$consumer->consume($source, $routingKey, $entity);
-		}
-
-		$this->dispatcher?->dispatch(new Events\AfterMessageConsumedEvent($routingKey, $entity));
-	}
-
-	/**
-	 * @param IConsumer $consumer
-	 *
-	 * @return void
-	 */
-	public function register(IConsumer $consumer): void
-	{
-		if (!$this->consumers->contains($consumer)) {
-			$this->consumers->attach($consumer);
-		}
-	}
-
-	/**
-	 * @return void
-	 */
-	public function reset(): void
-	{
-		$this->consumers = new SplObjectStorage();
-	}
+		MetadataTypes\ModuleSource|MetadataTypes\PluginSource|MetadataTypes\ConnectorSource $source,
+		MetadataTypes\RoutingKey $routingKey,
+		MetadataEntities\Entity|null $entity,
+	): void;
 
 }

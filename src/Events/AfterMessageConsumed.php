@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 /**
- * BeforeMessagePublishedEvent.php
+ * AfterMessageConsumed.php
  *
  * @license        More in license.md
  * @copyright      https://www.fastybird.com
@@ -20,42 +20,29 @@ use FastyBird\Metadata\Types as MetadataTypes;
 use Symfony\Contracts\EventDispatcher;
 
 /**
- * Before message published event
+ * After message consumed event
  *
  * @package        FastyBird:Exchange!
  * @subpackage     Events
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-class BeforeMessagePublishedEvent extends EventDispatcher\Event
+class AfterMessageConsumed extends EventDispatcher\Event
 {
 
-	/** @var MetadataTypes\RoutingKeyType */
-	private MetadataTypes\RoutingKeyType $routingKey;
-
-	/** @var MetadataEntities\IEntity|null */
-	private ?MetadataEntities\IEntity $entity;
-
 	public function __construct(
-		MetadataTypes\RoutingKeyType $routingKey,
-		?MetadataEntities\IEntity $entity
-	) {
-		$this->routingKey = $routingKey;
-		$this->entity = $entity;
+		private MetadataTypes\RoutingKey $routingKey,
+		private MetadataEntities\Entity|null $entity,
+	)
+	{
 	}
 
-	/**
-	 * @return MetadataTypes\RoutingKeyType
-	 */
-	public function getRoutingKey(): MetadataTypes\RoutingKeyType
+	public function getRoutingKey(): MetadataTypes\RoutingKey
 	{
 		return $this->routingKey;
 	}
 
-	/**
-	 * @return MetadataEntities\IEntity|null
-	 */
-	public function getEntity(): ?MetadataEntities\IEntity
+	public function getEntity(): MetadataEntities\Entity|null
 	{
 		return $this->entity;
 	}

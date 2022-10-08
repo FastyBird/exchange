@@ -25,11 +25,11 @@ implement `FastyBird\Exchange\Publisher\IPublisher` interface and register your 
 ```php
 namespace Your\CoolApp\Publishers;
 
-use FastyBird\Exchange\Publisher\IPublisher;
+use FastyBird\Exchange\Publisher\Publisher;
 use FastyBird\Metadata\Types;
 use Nette\Utils;
 
-class ModuleDataPublisher implements IPublisher
+class ModuleDataPublisher implements Publisher
 {
 
     public function publish(
@@ -37,7 +37,7 @@ class ModuleDataPublisher implements IPublisher
         Types\RoutingKeyType $routingKey,
         ?Utils\ArrayHash $data
     ) : void {
-        // Publisher logic here, eg. publish message to RabbitMQ or Redis etc. 
+        // Container logic here, eg. publish message to RabbitMQ or Redis etc. 
     }
 
 }
@@ -52,17 +52,17 @@ In your code you could just import one publisher - proxy publisher.
 ```php
 namespace Your\CoolApp\Actions;
 
-use FastyBird\Exchange\Publisher\IPublisher;
+use FastyBird\Exchange\Publisher\Publisher;
 use Nette\Utils;
 
 class SomeHandler
 {
 
-    /** @var IPublisher */
-    private IPublisher $publisher;
+    /** @var Publisher */
+    private Publisher $publisher;
 
     public function __construct(
-        IPublisher $publisher
+        Publisher $publisher
     ) {
         $this->publisher = $publisher;
     }
@@ -94,11 +94,11 @@ Your consumer could look like this:
 ```php
 namespace Your\CoolApp\Publishers;
 
-use FastyBird\Exchange\Consumer\IConsumer;
+use FastyBird\Exchange\Consumer\Consumer;
 use FastyBird\Metadata\Types;
 use Nette\Utils;
 
-class DataConsumer implements IConsumer
+class DataConsumer implements Consumer
 {
 
     public function consume(

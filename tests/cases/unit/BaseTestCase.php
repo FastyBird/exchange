@@ -1,24 +1,21 @@
 <?php declare(strict_types = 1);
 
-namespace Tests\Cases;
+namespace Tests\Cases\Unit;
 
 use FastyBird\Exchange;
 use Nette;
 use Nette\DI;
 use Ninjify\Nunjuck\TestCase\BaseMockeryTestCase;
+use function file_exists;
+use function md5;
+use function time;
 
 abstract class BaseTestCase extends BaseMockeryTestCase
 {
 
-	/** @var DI\Container */
 	protected DI\Container $container;
 
-	/**
-	 * @param string|null $additionalConfig
-	 *
-	 * @return Nette\DI\Container
-	 */
-	protected function createContainer(?string $additionalConfig = null): Nette\DI\Container
+	protected function createContainer(string|null $additionalConfig = null): Nette\DI\Container
 	{
 		$rootDir = __DIR__ . '/../../';
 
@@ -39,16 +36,11 @@ abstract class BaseTestCase extends BaseMockeryTestCase
 		return $config->createContainer();
 	}
 
-	/**
-	 * @param string $serviceType
-	 * @param object $serviceMock
-	 *
-	 * @return void
-	 */
 	protected function mockContainerService(
 		string $serviceType,
-		object $serviceMock
-	): void {
+		object $serviceMock,
+	): void
+	{
 		$foundServiceNames = $this->container->findByType($serviceType);
 
 		foreach ($foundServiceNames as $serviceName) {
@@ -56,12 +48,6 @@ abstract class BaseTestCase extends BaseMockeryTestCase
 		}
 	}
 
-	/**
-	 * @param string $serviceName
-	 * @param object $service
-	 *
-	 * @return void
-	 */
 	private function replaceContainerService(string $serviceName, object $service): void
 	{
 		$this->container->removeService($serviceName);

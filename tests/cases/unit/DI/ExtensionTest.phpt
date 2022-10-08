@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Tests\Cases;
+namespace Tests\Cases\Unit;
 
 use FastyBird\Exchange\Consumer;
 use FastyBird\Exchange\Entities;
@@ -21,8 +21,8 @@ final class ExtensionTest extends BaseTestCase
 		$container = $this->createContainer();
 
 		Assert::notNull($container->getByType(Entities\EntityFactory::class));
-		Assert::notNull($container->getByType(Publisher\Publisher::class));
-		Assert::notNull($container->getByType(Consumer\Consumer::class));
+		Assert::notNull($container->getByType(Publisher\Container::class));
+		Assert::notNull($container->getByType(Consumer\Container::class));
 	}
 
 }
