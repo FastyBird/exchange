@@ -36,7 +36,7 @@ class Container implements Publisher
 	private SplObjectStorage $publishers;
 
 	public function __construct(
-		private PsrEventDispatcher\EventDispatcherInterface|null $dispatcher = null,
+		private readonly PsrEventDispatcher\EventDispatcherInterface|null $dispatcher = null,
 	)
 	{
 		$this->publishers = new SplObjectStorage();

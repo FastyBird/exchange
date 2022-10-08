@@ -31,8 +31,8 @@ class BeforeMessageConsumed extends EventDispatcher\Event
 {
 
 	public function __construct(
-		private MetadataTypes\RoutingKey $routingKey,
-		private MetadataEntities\Entity|null $entity,
+		private readonly MetadataTypes\RoutingKey $routingKey,
+		private readonly MetadataEntities\Entity|null $entity,
 	)
 	{
 	}

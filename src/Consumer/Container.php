@@ -36,7 +36,7 @@ class Container implements Consumer
 	private SplObjectStorage $consumers;
 
 	public function __construct(
-		private PsrEventDispatcher\EventDispatcherInterface|null $dispatcher = null,
+		private readonly PsrEventDispatcher\EventDispatcherInterface|null $dispatcher = null,
 	)
 	{
 		$this->consumers = new SplObjectStorage();

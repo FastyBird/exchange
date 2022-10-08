@@ -1,6 +1,8 @@
 # Quick start
 
-The purpose of this plugin is to provide unified interface for data exchange. Create consumers and publishers proxies, collect registered application consumers and publishers and control them.
+The purpose of this library is to provide unified interface for data exchange. Create consumers and publishers proxies, collect registered application consumers and publishers and control them.
+
+***
 
 ## Installation
 
@@ -20,24 +22,25 @@ extensions:
 ## Creating custom publisher
 
 If some service of your module have to publish messages to data exchange for other modules, you could just
-implement `FastyBird\Exchange\Publisher\IPublisher` interface and register your publisher as service
+implement `FastyBird\Exchange\Publisher\Publisher` interface and register your publisher as service
 
 ```php
 namespace Your\CoolApp\Publishers;
 
 use FastyBird\Exchange\Publisher\Publisher;
-use FastyBird\Metadata\Types;
+use FastyBird\Metadata\Entities as MetadataEntities;
+use FastyBird\Metadata\Types as MetadataTypes;
 use Nette\Utils;
 
 class ModuleDataPublisher implements Publisher
 {
 
     public function publish(
-        $origin,
-        Types\RoutingKeyType $routingKey,
-        ?Utils\ArrayHash $data
+        MetadataTypes\ModuleSource|MetadataTypes\PluginSource|MetadataTypes\ConnectorSource $source,
+        MetadataTypes\RoutingKey $routingKey,
+        MetadataEntities\Entity|null $entity,
     ) : void {
-        // Container logic here, eg. publish message to RabbitMQ or Redis etc. 
+        // Service logic here, eg. publish message to RabbitMQ or Redis etc. 
     }
 
 }
@@ -52,17 +55,16 @@ In your code you could just import one publisher - proxy publisher.
 ```php
 namespace Your\CoolApp\Actions;
 
-use FastyBird\Exchange\Publisher\Publisher;
-use Nette\Utils;
+use FastyBird\Exchange\Publisher\Container;
 
 class SomeHandler
 {
 
-    /** @var Publisher */
-    private Publisher $publisher;
+    /** @var Container */
+    private Container $publisher;
 
     public function __construct(
-        Publisher $publisher
+        Container $publisher
     ) {
         $this->publisher = $publisher;
     }
@@ -74,9 +76,7 @@ class SomeHandler
         $this->publisher->publish(
             $origin,
             $routingKey,
-            Utils\ArrayHash::from([
-                'key' => 'value',
-            ])
+            $entity,
         );
     }
 }
@@ -95,18 +95,18 @@ Your consumer could look like this:
 namespace Your\CoolApp\Publishers;
 
 use FastyBird\Exchange\Consumer\Consumer;
-use FastyBird\Metadata\Types;
-use Nette\Utils;
+use FastyBird\Metadata\Entities as MetadataEntities;
+use FastyBird\Metadata\Types as MetadataTypes;
 
 class DataConsumer implements Consumer
 {
 
     public function consume(
-        $origin,
-        Types\RoutingKeyType $routingKey,
-        ?Utils\ArrayHash $data
+		MetadataTypes\ModuleSource|MetadataTypes\PluginSource|MetadataTypes\ConnectorSource $source,
+		MetadataTypes\RoutingKey $routingKey,
+		MetadataEntities\Entity|null $entity,
     ) : void {
-        // Do you data processing logic here 
+        // Do your data processing logic here 
     }
 
 }
