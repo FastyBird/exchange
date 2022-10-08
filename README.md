@@ -15,6 +15,8 @@
 [![Black](https://img.shields.io/badge/black-enabled-brightgreen.svg?style=flat-square)](https://github.com/psf/black)
 [![MyPy](https://img.shields.io/badge/mypy-enabled-brightgreen.svg?style=flat-square)](http://mypy-lang.org)
 
+***
+
 ## What is FastyBird exchange library?
 
 This is library for [FastyBird IoT](https://www.fastybird.com) ecosystem which is
