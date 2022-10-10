@@ -43,7 +43,7 @@ class Container implements Publisher
 	}
 
 	public function publish(
-		MetadataTypes\ModuleSource|MetadataTypes\PluginSource|MetadataTypes\ConnectorSource $source,
+		MetadataTypes\ModuleSource|MetadataTypes\PluginSource|MetadataTypes\ConnectorSource|MetadataTypes\TriggerSource $source,
 		MetadataTypes\RoutingKey $routingKey,
 		MetadataEntities\Entity|null $entity,
 	): void
