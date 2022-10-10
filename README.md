@@ -16,6 +16,12 @@
 This is library for [FastyBird IoT](https://www.fastybird.com) ecosystem which is
 implementing data exchange services.
 
+### Features
+
+- Consumer container for aggregating all application consumers
+- Publisher container for aggregating all application publishers
+- Messages events
+
 ## Installation
 
 The best way to install **fastybird/exchange** is using [Composer](http://getcomposer.org/):
