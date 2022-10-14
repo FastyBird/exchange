@@ -63,6 +63,7 @@ final class EntityFactory
 	}
 
 	/**
+	 * @throws Exceptions\InvalidState
 	 * @throws MetadataExceptions\FileNotFound
 	 */
 	public function create(string $data, MetadataTypes\RoutingKey $routingKey): MetadataEntities\Entity

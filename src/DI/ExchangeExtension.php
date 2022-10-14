@@ -61,6 +61,9 @@ class ExchangeExtension extends DI\CompilerExtension
 			->setType(Entities\EntityFactory::class);
 	}
 
+	/**
+	 * @throws Nette\DI\MissingServiceException
+	 */
 	public function beforeCompile(): void
 	{
 		parent::beforeCompile();
