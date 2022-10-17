@@ -75,7 +75,7 @@
 
   "autoload-dev" : {
     "psr-4" : {
-      "Tests\\Cases\\Unit\\" : "tests/cases/unit"
+      "FastyBird\\Exchange\\Tests\\Cases\\Unit\\" : "tests/cases/unit"
     }
   },
 

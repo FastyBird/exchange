@@ -19,6 +19,7 @@ use FastyBird\Exchange\Exceptions;
 use FastyBird\Metadata\Entities as MetadataEntities;
 use FastyBird\Metadata\Exceptions as MetadataExceptions;
 use FastyBird\Metadata\Types as MetadataTypes;
+use IPub\Phone\Exceptions as PhoneExceptions;
 
 /**
  * Exchange entity factory
@@ -64,7 +65,14 @@ final class EntityFactory
 
 	/**
 	 * @throws Exceptions\InvalidState
+	 * @throws PhoneExceptions\NoValidCountryException
+	 * @throws PhoneExceptions\NoValidPhoneException
 	 * @throws MetadataExceptions\FileNotFound
+	 * @throws MetadataExceptions\InvalidArgument
+	 * @throws MetadataExceptions\InvalidData
+	 * @throws MetadataExceptions\InvalidState
+	 * @throws MetadataExceptions\Logic
+	 * @throws MetadataExceptions\MalformedInput
 	 */
 	public function create(string $data, MetadataTypes\RoutingKey $routingKey): MetadataEntities\Entity
 	{
