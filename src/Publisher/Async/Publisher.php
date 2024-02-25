@@ -13,13 +13,14 @@
  * @date           19.12.20
  */
 
-namespace FastyBird\Library\Exchange\Publisher;
+namespace FastyBird\Library\Exchange\Publisher\Async;
 
 use FastyBird\Library\Metadata\Documents as MetadataDocuments;
 use FastyBird\Library\Metadata\Types as MetadataTypes;
+use React\Promise;
 
 /**
- * Exchange publisher interface
+ * Exchange asynchronous publisher interface
  *
  * @package        FastyBird:ExchangeLibrary!
  * @subpackage     Publishers
@@ -29,10 +30,13 @@ use FastyBird\Library\Metadata\Types as MetadataTypes;
 interface Publisher
 {
 
+	/**
+	 * @return Promise\PromiseInterface<bool>
+	 */
 	public function publish(
 		MetadataTypes\Sources\Source $source,
 		string $routingKey,
 		MetadataDocuments\Document|null $entity,
-	): bool;
+	): Promise\PromiseInterface;
 
 }
