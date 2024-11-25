@@ -6,19 +6,19 @@
  * @license        More in LICENSE.md
  * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
- * @package        FastyBird:ExchangeLibrary!
+ * @package        FastyBird:Exchange!
  * @subpackage     Documents
  * @since          1.0.0
  *
  * @date           13.06.22
  */
 
-namespace FastyBird\Library\Exchange\Documents;
+namespace FastyBird\Core\Exchange\Documents;
 
-use FastyBird\Library\Exchange\Documents;
-use FastyBird\Library\Exchange\Exceptions;
-use FastyBird\Library\Metadata\Documents as MetadataDocuments;
-use FastyBird\Library\Metadata\Exceptions as MetadataExceptions;
+use FastyBird\Core\Application\Documents as ApplicationDocuments;
+use FastyBird\Core\Application\Exceptions as ApplicationExceptions;
+use FastyBird\Core\Exchange\Documents;
+use FastyBird\Core\Exchange\Exceptions;
 use Nette\Utils;
 use ReflectionClass;
 use function array_key_exists;
@@ -29,7 +29,7 @@ use function sprintf;
 /**
  * Exchange document factory
  *
- * @package        FastyBird:ExchangeLibrary!
+ * @package        FastyBird:Exchange!
  * @subpackage     Documents
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -37,15 +37,15 @@ use function sprintf;
 final class DocumentFactory
 {
 
-	/** @var array<string, class-string<MetadataDocuments\Document>>|null */
+	/** @var array<string, class-string<ApplicationDocuments\Document>>|null */
 	private array|null $routingMap = null;
 
-	/** @var Mapping\Driver\AttributeReader<Documents\Mapping\MappingAttribute> */
+	/** @var Documents\Mapping\Driver\AttributeReader<Documents\Mapping\MappingAttribute> */
 	private Documents\Mapping\Driver\AttributeReader $reader;
 
 	public function __construct(
-		private readonly MetadataDocuments\Mapping\Driver\MappingDriver $mappingDriver,
-		private readonly MetadataDocuments\DocumentFactory $documentFactory,
+		private readonly ApplicationDocuments\Mapping\Driver\MappingDriver $mappingDriver,
+		private readonly ApplicationDocuments\DocumentFactory $documentFactory,
 	)
 	{
 		$this->reader = new Documents\Mapping\Driver\AttributeReader();
@@ -53,15 +53,15 @@ final class DocumentFactory
 
 	/**
 	 * @throws Exceptions\InvalidState
-	 * @throws MetadataExceptions\InvalidArgument
-	 * @throws MetadataExceptions\InvalidState
-	 * @throws MetadataExceptions\MalformedInput
-	 * @throws MetadataExceptions\Mapping
+	 * @throws ApplicationExceptions\InvalidArgument
+	 * @throws ApplicationExceptions\InvalidState
+	 * @throws ApplicationExceptions\MalformedInput
+	 * @throws ApplicationExceptions\Mapping
 	 */
 	public function create(
 		Utils\ArrayHash $data,
 		string $routingKey,
-	): MetadataDocuments\Document
+	): ApplicationDocuments\Document
 	{
 		return $this->documentFactory->create(
 			$this->loadDocument($routingKey),
@@ -70,7 +70,7 @@ final class DocumentFactory
 	}
 
 	/**
-	 * @return class-string<MetadataDocuments\Document>
+	 * @return class-string<ApplicationDocuments\Document>
 	 *
 	 * @throws Exceptions\InvalidState
 	 */
@@ -97,7 +97,7 @@ final class DocumentFactory
 		$this->routingMap = [];
 
 		foreach ($this->mappingDriver->getAllClassNames() as $className) {
-			if (!is_subclass_of($className, MetadataDocuments\Document::class)) {
+			if (!is_subclass_of($className, ApplicationDocuments\Document::class)) {
 				continue;
 			}
 

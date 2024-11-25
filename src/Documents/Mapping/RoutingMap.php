@@ -6,14 +6,14 @@
  * @license        More in LICENSE.md
  * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
- * @package        FastyBird:ExchangeLibrary!
+ * @package        FastyBird:Exchange!
  * @subpackage     Documents
  * @since          1.0.0
  *
  * @date           13.02.24
  */
 
-namespace FastyBird\Library\Exchange\Documents\Mapping;
+namespace FastyBird\Core\Exchange\Documents\Mapping;
 
 use Attribute;
 

@@ -6,18 +6,18 @@
  * @license        More in LICENSE.md
  * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
- * @package        FastyBird:ExchangeLibrary!
+ * @package        FastyBird:Exchange!
  * @subpackage     Consumers
  * @since          1.0.0
  *
  * @date           09.01.22
  */
 
-namespace FastyBird\Library\Exchange\Consumers;
+namespace FastyBird\Core\Exchange\Consumers;
 
-use FastyBird\Library\Exchange\Events;
-use FastyBird\Library\Exchange\Exceptions;
-use FastyBird\Library\Metadata\Documents as MetadataDocuments;
+use FastyBird\Core\Application\Documents as ApplicationDocuments;
+use FastyBird\Core\Exchange\Events;
+use FastyBird\Core\Exchange\Exceptions;
 use FastyBird\Library\Metadata\Types as MetadataTypes;
 use Psr\EventDispatcher as PsrEventDispatcher;
 use SplObjectStorage;
@@ -25,7 +25,7 @@ use SplObjectStorage;
 /**
  * Exchange consumer proxy
  *
- * @package        FastyBird:ExchangeLibrary!
+ * @package        FastyBird:Exchange!
  * @subpackage     Consumers
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -46,7 +46,7 @@ class Container implements Consumer
 	public function consume(
 		MetadataTypes\Sources\Source $source,
 		string $routingKey,
-		MetadataDocuments\Document|null $document,
+		ApplicationDocuments\Document|null $document,
 	): void
 	{
 		$this->dispatcher?->dispatch(new Events\BeforeMessageConsumed($source, $routingKey, $document));

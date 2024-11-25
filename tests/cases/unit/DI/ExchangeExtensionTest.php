@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace FastyBird\Library\Exchange\Tests\Cases\Unit\DI;
+namespace FastyBird\Core\Exchange\Tests\Cases\Unit\DI;
 
-use FastyBird\Library\Exchange\Consumers;
-use FastyBird\Library\Exchange\Documents;
-use FastyBird\Library\Exchange\Publisher;
-use FastyBird\Library\Exchange\Tests;
+use FastyBird\Core\Exchange\Consumers;
+use FastyBird\Core\Exchange\Documents;
+use FastyBird\Core\Exchange\Publisher;
+use FastyBird\Core\Exchange\Tests;
 use Nette;
 
 final class ExchangeExtensionTest extends Tests\Cases\Unit\BaseTestCase

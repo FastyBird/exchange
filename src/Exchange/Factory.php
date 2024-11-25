@@ -6,19 +6,19 @@
  * @license        More in LICENSE.md
  * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
- * @package        FastyBird:ExchangeLibrary!
+ * @package        FastyBird:Exchange!
  * @subpackage     Exchange
  * @since          1.0.0
  *
  * @date           28.03.23
  */
 
-namespace FastyBird\Library\Exchange\Exchange;
+namespace FastyBird\Core\Exchange\Exchange;
 
 /**
  * Exchange factory interface
  *
- * @package        FastyBird:ExchangeLibrary!
+ * @package        FastyBird:Exchange!
  * @subpackage     Exchange
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>

@@ -4,7 +4,7 @@
 # @license        More in LICENSE.md
 # @copyright      https://www.fastybird.com
 # @author         Adam Kadlec <adam.kadlec@fastybird.com>
-# @package        FastyBird:ExchangeLibrary!
+# @package        FastyBird:Exchange!
 # @subpackage     config
 # @since          1.0.0
 #
@@ -15,8 +15,8 @@ php:
 
 extensions:
     ipubPhone           : IPub\Phone\DI\PhoneExtension
-    fbMetadataLibrary   : FastyBird\Library\Metadata\DI\MetadataExtension
+    fbTools             : FastyBird\Core\Tools\DI\ToolsExtension
 
-fbMetadataLibrary:
+fbApplication:
     documents:
         mapping: []

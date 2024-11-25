@@ -6,17 +6,17 @@
  * @license        More in LICENSE.md
  * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
- * @package        FastyBird:ExchangeLibrary!
+ * @package        FastyBird:Exchange!
  * @subpackage     Publishers
  * @since          1.0.0
  *
  * @date           19.12.20
  */
 
-namespace FastyBird\Library\Exchange\Publisher\Async;
+namespace FastyBird\Core\Exchange\Publisher\Async;
 
-use FastyBird\Library\Exchange\Events;
-use FastyBird\Library\Metadata\Documents as MetadataDocuments;
+use FastyBird\Core\Application\Documents as ApplicationDocuments;
+use FastyBird\Core\Exchange\Events;
 use FastyBird\Library\Metadata\Types as MetadataTypes;
 use Psr\EventDispatcher as PsrEventDispatcher;
 use React\Promise;
@@ -26,7 +26,7 @@ use Throwable;
 /**
  * Exchange async publishers proxy
  *
- * @package        FastyBird:ExchangeLibrary!
+ * @package        FastyBird:Exchange!
  * @subpackage     Publishers
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -50,7 +50,7 @@ class Container implements Publisher
 	public function publish(
 		MetadataTypes\Sources\Source $source,
 		string $routingKey,
-		MetadataDocuments\Document|null $entity,
+		ApplicationDocuments\Document|null $entity,
 	): Promise\PromiseInterface
 	{
 		$deferred = new Promise\Deferred();

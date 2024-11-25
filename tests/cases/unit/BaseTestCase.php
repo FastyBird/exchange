@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace FastyBird\Library\Exchange\Tests\Cases\Unit;
+namespace FastyBird\Core\Exchange\Tests\Cases\Unit;
 
 use Error;
-use FastyBird\Library\Application\Boot as ApplicationBoot;
-use FastyBird\Library\Application\Exceptions as ApplicationExceptions;
-use FastyBird\Library\Exchange;
+use FastyBird\Core\Application\Boot as ApplicationBoot;
+use FastyBird\Core\Application\Exceptions as ApplicationExceptions;
+use FastyBird\Core\Exchange;
 use Nette;
 use Nette\DI;
 use PHPUnit\Framework\TestCase;

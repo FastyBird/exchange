@@ -16,9 +16,9 @@
 
 ***
 
-## What is FastyBird exchange library?
+## What is FastyBird exchange?
 
-This is library for [FastyBird](https://www.fastybird.com) [IoT](https://en.wikipedia.org/wiki/Internet_of_things) ecosystem which is
+This is extension for [FastyBird](https://www.fastybird.com) [IoT](https://en.wikipedia.org/wiki/Internet_of_things) ecosystem which is
 implementing data exchange services.
 
 ### Features
@@ -40,7 +40,7 @@ This extension is part of the [FastyBird](https://www.fastybird.com) [IoT](https
 In case you want to create you own distribution of [FastyBird](https://www.fastybird.com) [IoT](https://en.wikipedia.org/wiki/Internet_of_things) ecosystem you could install this extension with  [Composer](http://getcomposer.org/):
 
 ```sh
-composer require fastybird/exchange-library
+composer require fastybird/exchange
 ```
 
 ## Documentation

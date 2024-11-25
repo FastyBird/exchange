@@ -6,21 +6,21 @@
  * @license        More in LICENSE.md
  * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
- * @package        FastyBird:ExchangeLibrary!
+ * @package        FastyBird:Exchange!
  * @subpackage     Consumers
  * @since          1.0.0
  *
  * @date           09.01.22
  */
 
-namespace FastyBird\Library\Exchange\Consumers;
+namespace FastyBird\Core\Exchange\Consumers;
 
 use Nette;
 
 /**
  * Consumer configuration
  *
- * @package        FastyBird:ExchangeLibrary!
+ * @package        FastyBird:Exchange!
  * @subpackage     Consumers
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>

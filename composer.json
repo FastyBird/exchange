@@ -1,6 +1,6 @@
 {
-  "name": "fastybird/exchange-library",
-  "type": "fastybird-library",
+  "name": "fastybird/exchange",
+  "type": "fastybird",
   "description": "FastyBird IoT application exchange services",
   "keywords": [
     "exchange",
@@ -28,14 +28,14 @@
   "support": {
     "email": "code@fastybird.com",
     "issues": "https://github.com/FastyBird/fastybird/issues",
-    "source": "https://github.com/FastyBird/exchange-library"
+    "source": "https://github.com/FastyBird/exchange"
   },
   "require": {
     "php": ">=8.2.0",
     "cweagans/composer-patches": "^1.7",
-    "fastybird/application-library": "dev-main",
+    "fastybird/application": "dev-main",
     "fastybird/metadata-library": "dev-main",
-    "nette/di": "^3.0",
+    "nette/di": "^3.2",
     "nette/utils": "^4.0",
     "psr/event-dispatcher": "^1.0",
     "react/promise": "^3",
@@ -61,12 +61,12 @@
   },
   "autoload": {
     "psr-4": {
-      "FastyBird\\Library\\Exchange\\": "src/"
+      "FastyBird\\Core\\Exchange\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "FastyBird\\Library\\Exchange\\Tests\\Cases\\Unit\\": "tests/cases/unit"
+      "FastyBird\\Core\\Exchange\\Tests\\Cases\\Unit\\": "tests/cases/unit"
     }
   },
   "config": {

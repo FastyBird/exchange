@@ -6,19 +6,19 @@
  * @license        More in LICENSE.md
  * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
- * @package        FastyBird:ExchangeLibrary!
+ * @package        FastyBird:Exchange!
  * @subpackage     DI
  * @since          1.0.0
  *
  * @date           19.12.20
  */
 
-namespace FastyBird\Library\Exchange\DI;
+namespace FastyBird\Core\Exchange\DI;
 
-use FastyBird\Library\Application\Boot as ApplicationBoot;
-use FastyBird\Library\Exchange\Consumers;
-use FastyBird\Library\Exchange\Documents;
-use FastyBird\Library\Exchange\Publisher;
+use FastyBird\Core\Application\Boot as ApplicationBoot;
+use FastyBird\Core\Exchange\Consumers;
+use FastyBird\Core\Exchange\Documents;
+use FastyBird\Core\Exchange\Publisher;
 use Nette;
 use Nette\Bootstrap;
 use Nette\DI;
@@ -29,7 +29,7 @@ use function is_string;
 /**
  * Exchange plugin extension container
  *
- * @package        FastyBird:ExchangeLibrary!
+ * @package        FastyBird:Exchange!
  * @subpackage     DI
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
@@ -43,7 +43,7 @@ class ExchangeExtension extends DI\CompilerExtension
 
 	public static function register(
 		ApplicationBoot\Configurator $config,
-		string $extensionName = 'fbExchangeLibrary',
+		string $extensionName = 'fbExchange',
 	): void
 	{
 		$config->onCompile[] = static function (
